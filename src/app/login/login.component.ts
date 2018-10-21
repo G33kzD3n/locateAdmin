@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         res => {
           this.logSer.loggedIn = true;
-          localStorage.setItem('username',res.data.name);
+          sessionStorage.setItem('username',res.data.name);
           this.router.navigate(['home']);
         },
         err => {
