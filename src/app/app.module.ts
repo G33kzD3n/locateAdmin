@@ -9,6 +9,10 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
+import { BusesDashboardComponent } from './buses-dashboard/buses-dashboard.component';
+import { BusesListComponent } from './buses-dashboard/buses-list/buses-list.component';
+import { RegistrationsComponent } from './registrations/registrations.component';
+import { FeeComponent } from './fee/fee.component';
 
 
 @NgModule({
@@ -16,7 +20,11 @@ import { MenuComponent } from './menu/menu.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    BusesDashboardComponent,
+    BusesListComponent,
+    RegistrationsComponent,
+    FeeComponent
   ],
   imports: [
     BrowserModule,
