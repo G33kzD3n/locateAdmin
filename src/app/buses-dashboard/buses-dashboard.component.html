@@ -1,3 +1,21 @@
-<p>
-  buses-dashboard works!
-</p>
+<div class="card" style="width: 51rem;" *ngFor="let bus of buses; let i=index" >
+    
+    <img class="card-img-top img-fluid. max-width: 100%;" src="../../assets/imgs/111.svg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Bus No: {{ bus.bus_no }} </h5>
+      <!-- <p class="card-text">of the card's content.</p> -->
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Driver Name: {{bus.driver.name}}</li>
+      <li class="list-group-item">Driver Phno:{{bus.driver.cell_no}}</li>
+    </ul>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Cordinator Name:{{bus.cordinator.name}}</li>
+        <li class="list-group-item">Cordinator Phno:{{bus.cordinator.cell_no}}</li>
+      </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+  

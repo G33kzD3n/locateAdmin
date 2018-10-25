@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from '@angular/router';
 import { LoginService } from '../login/services/login.service';
+// import { toastr } from 'toastr';
+// import{ toast }from 'angular-toastr';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   heading = "Singn Up";
   disableSignUp = true;
-  constructor(public fb: FormBuilder, public router: Router, public logSer: LoginService) {
+  constructor(protected fb: FormBuilder, protected router: Router, protected logSer: LoginService) {
     //this.disableSignUp=false;
   }
 
@@ -39,11 +41,17 @@ export class LoginComponent implements OnInit {
       .subscribe(
         res => {
           this.logSer.loggedIn = true;
-          sessionStorage.setItem('username',res.data.name);
+          sessionStorage.setItem('username', res.data.name);
           this.router.navigate(['home']);
         },
         err => {
-          console.log(err);
+          console.log(err.status);
+          if (err.status == 0) {
+            alert("Check your Internet connection");
+          }
+          else {
+            alert("Wrong username or password");
+          }
         }
       );
   }
