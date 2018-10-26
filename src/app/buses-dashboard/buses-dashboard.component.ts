@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import{ AppService} from '../app.service';
+
 
 @Component({
   selector: 'app-buses-dashboard',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BusesDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected http: HttpClient, protected app: AppService) { }
 
   ngOnInit() {
+    console.log("in it");
+    this.http.get(this.app.baseUrl+'/buses')
+    .subscribe(
+      (response:Response)=>{
+         const res = response.json();
+         console.log(res+"sss");
+      }
+    );
   }
-
 }
+  

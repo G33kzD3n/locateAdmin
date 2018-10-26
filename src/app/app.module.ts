@@ -13,6 +13,9 @@ import { BusesDashboardComponent } from './buses-dashboard/buses-dashboard.compo
 import { BusesListComponent } from './buses-dashboard/buses-list/buses-list.component';
 import { RegistrationsComponent } from './registrations/registrations.component';
 import { FeeComponent } from './fee/fee.component';
+import { MaterialModule } from './material';
+
+
 
 
 @NgModule({
@@ -31,7 +34,8 @@ import { FeeComponent } from './fee/fee.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
