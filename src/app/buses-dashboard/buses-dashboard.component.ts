@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import{ AppService} from '../app.service';
+import { BusesDashboardService } from '../buses-dashboard/services/buses-dashboard.service';
 
 
 @Component({
@@ -9,18 +8,29 @@ import{ AppService} from '../app.service';
   styleUrls: ['./buses-dashboard.component.css']
 })
 export class BusesDashboardComponent implements OnInit {
-
-  constructor(protected http: HttpClient, protected app: AppService) { }
+  buses:any;
+  constructor(protected busSer: BusesDashboardService) { }
 
   ngOnInit() {
-    console.log("in it");
-    this.http.get(this.app.baseUrl+'/buses')
-    .subscribe(
-      (response:Response)=>{
-         const res = response.json();
-         console.log(res+"sss");
-      }
-    );
+    this.getBuses();
+  }
+
+  getBuses() {
+    this.busSer.getBuses()
+      .subscribe(
+        res => {
+          this.buses = res.buses;
+          console.log(this.buses);
+        },
+        err => {
+          if (err.status == 0) {
+            alert("Check your Internet connection");
+          }
+          else {
+            alert("Wrong username or password");
+          }
+        }
+      );
   }
 }
   

@@ -13,11 +13,12 @@ export class MenuComponent implements OnInit {
 
   constructor(protected logSer: LoginService,protected router:Router) { }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.username=sessionStorage.getItem('username');
   }
 
   logOut() {
+    this.logSer.loggedIn = false;
     this.router.navigate(['']);
     sessionStorage.clear();
   }

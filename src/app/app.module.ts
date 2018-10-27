@@ -16,6 +16,7 @@ import { FeeComponent } from './fee/fee.component';
 import { MaterialModule } from './material';
 
 
+// import { toastr } from 'toastr';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { MaterialModule } from './material';
     ReactiveFormsModule,
     AppRoutingModule,
     MaterialModule
+    //toastr
   ],
   providers: [],
   bootstrap: [AppComponent]
