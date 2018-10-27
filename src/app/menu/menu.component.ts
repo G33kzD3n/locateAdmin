@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login/services/login.service';
-
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,15 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  username:string="";
+  username: string = "";
 
-  constructor(protected logSer: LoginService,protected router:Router) { 
+  constructor(protected logSer: LoginService, protected router: Router) {
     this.logSer.loggedIn = Boolean(sessionStorage.getItem('loggedIn'));
   }
 
-  ngOnInit() {    
-    this.username=sessionStorage.getItem('username');
-    
+  ngOnInit() {
+    this.username = sessionStorage.getItem('username');
   }
 
   logOut() {
