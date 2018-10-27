@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
     this.logSer.loginUser(payload)
       .subscribe(
         res => {
+          sessionStorage.setItem('loggedIn', 'true');
           this.logSer.loggedIn = true;
           sessionStorage.setItem('username', res.data.name);
           this.router.navigate(['home']);

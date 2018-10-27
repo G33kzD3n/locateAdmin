@@ -11,10 +11,13 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
   username:string="";
 
-  constructor(protected logSer: LoginService,protected router:Router) { }
+  constructor(protected logSer: LoginService,protected router:Router) { 
+    this.logSer.loggedIn = Boolean(sessionStorage.getItem('loggedIn'));
+  }
 
   ngOnInit() {    
     this.username=sessionStorage.getItem('username');
+    
   }
 
   logOut() {

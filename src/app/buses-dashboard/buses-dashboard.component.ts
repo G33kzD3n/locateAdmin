@@ -20,7 +20,7 @@ export class BusesDashboardComponent implements OnInit {
       .subscribe(
         res => {
           this.buses = res.buses;
-          console.log(this.buses);
+        
         },
         err => {
           if (err.status == 0) {

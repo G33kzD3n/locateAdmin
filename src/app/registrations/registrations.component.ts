@@ -18,7 +18,6 @@ export class RegistrationsComponent implements OnInit {
       .subscribe(
         res => {
           this.users = res;
-          console.log(this.users);
         },
         err => {
           if (err.status == 0) {
