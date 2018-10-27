@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fee',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeeComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected router:Router) { }
 
   ngOnInit() {
+    if (sessionStorage.getItem('loggedIn') !== 'true') {
+      this.router.navigate(['login']);
+    }
   }
 
 }

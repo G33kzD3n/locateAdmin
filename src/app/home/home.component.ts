@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home/services/home.service';
-
+import { LoginService } from '../login/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,12 @@ import { HomeService } from '../home/services/home.service';
 
 export class HomeComponent implements OnInit {
   public users: any;
-  constructor(protected homeSer: HomeService) { }
+  constructor(protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
 
   ngOnInit() {
+    if (sessionStorage.getItem('loggedIn') !== 'true') {
+      this.router.navigate(['login']);
+    }
     this.getUsers();
   }
   getUsers() {
@@ -20,7 +24,8 @@ export class HomeComponent implements OnInit {
       .subscribe(
         res => {
           this.users = res;
-          console.log(this.users);
+          console.log(this.logSer.loggedIn);
+          console.log(sessionStorage.getItem('loggedIn'));
         },
         err => {
           if (err.status == 0) {

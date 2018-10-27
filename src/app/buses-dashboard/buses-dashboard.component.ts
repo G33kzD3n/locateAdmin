@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BusesDashboardService } from '../buses-dashboard/services/buses-dashboard.service';
-
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-buses-dashboard',
@@ -8,10 +8,13 @@ import { BusesDashboardService } from '../buses-dashboard/services/buses-dashboa
   styleUrls: ['./buses-dashboard.component.css']
 })
 export class BusesDashboardComponent implements OnInit {
-  buses:any;
-  constructor(protected busSer: BusesDashboardService) { }
+  buses: any;
+  constructor(protected busSer: BusesDashboardService, protected router: Router) { }
 
   ngOnInit() {
+    if (sessionStorage.getItem('loggedIn') !== 'true') {
+      this.router.navigate(['login']);
+    }
     this.getBuses();
   }
 
@@ -20,7 +23,7 @@ export class BusesDashboardComponent implements OnInit {
       .subscribe(
         res => {
           this.buses = res.buses;
-          console.log(this.buses);
+
         },
         err => {
           if (err.status == 0) {
