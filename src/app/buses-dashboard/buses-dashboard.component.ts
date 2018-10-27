@@ -9,6 +9,7 @@ import { Router } from '@angular/router'
 })
 export class BusesDashboardComponent implements OnInit {
   buses: any;
+  stops: any;
   constructor(protected busSer: BusesDashboardService, protected router: Router) { }
 
   ngOnInit() {
@@ -23,6 +24,9 @@ export class BusesDashboardComponent implements OnInit {
       .subscribe(
         res => {
           this.buses = res.buses;
+          this.stops = res.buses[0].stops.names.split(';');
+          console.log(this.buses);
+          console.log(this.stops);
 
         },
         err => {
