@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app/app.routing'
 
 
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -13,6 +14,8 @@ import { BusesDashboardComponent } from './buses-dashboard/buses-dashboard.compo
 import { BusesListComponent } from './buses-dashboard/buses-list/buses-list.component';
 import { RegistrationsComponent } from './registrations/registrations.component';
 import { FeeComponent } from './fee/fee.component';
+import { FilterPipe } from './filter.pipe';
+
 // import { toastr } from 'toastr';
 
 
@@ -25,7 +28,8 @@ import { FeeComponent } from './fee/fee.component';
     BusesDashboardComponent,
     BusesListComponent,
     RegistrationsComponent,
-    FeeComponent
+    FeeComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

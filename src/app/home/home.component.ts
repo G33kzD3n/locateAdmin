@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home/services/home.service';
 import { LoginService } from '../login/services/login.service';
 import { Router } from '@angular/router';
+import { FilterPipe } from '../filter.pipe';
+
 
 @Component({
   selector: 'app-home',
@@ -11,6 +13,7 @@ import { Router } from '@angular/router';
 
 export class HomeComponent implements OnInit {
   public users: any;
+  
   constructor(protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
 
   ngOnInit() {

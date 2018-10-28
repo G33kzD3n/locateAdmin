@@ -1,5 +1,5 @@
 <div class="form-inline float-right">
-  <input class="form-control mr-sm-2" type="search" placeholder="Search Table" aria-label="Search">
+  <input class="form-control mr-sm-2" [(ngModel)]="searchText" type="search"  placeholder="Search Table" aria-label="Search">
 </div>
 <div class="form-inline mb-3">
   <!-- <label for="exampleFormControlSelect1">Show</label> -->
@@ -30,10 +30,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users ; let i=index">
+        <tr *ngFor="let user of (users | filter : 'name' : searchText); let i=index">
+      <!-- <tr *ngFor="let user of (users | filter: ['name','dept_id'] : searchText); let i=index"> -->
         <th scope="row">{{i}}</th>
         <td>{{ user.username }}</td>
-        <td>{{ user.name }}</td>
+        <td>{{ user.name | uppercase }}</td>
         <td>{{ user.dept_id }}</td>
         <td>{{ user.course_id }}</td>
         <td>{{ user.semester }}</td>
