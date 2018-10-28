@@ -14,7 +14,8 @@ import { BusesDashboardComponent } from './buses-dashboard/buses-dashboard.compo
 import { BusesListComponent } from './buses-dashboard/buses-list/buses-list.component';
 import { RegistrationsComponent } from './registrations/registrations.component';
 import { FeeComponent } from './fee/fee.component';
-import { FilterPipe } from './filter.pipe';
+import { MaterialModule } from './material';
+
 
 // import { toastr } from 'toastr';
 
@@ -28,8 +29,7 @@ import { FilterPipe } from './filter.pipe';
     BusesDashboardComponent,
     BusesListComponent,
     RegistrationsComponent,
-    FeeComponent,
-    FilterPipe
+    FeeComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +37,7 @@ import { FilterPipe } from './filter.pipe';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    MaterialModule
     //toastr
   ],
   providers: [],
