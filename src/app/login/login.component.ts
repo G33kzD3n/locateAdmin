@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from '@angular/router';
 import { LoginService } from '../login/services/login.service';
+import {AppService} from '../app.service';
 // import { toastr } from 'toastr';
 // import{ toast }from 'angular-toastr';
 
@@ -15,12 +16,13 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   heading = "Singn Up";
   disableSignUp = true;
-  constructor(protected fb: FormBuilder, protected router: Router, protected logSer: LoginService) {
+  constructor(protected fb: FormBuilder, protected router: Router, protected logSer: LoginService,
+    protected app:AppService) {
     //this.disableSignUp=false;
   }
 
   ngOnInit() {
-    if (sessionStorage.getItem('loggedIn') == 'true') {
+    if (localStorage.getItem('loggedIn') == 'true') {
       this.router.navigate(['home']);
     }
     this.loginForm = this.fb.group({
@@ -43,10 +45,12 @@ export class LoginComponent implements OnInit {
     this.logSer.loginUser(payload)
       .subscribe(
         res => {
-          sessionStorage.setItem('loggedIn', 'true');
+          localStorage.setItem('loggedIn', 'true');
           this.logSer.loggedIn = true;
-          sessionStorage.setItem('username', res.data.name);
+          localStorage.setItem('username', res.data.name);
+          
           this.router.navigate(['home']);
+          this.app.openSnackBar('Welcome','');
         },
         err => {
           console.log(err.status);

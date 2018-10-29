@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   constructor(protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
 
   ngOnInit() {
-    if (sessionStorage.getItem('loggedIn') !== 'true') {
+    if (localStorage.getItem('loggedIn') !== 'true') {
       this.router.navigate(['login']);
     }
     this.getUsers();
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
         res => {
           this.users = res;
           console.log(this.logSer.loggedIn);
-          console.log(sessionStorage.getItem('loggedIn'));
+          console.log(localStorage.getItem('loggedIn'));
         },
         err => {
           if (err.status == 0) {

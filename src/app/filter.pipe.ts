@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-/////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////
   // transform(items: any[], searchText: string): any[] {
   //   if (!items) return [];
   //   if (!searchText) return items;
@@ -17,7 +17,7 @@ export class FilterPipe implements PipeTransform {
   // }
 
 
-//////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////
   // transform(items: any, filter: any, defaultFilter: boolean): any {
   //   if (!filter){
   //     return items;
@@ -45,7 +45,7 @@ export class FilterPipe implements PipeTransform {
   //   }
   // }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
   transform(items: any[], field: string, value: string): any[] {
     if (!items) {
       return [];
@@ -53,12 +53,11 @@ export class FilterPipe implements PipeTransform {
     if (!field || !value) {
       return items;
     }
-
     return items.filter(singleItem =>
       singleItem[field].toLowerCase().includes(value.toLowerCase())
     );
   }
-/////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////
   // transform(items: Array<any>, filter: {[key: string]: any }): Array<any> {
   //   return items.filter(item => {
   //       let notMatchingField = Object.keys(filter)
@@ -66,5 +65,5 @@ export class FilterPipe implements PipeTransform {
 
   //       return !notMatchingField; // true if matches all fields
   //   });
-//}
+  //}
 }

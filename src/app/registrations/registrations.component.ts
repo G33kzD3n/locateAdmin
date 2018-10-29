@@ -12,7 +12,7 @@ export class RegistrationsComponent implements OnInit {
   constructor(protected regSer: RegistrationsService, protected router: Router) { }
 
   ngOnInit() {
-    if (sessionStorage.getItem('loggedIn') !== 'true') {
+    if (localStorage.getItem('loggedIn') !== 'true') {
       this.router.navigate(['login']);
     }
     this.getRegistrations();

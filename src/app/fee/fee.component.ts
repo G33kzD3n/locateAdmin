@@ -11,7 +11,7 @@ export class FeeComponent implements OnInit {
   constructor(protected router:Router) { }
 
   ngOnInit() {
-    if (sessionStorage.getItem('loggedIn') !== 'true') {
+    if (localStorage.getItem('loggedIn') !== 'true') {
       this.router.navigate(['login']);
     }
   }

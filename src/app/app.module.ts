@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app/app.routing'
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { BusesListComponent } from './buses-dashboard/buses-list/buses-list.comp
 import { RegistrationsComponent } from './registrations/registrations.component';
 import { FeeComponent } from './fee/fee.component';
 import { MaterialModule } from './material';
+import { FilterPipe } from './filter.pipe';
 
 
 // import { toastr } from 'toastr';
@@ -29,7 +30,8 @@ import { MaterialModule } from './material';
     BusesDashboardComponent,
     BusesListComponent,
     RegistrationsComponent,
-    FeeComponent
+    FeeComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { MaterialModule } from './material';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    BrowserAnimationsModule
     //toastr
   ],
   providers: [],

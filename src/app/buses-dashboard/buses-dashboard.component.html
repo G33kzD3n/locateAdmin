@@ -1,12 +1,21 @@
 <mat-card>
     <mat-card-content>
-            <mat-card-title>Bus Inventory (Material Card/ Need To Install from Angular.material.io)
+        <mat-card-title>Bus Inventory
 
+            <hr>
+            <div class="form-inline float-right">
+                <input class="form-control mr-sm-2" [(ngModel)]="searchText" type="search" placeholder="Search Table"
+                    aria-label="Search">
+            </div>
+            <div class="pull-left">
             <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#exampleModalCenter">
-                Add New Bus</button></mat-card-title>
+                    <img src="../../assets/imgs/baseline-add-24px.svg">
+                Add New Bus</button>
+                </div>
+        </mat-card-title>
 
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -30,7 +39,8 @@
                         <td>{{bus.cordinator.cell_no}}</td>
                         <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#routes">Assigned
                                 Route</button></td>
-                        <td><button class="btn btn-primary" type="submit">Edit </button></td>
+                        <td><button title="Edit" type="submit">
+                                <img src="../../assets/imgs/trashed.svg"> </button></td>
                     </tr>
                 </tbody>
             </table>
@@ -40,7 +50,7 @@
 <hr>
 <hr>
 
-<div class="card" style="width:100%">
+<div class="card" style="width:100%; display:none;">
     <div class="card-body">
 
         <h5 class="card-title">Bus Inventory (Simple Bootstrap Card)

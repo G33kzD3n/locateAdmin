@@ -13,7 +13,7 @@ export class BusesDashboardComponent implements OnInit {
   constructor(protected busSer: BusesDashboardService, protected router: Router) { }
 
   ngOnInit() {
-    if (sessionStorage.getItem('loggedIn') !== 'true') {
+    if (localStorage.getItem('loggedIn') !== 'true') {
       this.router.navigate(['login']);
     }
     this.getBuses();
