@@ -11,11 +11,13 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { BusesDashboardComponent } from './buses-dashboard/buses-dashboard.component';
-import { BusesListComponent } from './buses-dashboard/buses-list/buses-list.component';
 import { RegistrationsComponent } from './registrations/registrations.component';
 import { FeeComponent } from './fee/fee.component';
 import { MaterialModule } from './material';
 import { FilterPipe } from './filter.pipe';
+import { BusComponent } from './buses-dashboard/bus/bus.component';
+import { PassengersComponent } from './buses-dashboard/passengers/passengers.component';
+import { RoutesComponent } from './buses-dashboard/routes/routes.component';
 
 
 // import { toastr } from 'toastr';
@@ -28,10 +30,12 @@ import { FilterPipe } from './filter.pipe';
     HomeComponent,
     MenuComponent,
     BusesDashboardComponent,
-    BusesListComponent,
     RegistrationsComponent,
     FeeComponent,
-    FilterPipe
+    FilterPipe,
+    BusComponent,
+    PassengersComponent,
+    RoutesComponent
   ],
   imports: [
     BrowserModule,

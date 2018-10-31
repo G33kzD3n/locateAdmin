@@ -5,7 +5,10 @@ import { HomeComponent } from '../app/home/home.component';
 import { MenuComponent } from '../app/menu/menu.component';
 import { RegistrationsComponent } from '../app/registrations/registrations.component';
 import { FeeComponent } from '../app/fee/fee.component';
-import { BusesDashboardComponent }from '../app/buses-dashboard/buses-dashboard.component';
+import { BusesDashboardComponent } from '../app/buses-dashboard/buses-dashboard.component';
+import { BusComponent } from '../app/buses-dashboard/bus/bus.component';
+import { PassengersComponent } from '../app/buses-dashboard/passengers/passengers.component';
+import { RoutesComponent } from '../app/buses-dashboard/routes/routes.component';
 
 const routes: Routes = [
     { path: '', component: LoginComponent, },
@@ -13,8 +16,10 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent, },
     { path: 'registrations', component: RegistrationsComponent, },
     { path: 'fee', component: FeeComponent, },
-    { path: 'fee', component: FeeComponent, },
     { path: 'buses', component: BusesDashboardComponent, },
+    { path: 'bus', component: BusComponent, },
+    { path: 'passengers', component: PassengersComponent, },
+    { path: 'routes', component: RoutesComponent, },
 
 ];
 @NgModule({
