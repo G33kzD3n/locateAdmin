@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
           this.logSer.loggedIn = true;
           localStorage.setItem('username', res.data.name);
           localStorage.setItem('token', res.data.api_token);
-
           this.router.navigate(['home']);
           this.app.openSnackBar('Welcome', '');
         },

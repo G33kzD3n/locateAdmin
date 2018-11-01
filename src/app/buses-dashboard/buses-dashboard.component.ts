@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BusesDashboardService } from '../buses-dashboard/services/buses-dashboard.service';
+import { RequestOptions, Headers } from '@angular/http';
 import { Router } from '@angular/router'
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { AppService } from '../app.service';
 
 @Component({
