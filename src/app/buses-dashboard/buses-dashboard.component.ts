@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BusesDashboardService } from '../buses-dashboard/services/buses-dashboard.service';
-import { RequestOptions, Headers } from '@angular/http';
 import { Router } from '@angular/router'
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { HttpHeaders } from '@angular/common/http';
@@ -42,8 +41,12 @@ export class BusesDashboardComponent implements OnInit {
       .subscribe(
         res => {
           this.buses = res.buses;
-          this.stops = res.buses[0].stops.names.split(';');
-
+          if (res.buses[0].stops.names == undefined) {
+            //alert('You need to assign stops to the new bus');
+          }
+          else {
+            this.stops = res.buses[0].stops.names.split(';');
+          }
         },
         err => {
           if (err.status == 0) {
@@ -59,8 +62,7 @@ export class BusesDashboardComponent implements OnInit {
     this.bus_no = bus_no;
   }
   editBus(bus_no: number) {
-    this.router.navigate(['bus']);
-    // { queryParams: { busno: bus_no } });
+    this.router.navigate(['businfo'], { queryParams: { busno: bus_no } });
   }
   addBus(busForm) {
     let payload = {
@@ -81,7 +83,6 @@ export class BusesDashboardComponent implements OnInit {
           }, 1000);
         },
         err => {
-          console.log(err);
           if (err.status == 0) {
             alert("Check your Internet connection");
           }
@@ -89,7 +90,6 @@ export class BusesDashboardComponent implements OnInit {
       );
   }
   deleteBus() {
-    console.log(this.bus_no);
     let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
     this.busSer.deleteBus(this.bus_no, options)
       .subscribe(
@@ -100,7 +100,6 @@ export class BusesDashboardComponent implements OnInit {
           }, 1000);
         },
         err => {
-          console.log(err);
           if (err.status == 0) {
             alert("Check your Internet connection");
           }

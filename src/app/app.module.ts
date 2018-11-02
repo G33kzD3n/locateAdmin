@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app/app.routing'
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 
 import { AppComponent } from './app.component';
@@ -18,10 +18,10 @@ import { FilterPipe } from './filter.pipe';
 import { BusComponent } from './buses-dashboard/bus/bus.component';
 import { PassengersComponent } from './buses-dashboard/passengers/passengers.component';
 import { RoutesComponent } from './buses-dashboard/routes/routes.component';
-
+import { BusinfoComponent } from './buses-dashboard/businfo/businfo.component';
+import { ProfileComponent } from './profile/profile.component';
 
 // import { toastr } from 'toastr';
-
 
 @NgModule({
   declarations: [
@@ -35,7 +35,9 @@ import { RoutesComponent } from './buses-dashboard/routes/routes.component';
     FilterPipe,
     BusComponent,
     PassengersComponent,
-    RoutesComponent
+    RoutesComponent,
+    BusinfoComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

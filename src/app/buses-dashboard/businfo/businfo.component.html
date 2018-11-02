@@ -1,0 +1,58 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Editing Bus no: {{bus_no}}</mat-card-title>
+    <hr>
+    <nav class="nav nav-pills flex-column flex-sm-row">
+      <!-- <a class="flex-sm-fill text-sm-center nav-link" routerLink="bus" routerLinkActive="active">Bus No </a> -->
+      <a class="flex-sm-fill text-sm-center nav-link" routerLink="passengers" [queryParams]="{busno:bus_no}"
+        routerLinkActive="active">Edit Passengers of Bus no: {{bus_no}} <img src="/src/assets/imgs/trashed.svg"></a>
+      <a class="flex-sm-fill text-sm-center nav-link" routerLink="routes" routerLinkActive="active">Edit Routes of Bus
+        no: {{bus_no}} <img src="/src/assets/imgs/trashed.svg"></a>
+      <!-- <a class="flex-sm-fill text-sm-center nav-link disabled" href="#">Disabled</a> -->
+
+    </nav>
+    <hr>
+    <hr>
+    <!-- <div class="form-inline float-right">
+      <input class="form-control mr-sm-2" [(ngModel)]="searchText" type="search" placeholder="Search Table" aria-label="Search">
+    </div> -->
+
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Bus Photo</th>
+            <th scope="col">Bus No</th>
+            <th scope="col">Driver Assigned</th>
+            <th scope="col">Driver's Phone</th>
+            <th scope="col">Coordinator Assigned</th>
+            <th scope="col">Coordinator Phone</th>
+            <th scope="col">Route Assigned</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let bus of buses; let i=index">
+          <tr *ngIf="bus_no == bus.bus_no">
+            <th scope="row">{{i}}</th>
+            <td>Icon</td>
+            <td>{{ bus.bus_no }}</td>
+            <td>{{bus.driver.name}}</td>
+            <td>{{bus.driver.cell_no}}</td>
+            <td>{{bus.cordinator.name}}</td>
+            <td>{{bus.cordinator.cell_no}}</td>
+            <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#routes">Assigned Route</button></td>
+            <td><button title="Edit" type="submit" (click)="editBus(bus.bus_no)">
+                <img src="/src/assets/imgs/trashed.svg"> </button>
+              <!-- <button type="button" data-toggle="modal" title="Delete record" data-target="#exampleModal"><img src="/src/assets/imgs/outline-restore_from_trash-24px.svg"> -->
+              <!-- </button> -->
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>
+<hr>
+<!-- <app-bus></app-bus> -->

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-bus',
@@ -8,9 +8,8 @@ import { Router } from '@angular/router';
 })
 export class BusComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected ar:ActivatedRoute) { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
+  
 }

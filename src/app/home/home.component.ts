@@ -13,7 +13,7 @@ import { FilterPipe } from '../filter.pipe';
 
 export class HomeComponent implements OnInit {
   public users: any;
-  
+
   constructor(protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
 
   ngOnInit() {
@@ -27,8 +27,6 @@ export class HomeComponent implements OnInit {
       .subscribe(
         res => {
           this.users = res;
-          console.log(this.logSer.loggedIn);
-          console.log(localStorage.getItem('loggedIn'));
         },
         err => {
           if (err.status == 0) {

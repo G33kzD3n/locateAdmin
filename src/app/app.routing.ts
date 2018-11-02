@@ -9,17 +9,20 @@ import { BusesDashboardComponent } from '../app/buses-dashboard/buses-dashboard.
 import { BusComponent } from '../app/buses-dashboard/bus/bus.component';
 import { PassengersComponent } from '../app/buses-dashboard/passengers/passengers.component';
 import { RoutesComponent } from '../app/buses-dashboard/routes/routes.component';
-
+import { BusinfoComponent } from '../app/buses-dashboard/businfo/businfo.component';
+import { ProfileComponent } from '../app/profile/profile.component';
 const routes: Routes = [
     { path: '', component: LoginComponent, },
     { path: 'login', component: LoginComponent, },
     { path: 'home', component: HomeComponent, },
+    { path: 'profile', component: ProfileComponent, },
     { path: 'registrations', component: RegistrationsComponent, },
     { path: 'fee', component: FeeComponent, },
     { path: 'buses', component: BusesDashboardComponent, },
-    { path: 'bus', component: BusComponent, },
-    { path: 'passengers', component: PassengersComponent, },
-    { path: 'routes', component: RoutesComponent, },
+    { path: 'businfo/bus', component: BusComponent, },
+    { path: 'businfo', component: BusinfoComponent, },
+    { path: 'businfo/passengers', component: PassengersComponent, },
+    { path: 'businfo/routes', component: RoutesComponent, },
 
 ];
 @NgModule({
