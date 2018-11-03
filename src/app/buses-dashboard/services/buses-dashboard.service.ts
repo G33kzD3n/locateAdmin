@@ -27,4 +27,9 @@ export class BusesDashboardService {
   deleteBus(bus_no, options): Observable<any> {
     return this.http.delete(this.app.baseUrl + '/buses/' + bus_no + '/delete', options);
   }
+  editBus(bus_no, payload, options): Observable<any> {
+    console.log(bus_no);
+    console.log(options);
+    return this.http.put(this.app.baseUrl + '/buses/' + bus_no + '/edit',payload, options);
+  }
 }

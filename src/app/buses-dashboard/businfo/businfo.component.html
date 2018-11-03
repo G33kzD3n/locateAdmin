@@ -1,58 +1,159 @@
 <mat-card>
   <mat-card-content>
     <mat-card-title>Editing Bus no: {{bus_no}}</mat-card-title>
-    <hr>
-    <nav class="nav nav-pills flex-column flex-sm-row">
-      <!-- <a class="flex-sm-fill text-sm-center nav-link" routerLink="bus" routerLinkActive="active">Bus No </a> -->
+    <!-- <hr> -->
+    <ul class="nav nav-tabs nav-pills nav-fill" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+          aria-selected="true">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+          aria-selected="false">Edit Passengers of Bus no: {{bus_no}} <img src="/src/assets/imgs/pencil-2x.png"></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+          aria-selected="false">Edit Routes of Bus
+          no: {{bus_no}} <img src="/src/assets/imgs/pencil-2x.png"></a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+<hr>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <!-- <th scope="col">Bus Photo</th> -->
+                <th scope="col">Bus No</th>
+                <th scope="col">Driver Assigned</th>
+                <!-- <th scope="col">Driver's Phone</th> -->
+                <th scope="col">Coordinator Assigned</th>
+                <!-- <th scope="col">Coordinator Phone</th> -->
+                <!-- <th scope="col">Route Assigned</th> -->
+              </tr>
+            </thead>
+            <tbody *ngFor="let bus of buses; let i=index">
+              <tr *ngIf="bus_no == bus.bus_no">
+                  <button mat-button (click)="openDialog()">Open dialog</button>
+                <th scope="row">{{i}}</th>
+                <!-- <td>Icon</td> -->
+                <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="">{{bus.bus_no}}</button></td>
+                <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="">{{bus.driver.name}}</button></td>
+                <!-- <td>{{bus.driver.cell_no}}</td> -->
+                <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="">{{bus.cordinator.name}}</button></td>
+                <!-- <td>{{bus.cordinator.cell_no}}</td> -->
+                <!-- <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#routes">Assigned Route</button></td> -->
+                <!-- <td><button title="Edit" type="submit" data-toggle="modal" data-target="#editing">
+                    <img src="/src/assets/imgs/trashed.svg"> </button>
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><hr>
+        <app-passengers></app-passengers>
+      </div>
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><hr>
+        <app-routes></app-routes>
+      </div>
+    </div>
+    <!-- <nav class="nav nav-pills flex-column flex-sm-row">
+      <a class="flex-sm-fill text-sm-center nav-link" routerLink="bus" routerLinkActive="active">Bus No </a>
       <a class="flex-sm-fill text-sm-center nav-link" routerLink="passengers" [queryParams]="{busno:bus_no}"
         routerLinkActive="active">Edit Passengers of Bus no: {{bus_no}} <img src="/src/assets/imgs/trashed.svg"></a>
       <a class="flex-sm-fill text-sm-center nav-link" routerLink="routes" routerLinkActive="active">Edit Routes of Bus
         no: {{bus_no}} <img src="/src/assets/imgs/trashed.svg"></a>
-      <!-- <a class="flex-sm-fill text-sm-center nav-link disabled" href="#">Disabled</a> -->
+      <a class="flex-sm-fill text-sm-center nav-link disabled" href="#">Disabled</a>
 
-    </nav>
-    <hr>
-    <hr>
+    </nav> -->
+    <!-- <hr> -->
+    <!-- <hr> -->
     <!-- <div class="form-inline float-right">
       <input class="form-control mr-sm-2" [(ngModel)]="searchText" type="search" placeholder="Search Table" aria-label="Search">
     </div> -->
-
-
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Bus Photo</th>
-            <th scope="col">Bus No</th>
-            <th scope="col">Driver Assigned</th>
-            <th scope="col">Driver's Phone</th>
-            <th scope="col">Coordinator Assigned</th>
-            <th scope="col">Coordinator Phone</th>
-            <th scope="col">Route Assigned</th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let bus of buses; let i=index">
-          <tr *ngIf="bus_no == bus.bus_no">
-            <th scope="row">{{i}}</th>
-            <td>Icon</td>
-            <td>{{ bus.bus_no }}</td>
-            <td>{{bus.driver.name}}</td>
-            <td>{{bus.driver.cell_no}}</td>
-            <td>{{bus.cordinator.name}}</td>
-            <td>{{bus.cordinator.cell_no}}</td>
-            <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#routes">Assigned Route</button></td>
-            <td><button title="Edit" type="submit" (click)="editBus(bus.bus_no)">
-                <img src="/src/assets/imgs/trashed.svg"> </button>
-              <!-- <button type="button" data-toggle="modal" title="Delete record" data-target="#exampleModal"><img src="/src/assets/imgs/outline-restore_from_trash-24px.svg"> -->
-              <!-- </button> -->
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
-    </div>
   </mat-card-content>
 </mat-card>
 <hr>
-<!-- <app-bus></app-bus> -->
+<!-- modal for edditing bus -->
+
+<div class="modal fade bd-example-modal-lg" id="editing" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Type new data for the field you want to change</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Bus Photo:</label>
+            <div class="col-sm-9">
+              <label class="col-sm-12 col-form-label">
+                <input type="file" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+              </label>
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Bus No:</label>
+            <div class="col-sm-9">
+              <label class="col-sm-3 col-form-label">{{buss?.bus_no}}</label>
+              <input type="text" class="form-control" placeholder="Number of Bus" name="subject">
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Driver Assigned:</label>
+            <div class="col-sm-9">
+              <label class="col-sm-3 col-form-label">{{buss?.driver.name}}</label>
+              <input type="text" class="form-control" placeholder="Name of the Driver" name="subject">
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Driver Phone</label>
+            <div class="col-sm-9">
+              <label class="col-sm-3 col-form-label">{{buss?.driver.cell_no}}</label>
+              <input type="text" class="form-control" placeholder="Phone no of the Driver" name="subject">
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Cordintor Assigned:</label>
+            <div class="col-sm-9">
+              <label class="col-sm-3 col-form-label">{{buss?.cordinator.name}}</label>
+              <input type="text" class="form-control" placeholder="Name of the Cordinator" name="subject">
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Cordintor Phone:</label>
+            <div class="col-sm-9">
+              <label class="col-sm-3 col-form-label">{{buss?.cordinator.cell_no}}</label>
+              <input type="text" class="form-control" placeholder="Phone no of the Cordinator" name="subject">
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Route:</label>
+            <div class="col-sm-9">
+              <label class="col-sm-3 col-form-label">{{buss?.stops.names.split(';').join("--")}}</label>
+              <input type="text" class="form-control" placeholder="Subject of the message" name="subject">
+            </div>
+          </div>
+          <hr>
+          <div class="modal-footer">
+            <button type="button" value="submit" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" value="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

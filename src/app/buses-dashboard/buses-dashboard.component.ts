@@ -15,6 +15,7 @@ export class BusesDashboardComponent implements OnInit {
   bus_no: any;
   stops: any;
   busForm: FormGroup;
+  showModal=true;
   constructor(protected app: AppService, protected fb: FormBuilder, protected busSer: BusesDashboardService,
     protected router: Router) { }
 
@@ -61,7 +62,7 @@ export class BusesDashboardComponent implements OnInit {
   itemClicked(bus_no) {
     this.bus_no = bus_no;
   }
-  editBus(bus_no: number) {
+  gotoBusinfo(bus_no: number) {
     this.router.navigate(['businfo'], { queryParams: { busno: bus_no } });
   }
   addBus(busForm) {
@@ -69,18 +70,17 @@ export class BusesDashboardComponent implements OnInit {
       bus_no: this.busForm.controls['busno'].value,
       gps_device_id: this.busForm.controls['gpsid'].value
     };
-    //older way
-    // let headers = new Headers({ 'Content-Type': 'application/json' });
-    // headers.append('Authorization', 'Bearer ' +localStorage.getItem('token'));
-    //new way to set headers in angular 6
     let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
     this.busSer.addBus(payload, options)
       .subscribe(
         res => {
           this.app.openSnackBar('New Bus Added', '');
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
+          // setTimeout(() => {
+          //   window.location.reload();
+          // }, 1000);
+          this.showModal=false;
+          this.router.navigate(['buses']);
+          this.ngOnInit();
         },
         err => {
           if (err.status == 0) {
@@ -95,6 +95,31 @@ export class BusesDashboardComponent implements OnInit {
       .subscribe(
         res => {
           this.app.openSnackBar(this.bus_no + ' bus has been deleted', '');
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        },
+        err => {
+          if (err.status == 0) {
+            alert("Check your Internet connection");
+          }
+        }
+      );
+  }
+  editBus(busForm) {
+    let payload = {
+      bus_no: this.busForm.controls['busno'].value,
+      gps_device_id: this.busForm.controls['gpsid'].value
+    };
+    //older way
+    // let headers = new Headers({ 'Content-Type': 'application/json' });
+    // headers.append('Authorization', 'Bearer ' +localStorage.getItem('token'));
+    //new way to set headers in angular 6
+    let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
+    this.busSer.editBus(this.bus_no, payload, options)
+      .subscribe(
+        res => {
+          this.app.openSnackBar(this.bus_no +' Bus no changed to : ' + payload.bus_no, '');
           setTimeout(() => {
             window.location.reload();
           }, 1000);

@@ -20,6 +20,9 @@ import { PassengersComponent } from './buses-dashboard/passengers/passengers.com
 import { RoutesComponent } from './buses-dashboard/routes/routes.component';
 import { BusinfoComponent } from './buses-dashboard/businfo/businfo.component';
 import { ProfileComponent } from './profile/profile.component';
+import { EditDriverComponent } from './buses-dashboard/businfo/edit-driver/edit-driver.component';
+import { EditCordinatorComponent } from './buses-dashboard/businfo/edit-cordinator/edit-cordinator.component';
+import { MatDialog } from '@angular/material';
 
 // import { toastr } from 'toastr';
 
@@ -37,7 +40,9 @@ import { ProfileComponent } from './profile/profile.component';
     PassengersComponent,
     RoutesComponent,
     BusinfoComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditDriverComponent,
+    EditCordinatorComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,8 @@ import { ProfileComponent } from './profile/profile.component';
     ReactiveFormsModule,
     AppRoutingModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialog
     //toastr
   ],
   providers: [],
