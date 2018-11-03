@@ -52,7 +52,6 @@ import { MatDialog } from '@angular/material';
     AppRoutingModule,
     MaterialModule,
     BrowserAnimationsModule,
-    MatDialog
     //toastr
   ],
   providers: [],
