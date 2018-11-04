@@ -2,78 +2,65 @@
   <mat-card-content>
     <mat-card-title>Editing Bus no: {{bus_no}}</mat-card-title>
     <!-- <hr> -->
-    <ul class="nav nav-tabs nav-pills nav-fill" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-          aria-selected="true">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-          aria-selected="false">Edit Passengers of Bus no: {{bus_no}} <img src="/src/assets/imgs/pencil-2x.png"></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-          aria-selected="false">Edit Routes of Bus
-          no: {{bus_no}} <img src="/src/assets/imgs/pencil-2x.png"></a>
-      </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-<hr>
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <!-- <th scope="col">Bus Photo</th> -->
-                <th scope="col">Bus No</th>
-                <th scope="col">Driver Assigned</th>
-                <!-- <th scope="col">Driver's Phone</th> -->
-                <th scope="col">Coordinator Assigned</th>
-                <!-- <th scope="col">Coordinator Phone</th> -->
-                <!-- <th scope="col">Route Assigned</th> -->
-              </tr>
-            </thead>
-            <tbody *ngFor="let bus of buses; let i=index">
-              <tr *ngIf="bus_no == bus.bus_no">
-                  <!-- <button (click)="openDialog()">Open dialog</button> -->
-                <th scope="row">{{i}}</th>
-                <!-- <td>Icon</td> -->
-                <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" (click)="openDialogbus()">{{bus.bus_no}}</button></td>
-                <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" (click)="openDialogdriver()">{{bus.driver.name}}</button></td>
-                <!-- <td>{{bus.driver.cell_no}}</td> -->
-                <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" (click)="openDialogcordinator()">{{bus.cordinator.name}}</button></td>
-                <!-- <td>{{bus.cordinator.cell_no}}</td> -->
-                <!-- <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#routes">Assigned Route</button></td> -->
-                <!-- <td><button title="Edit" type="submit" data-toggle="modal" data-target="#editing">
-                    <img src="/src/assets/imgs/trashed.svg"> </button>
-                </td> -->
-              </tr>
-            </tbody>
-          </table>
+    <div class="row">
+      <div class="col">
+        <ul class="nav nav-tabs nav-pills nav-fill" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a id="bus-tab" class="nav-link {{bus==true ?' active':''}}" (click)="showBus()">Bus</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{passengers==true ?' active':''}}" (click)="showPassengers()">Passengers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{routes==true ?' active':''}}" (click)="showRoutes()">Routes </a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div *ngIf="bus === true">
+            <hr>
+            <div class="table-responsive">
+              <table class="table table-hover table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <!-- <th scope="col">Bus Photo</th> -->
+                    <th scope="col">Bus No</th>
+                    <th scope="col">Driver Assigned</th>
+                    <!-- <th scope="col">Driver's Phone</th> -->
+                    <th scope="col">Coordinator Assigned</th>
+                    <!-- <th scope="col">Coordinator Phone</th> -->
+                    <!-- <th scope="col">Route Assigned</th> -->
+                  </tr>
+                </thead>
+                <tbody *ngFor="let bus of buses; let i=index">
+                  <tr *ngIf="bus_no == bus.bus_no">
+                    <!-- <button (click)="openDialog()">Open dialog</button> -->
+                    <th scope="row">{{i}}</th>
+                    <!-- <td>Icon</td> -->
+                    <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" (click)="openDialogbus()">{{bus.bus_no}}
+                        <img src="/src/assets/imgs/trashed.svg"></button></td>
+                    <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" (click)="openDialogdriver()">{{bus.driver.name}}
+                        <span *ngIf=bus.driver.name><img src="/src/assets/imgs/trashed.svg"></span></button></td>
+                    <!-- <td>{{bus.driver.cell_no}}</td> -->
+                    <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" (click)="openDialogcordinator()">{{bus.cordinator.name}}
+                        <span *ngIf=bus.cordinator.name><img src="/src/assets/imgs/trashed.svg"></span></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div *ngIf="passengers === true">
+            <hr>
+            <app-passengers></app-passengers>
+          </div>
+          <div *ngIf="routes === true">
+            <hr>
+            <app-routes></app-routes>
+          </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><hr>
-        <app-passengers></app-passengers>
-      </div>
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><hr>
-        <app-routes></app-routes>
-      </div>
     </div>
-    <!-- <nav class="nav nav-pills flex-column flex-sm-row">
-      <a class="flex-sm-fill text-sm-center nav-link" routerLink="bus" routerLinkActive="active">Bus No </a>
-      <a class="flex-sm-fill text-sm-center nav-link" routerLink="passengers" [queryParams]="{busno:bus_no}"
-        routerLinkActive="active">Edit Passengers of Bus no: {{bus_no}} <img src="/src/assets/imgs/trashed.svg"></a>
-      <a class="flex-sm-fill text-sm-center nav-link" routerLink="routes" routerLinkActive="active">Edit Routes of Bus
-        no: {{bus_no}} <img src="/src/assets/imgs/trashed.svg"></a>
-      <a class="flex-sm-fill text-sm-center nav-link disabled" href="#">Disabled</a>
 
-    </nav> -->
-    <!-- <hr> -->
-    <!-- <hr> -->
-    <!-- <div class="form-inline float-right">
-      <input class="form-control mr-sm-2" [(ngModel)]="searchText" type="search" placeholder="Search Table" aria-label="Search">
-    </div> -->
   </mat-card-content>
 </mat-card>
 <hr>

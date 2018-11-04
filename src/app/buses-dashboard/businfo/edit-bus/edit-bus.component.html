@@ -26,10 +26,18 @@
                 Id required.
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" mat-dialog-close>Close</button>
-            <button type="button" class="btn btn-primary" [disabled]="!busForm.valid" type="submit">Save changes</button>
-        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group" style="float: left;">
+                    <input name="image" type="file" (change)="fileUpload($event)" class="input-group">
+                </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" mat-dialog-close>Close</button>
+                <button type="button" class="btn btn-primary" [disabled]="!busForm.valid" type="submit">Save changes</button>
+            </div>
+
     </form>
     <!-- <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->

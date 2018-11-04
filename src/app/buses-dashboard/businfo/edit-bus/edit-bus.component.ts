@@ -16,6 +16,7 @@ import { EditBusService } from './services/edit-bus.service';
 export class EditBusComponent implements OnInit {
   busForm: FormGroup;
   bus_no;
+  file: any = null;
   constructor(protected router: Router, protected ar: ActivatedRoute, protected fb: FormBuilder, protected editBusser: EditBusService, protected app: AppService) { }
 
 
@@ -38,6 +39,7 @@ export class EditBusComponent implements OnInit {
     });
   }
   editBus(busForm) {
+    
     let payload = {
       bus_no: this.busForm.controls['busno'].value,
       gps_device_id: this.busForm.controls['gpsid'].value
@@ -48,9 +50,11 @@ export class EditBusComponent implements OnInit {
       .subscribe(
         res => {
           this.app.openSnackBar(this.bus_no + ' Bus no changed to : ' + payload.bus_no, '');
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
+          this.router.navigate(['businfo'],{ queryParams: { busno: payload.bus_no }});
+         
+          // setTimeout(() => {
+          //   window.location.reload();
+          // }, 1000);
         },
         err => {
           if (err.status == 0) {
@@ -58,5 +62,8 @@ export class EditBusComponent implements OnInit {
           }
         }
       );
+  }
+  fileUpload(event) {
+    this.file = event.target.files[0];
   }
 }

@@ -15,7 +15,7 @@ export class EditDriverComponent implements OnInit {
     if (localStorage.getItem('loggedIn') !== 'true') {
       this.router.navigate(['login']);
     }
-    // this.getBuses();
+
     this.editdriverForm = this.fb.group({
       driverName: ['', Validators.compose([
         Validators.required,
@@ -30,7 +30,6 @@ export class EditDriverComponent implements OnInit {
     });
   }
   editDriver(editdriverForm) {
-    console.log("hello");
     let payload = {
       driverName: this.editdriverForm.controls['driverNmae'].value,
       phNo: this.editdriverForm.controls['phNo'].value

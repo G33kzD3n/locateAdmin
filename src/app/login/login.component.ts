@@ -57,7 +57,6 @@ export class LoginComponent implements OnInit {
           this.app.openSnackBar('Welcome', '');
         },
         err => {
-          console.log(err.status);
           if (err.status == 0) {
             alert("Check your Internet connection");
           }

@@ -5,9 +5,9 @@ import { MaterialModule } from '../../material';
 import { EditDriverComponent } from '../businfo/edit-driver/edit-driver.component';
 import { EditCordinatorComponent } from '../businfo/edit-cordinator/edit-cordinator.component';
 import { EditBusComponent } from '../businfo/edit-bus/edit-bus.component';
+import {AppService} from '../../app.service'
 
-
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-businfo',
@@ -18,7 +18,10 @@ export class BusinfoComponent implements OnInit {
   bus_no: any;
   buses: any;
   buss: any;
-  constructor(protected ar: ActivatedRoute, protected businfoSer: BusinfoService, protected dialog: MatDialog) { }
+  bus: boolean =true;
+  passengers:boolean=false;
+  routes:boolean=false;
+  constructor(protected app:AppService,protected ar: ActivatedRoute, protected businfoSer: BusinfoService, protected dialog: MatDialog) { }
 
   ngOnInit() {
     this.bus_no = this.ar.snapshot.queryParams.busno;
@@ -29,13 +32,12 @@ export class BusinfoComponent implements OnInit {
       .subscribe(
         res => {
           this.buses = res.buses;
-          console.log(res.buses);
+          
           for (let i = 0; i < res.buses.length; i++) {
             if (this.bus_no == res.buses[i].bus_no) {
               this.buss = res.buses[i];
             }
           }
-          // console.log(this.buss);
         },
         err => {
           if (err.status == 0) {
@@ -48,14 +50,13 @@ export class BusinfoComponent implements OnInit {
       );
   }
   openDialogbus() {
-    
     const dialogRef = this.dialog.open(EditBusComponent,{
-      height: '335px',
+      height: '400px',
       width: '600px',
     });
     
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      // console.log(result);
     });
   }
   openDialogdriver() {
@@ -65,7 +66,7 @@ export class BusinfoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog result: ${result}');
+      // console.log('Dialog result: ${result}');
     });
   }
   openDialogcordinator() {
@@ -75,7 +76,26 @@ export class BusinfoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog result: ${result}');
+      // console.log('Dialog result: ${result}');
     });
+  }
+  // closeDialog() {
+  //   this.dialogRef.close('Pizza!');
+  // }
+
+  showBus(){
+    this.bus=true;
+    this.passengers=false;
+    this.routes=false;
+  }
+  showPassengers(){
+    this.bus=false;
+    this.passengers=true;
+    this.routes=false;
+  }
+  showRoutes(){
+    this.bus=false;
+    this.passengers=false;
+    this.routes=true;
   }
 }

@@ -15,14 +15,13 @@ import { RegistrationsComponent } from './registrations/registrations.component'
 import { FeeComponent } from './fee/fee.component';
 import { MaterialModule } from './material';
 import { FilterPipe } from './filter.pipe';
-import { BusComponent } from './buses-dashboard/bus/bus.component';
 import { PassengersComponent } from './buses-dashboard/passengers/passengers.component';
 import { RoutesComponent } from './buses-dashboard/routes/routes.component';
 import { BusinfoComponent } from './buses-dashboard/businfo/businfo.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditDriverComponent } from './buses-dashboard/businfo/edit-driver/edit-driver.component';
 import { EditCordinatorComponent } from './buses-dashboard/businfo/edit-cordinator/edit-cordinator.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { EditBusComponent } from './buses-dashboard/businfo/edit-bus/edit-bus.component';
 
 // import { toastr } from 'toastr';
@@ -37,14 +36,13 @@ import { EditBusComponent } from './buses-dashboard/businfo/edit-bus/edit-bus.co
     RegistrationsComponent,
     FeeComponent,
     FilterPipe,
-    BusComponent,
     PassengersComponent,
     RoutesComponent,
     BusinfoComponent,
     ProfileComponent,
     EditDriverComponent,
     EditCordinatorComponent,
-    EditBusComponent
+    EditBusComponent,
   ],
   imports: [
     BrowserModule,

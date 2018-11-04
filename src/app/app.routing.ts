@@ -6,7 +6,6 @@ import { MenuComponent } from '../app/menu/menu.component';
 import { RegistrationsComponent } from '../app/registrations/registrations.component';
 import { FeeComponent } from '../app/fee/fee.component';
 import { BusesDashboardComponent } from '../app/buses-dashboard/buses-dashboard.component';
-import { BusComponent } from '../app/buses-dashboard/bus/bus.component';
 import { PassengersComponent } from '../app/buses-dashboard/passengers/passengers.component';
 import { RoutesComponent } from '../app/buses-dashboard/routes/routes.component';
 import { BusinfoComponent } from '../app/buses-dashboard/businfo/businfo.component';
@@ -19,7 +18,6 @@ const routes: Routes = [
     { path: 'registrations', component: RegistrationsComponent, },
     { path: 'fee', component: FeeComponent, },
     { path: 'buses', component: BusesDashboardComponent, },
-    { path: 'businfo/bus', component: BusComponent, },
     { path: 'businfo', component: BusinfoComponent, },
     { path: 'businfo/passengers', component: PassengersComponent, },
     { path: 'businfo/routes', component: RoutesComponent, },
