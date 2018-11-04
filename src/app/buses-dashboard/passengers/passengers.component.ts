@@ -22,12 +22,6 @@ export class PassengersComponent implements OnInit {
           this.passengers = res.passengers;
         },
         err => {
-          if (err.status == 0) {
-            alert("Check your Internet connection");
-          }
-          else {
-            alert("Wrong username or password");
-          }
         }
       );
   }

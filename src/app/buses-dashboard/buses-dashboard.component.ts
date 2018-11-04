@@ -42,12 +42,7 @@ export class BusesDashboardComponent implements OnInit {
       .subscribe(
         res => {
           this.buses = res.buses;
-          if (res.buses[0].stops.names == undefined) {
-            //alert('You need to assign stops to the new bus');
-          }
-          else {
-            this.stops = res.buses[0].stops.names.split(';');
-          }
+         
         },
         err => {
           if (err.status == 0) {
@@ -106,29 +101,29 @@ export class BusesDashboardComponent implements OnInit {
         }
       );
   }
-  editBus(busForm) {
-    let payload = {
-      bus_no: this.busForm.controls['busno'].value,
-      gps_device_id: this.busForm.controls['gpsid'].value
-    };
-    //older way
-    // let headers = new Headers({ 'Content-Type': 'application/json' });
-    // headers.append('Authorization', 'Bearer ' +localStorage.getItem('token'));
-    //new way to set headers in angular 6
-    let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
-    this.busSer.editBus(this.bus_no, payload, options)
-      .subscribe(
-        res => {
-          this.app.openSnackBar(this.bus_no +' Bus no changed to : ' + payload.bus_no, '');
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-        },
-        err => {
-          if (err.status == 0) {
-            alert("Check your Internet connection");
-          }
-        }
-      );
-  }
+  // editBus(busForm) {
+  //   let payload = {
+  //     bus_no: this.busForm.controls['busno'].value,
+  //     gps_device_id: this.busForm.controls['gpsid'].value
+  //   };
+  //   //older way
+  //   // let headers = new Headers({ 'Content-Type': 'application/json' });
+  //   // headers.append('Authorization', 'Bearer ' +localStorage.getItem('token'));
+  //   //new way to set headers in angular 6
+  //   let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
+  //   this.busSer.editBus(this.bus_no, payload, options)
+  //     .subscribe(
+  //       res => {
+  //         this.app.openSnackBar(this.bus_no +' Bus no changed to : ' + payload.bus_no, '');
+  //         setTimeout(() => {
+  //           window.location.reload();
+  //         }, 1000);
+  //       },
+  //       err => {
+  //         if (err.status == 0) {
+  //           alert("Check your Internet connection");
+  //         }
+  //       }
+  //     );
+  // }
 }

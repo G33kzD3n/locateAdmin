@@ -39,11 +39,12 @@
                         <td>{{bus.cordinator.cell_no}}</td>
                         <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#routes">Assigned
                                 Route</button></td>
-                        <td><button class="btn btn-primary" title="Edit" data-toggle="modal" data-target="#basicEdit"  type="submit" (click)="itemClicked(bus.bus_no)">
-                                <img src="../../assets/imgs/trashed.svg"> </button>
-                                <button class="btn btn-danger" title=" Full edit" type="submit" (click)="gotoBusinfo(bus.bus_no)">
-                                        <img src="../../assets/imgs/trashed.svg"> </button>
-                            <button class="btn btn-danger" type="button" data-toggle="modal" title="Delete record" data-target="#exampleModal"><img
+                        <td>
+                            <!-- <button class="btn btn-primary" title="Edit" data-toggle="modal" data-target="#basicEdit"  type="submit" (click)="itemClicked(bus.bus_no)">
+                                <img src="../../assets/imgs/trashed.svg"> </button> -->
+                                <button title="Full edit" type="submit" (click)="gotoBusinfo(bus.bus_no)">
+                                        <img src="../../assets/imgs/trashed.svg"></button>
+                            <button type="button" data-toggle="modal" title="Delete record" data-target="#exampleModal"><img
                                     src="../../assets/imgs/outline-restore_from_trash-24px.svg" (click)="itemClicked(bus.bus_no)">
                             </button></td>
                     </tr>
@@ -192,7 +193,7 @@
 </div>
 
 <!-- modal for basic edit -->
-<div class="modal fade" id="basicEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+<!-- <div class="modal fade" id="basicEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -237,4 +238,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

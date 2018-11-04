@@ -36,13 +36,13 @@
             </thead>
             <tbody *ngFor="let bus of buses; let i=index">
               <tr *ngIf="bus_no == bus.bus_no">
-                  <button mat-button (click)="openDialog()">Open dialog</button>
+                  <!-- <button (click)="openDialog()">Open dialog</button> -->
                 <th scope="row">{{i}}</th>
                 <!-- <td>Icon</td> -->
-                <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="">{{bus.bus_no}}</button></td>
-                <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="">{{bus.driver.name}}</button></td>
+                <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" (click)="openDialogbus()">{{bus.bus_no}}</button></td>
+                <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" (click)="openDialogdriver()">{{bus.driver.name}}</button></td>
                 <!-- <td>{{bus.driver.cell_no}}</td> -->
-                <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="">{{bus.cordinator.name}}</button></td>
+                <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" (click)="openDialogcordinator()">{{bus.cordinator.name}}</button></td>
                 <!-- <td>{{bus.cordinator.cell_no}}</td> -->
                 <!-- <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#routes">Assigned Route</button></td> -->
                 <!-- <td><button title="Edit" type="submit" data-toggle="modal" data-target="#editing">
@@ -144,7 +144,7 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Route:</label>
             <div class="col-sm-9">
-              <label class="col-sm-3 col-form-label">{{buss?.stops.names.split(';').join("--")}}</label>
+              <label class="col-sm-3 col-form-label"></label>
               <input type="text" class="form-control" placeholder="Subject of the message" name="subject">
             </div>
           </div>

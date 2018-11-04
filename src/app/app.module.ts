@@ -23,6 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { EditDriverComponent } from './buses-dashboard/businfo/edit-driver/edit-driver.component';
 import { EditCordinatorComponent } from './buses-dashboard/businfo/edit-cordinator/edit-cordinator.component';
 import { MatDialog } from '@angular/material';
+import { EditBusComponent } from './buses-dashboard/businfo/edit-bus/edit-bus.component';
 
 // import { toastr } from 'toastr';
 
@@ -42,7 +43,8 @@ import { MatDialog } from '@angular/material';
     BusinfoComponent,
     ProfileComponent,
     EditDriverComponent,
-    EditCordinatorComponent
+    EditCordinatorComponent,
+    EditBusComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,11 @@ import { MatDialog } from '@angular/material';
     MaterialModule,
     BrowserAnimationsModule,
     //toastr
+  ],
+  entryComponents: [
+    EditDriverComponent,
+    EditCordinatorComponent,
+    EditBusComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
