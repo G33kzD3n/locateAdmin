@@ -1,0 +1,199 @@
+<mat-card>
+    <mat-card-content>
+        <mat-card-title>Bus Inventory
+
+            <hr>
+            <div class="form-inline float-right">
+                <input class="form-control mr-sm-2" [(ngModel)]="searchText" type="search" placeholder="Search Table"
+                    aria-label="Search">
+            </div>
+            <div class="pull-left">
+                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#exampleModalCenter">
+                    <img src="../../assets/imgs/baseline-add-24px.svg">
+                    Add New Bus</button>
+            </div>
+        </mat-card-title>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Bus Photo</th>
+                        <th scope="col">Bus No</th>
+                        <th scope="col">Driver Assigned</th>
+                        <th scope="col">Driver's Phone</th>
+                        <th scope="col">Coordinator Assigned</th>
+                        <th scope="col">Coordinator Phone</th>
+                        <th scope="col">Route Assigned</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bus of buses; let i=index">
+                        <th scope="row">{{i}}</th>
+                        <td>Icon</td>
+                        <td>{{ bus.bus_no }}</td>
+                        <td>{{bus.driver.name}}</td>
+                        <td>{{bus.driver.cell_no}}</td>
+                        <td>{{bus.cordinator.name}}</td>
+                        <td>{{bus.cordinator.cell_no}}</td>
+                        <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#routes">Assigned
+                                Route</button></td>
+                        <td><button title="Edit" type="submit" (click)="editBus(bus.bus_no)">
+                                <img src="../../assets/imgs/trashed.svg"> </button>
+                            <button type="button" data-toggle="modal" title="Delete record" data-target="#exampleModal"><img
+                                    src="../../assets/imgs/outline-restore_from_trash-24px.svg">
+                            </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </mat-card-content>
+</mat-card>
+<hr>
+<hr>
+
+<div class="card" style="width:100%; display:none;">
+    <div class="card-body">
+
+        <h5 class="card-title">Bus Inventory (Simple Bootstrap Card)
+
+            <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#exampleModalCenter">
+                Add New Bus</button></h5>
+
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Bus Photo</th>
+                        <th scope="col">Bus No</th>
+                        <th scope="col">Driver Assigned</th>
+                        <th scope="col">Driver's Phone</th>
+                        <th scope="col">Coordinator Assigned</th>
+                        <th scope="col">Coordinator Phone</th>
+                        <th scope="col">Route Assigned</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bus of buses; let i=index">
+                        <th scope="row">{{i}}</th>
+                        <td>Icon</td>
+                        <td>{{ bus.bus_no }}</td>
+                        <td>{{bus.driver.name}}</td>
+                        <td>{{bus.driver.cell_no}}</td>
+                        <td>{{bus.cordinator.name}}</td>
+                        <td>{{bus.cordinator.cell_no}}</td>
+                        <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#routes">Assigned
+                                Route</button></td>
+                        <td><button class="btn btn-primary" type="submit">Edit </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Enter New Bus Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="busForm" (ngSubmit)="addBus(busForm)">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Bus No</label>
+                        <div class="col-sm-9">
+                            <input type="text" formControlName="busno" class="form-control" placeholder="Bus No" name="bus_no">
+                        </div>
+                        <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['busno'].hasError('required')  && busForm.controls['busno'].touched">*Bus
+                            no required.
+                        </div>
+                        <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['busno'].hasError('pattern') && busForm.controls['busno'].touched">*Enter
+                                valid bus no/ busno can only be a number
+                            </div>
+                            <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['busno'].hasError('minlength') || busForm.controls['busno'].hasError('maxlength')  && busForm.controls['busno'].touched">
+                                    *busno must b 4 min and 6 max.
+                                  </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Gps Device Id</label>
+                        <div class="col-sm-9">
+                            <input type="text" formControlName="gpsid" class="form-control" placeholder="Enter GPS id"
+                                name="gps_id">
+                        </div>
+                        <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['gpsid'].hasError('required')  && busForm.controls['gpsid'].touched">*GPS
+                            Id required.
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Assigned Driver</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="Driver's Name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Driver Phone</label>
+                        <div class="col-sm-9">
+                            <input type="tel" class="form-control" placeholder="Driver's Contact Number">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Assigned Coordinator</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="Coordinator's Name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Coordinator Phone</label>
+                        <div class="col-sm-9">
+                            <input type="tel" class="form-control" placeholder="Coordinator's Contact Number">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleFormControlFile1" class="col-sm-3 col-form-label">Upload Bus Photo</label>
+                        <div class="col-sm-9">
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" type="submit">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="routes" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Assigned Stops</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div *ngFor="let bus of buses; let i=index">
+                    {{stops}}
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
