@@ -1,51 +1,35 @@
-    <!-- <mat-card-title>Route of Bus No: {{bus_no}}</mat-card-title> -->
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">UserName</th>
-            <th scope="col">Name</th>
-            <th scope="col">Dept</th>
-            <th scope="col">Course</th>
-            <th scope="col">Semester</th>
-            <th scope="col">Phone No</th>
-            <th scope="col">Stop_id</th>
-            <th scope="col">Type of passenger</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let passenger of (passengers | filter : 'name' : searchText); let i=index">
-            <!-- <tr *ngFor="let passenger of (users | filter: ['name','dept_id'] : searchText); let i=index"> -->
-            <th scope="row">{{i}}</th>
-            <td>{{ passenger.username }}</td>
-            <td>{{ passenger.name | uppercase }}</td>
-            <td>{{ passenger.dept_code }}</td>
-            <td>{{ passenger.course_code }}</td>
-            <td>{{ passenger.semester_level }}</td>
-            <td>{{ passenger.cell_no }}</td>
-            <td>{{ passenger.stop.name }}</td>
-            <td>{{ passenger.level }}</td>
-            <td><button class="pr-2" title="Edit"><img src="../../assets/imgs/trashed.svg"> </button>
-              <button type="button" data-toggle="modal" title="Delete record" data-target="#exampleModal"><img src="../../assets/imgs/outline-restore_from_trash-24px.svg">
-              </button>
-            </td>
-          </tr>
-        </tbody>
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">UserName</th>
-            <th scope="col">Name</th>
-            <th scope="col">Dept</th>
-            <th scope="col">Course</th>
-            <th scope="col">Semester</th>
-            <th scope="col">Phone No</th>
-            <th scope="col">Stop_id</th>
-            <th scope="col">Type of passenger</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-      </table>
-    </div>
+<!-- <mat-card-title>Route of Bus No: {{bus_no}}</mat-card-title> -->
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Latitude</th>
+        <th scope="col">Longitude</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let latlng of latLngs,stops let i=index">
+        <th scope="row">{{i}}</th>
+        <td>{{ stop }}</td>
+        <td>{{ latlng[0] }}</td>
+        <td>{{ latlng[1] }}</td>
+        <td><button class="pr-2" title="Edit"><img src="../../assets/imgs/trashed.svg"> </button>
+          <button type="button" data-toggle="modal" title="Delete record" data-target="#exampleModal"><img src="../../assets/imgs/outline-restore_from_trash-24px.svg">
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Stop Name</th>
+        <th scope="col">Latitude</th>
+        <th scope="col">Longitude</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+  </table>
+</div>
