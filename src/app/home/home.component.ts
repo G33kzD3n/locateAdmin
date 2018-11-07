@@ -13,7 +13,11 @@ import { FilterPipe } from '../filter.pipe';
 
 export class HomeComponent implements OnInit {
   public users: any;
-  
+  public students: boolean=true;
+  public drivers: boolean=false;
+  public cordinators: boolean=false;
+
+
   constructor(protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
 
   ngOnInit() {
@@ -27,8 +31,6 @@ export class HomeComponent implements OnInit {
       .subscribe(
         res => {
           this.users = res;
-          console.log(this.logSer.loggedIn);
-          console.log(localStorage.getItem('loggedIn'));
         },
         err => {
           if (err.status == 0) {
@@ -39,5 +41,23 @@ export class HomeComponent implements OnInit {
           }
         }
       );
+  }
+  showStudents()
+  {
+    this.students=true;
+    this.drivers=false;
+    this.cordinators=false;
+  }
+  showDrivers()
+  {
+    this.students=false;
+    this.drivers=true;
+    this.cordinators=false;
+  }
+  showCordinators()
+  {
+    this.students=false;
+    this.drivers=false;
+    this.cordinators=true;
   }
 }

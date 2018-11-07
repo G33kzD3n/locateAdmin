@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>Enter new Cordinator details</h2>
+<mat-dialog-content class="mat-typography">
+
+    <form [formGroup]="editcordForm" (ngSubmit)="editcordForm(editcordForm)">
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Driver Name</label>
+            <div class="col-sm-9">
+                <input type="text" formControlName="cordName" class="form-control" placeholder="Cordinator name" name="Cordinator name">
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['cordName'].hasError('required')  && editcordForm.controls['cordName'].touched">*Cordinator
+                name required.
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Phone no</label>
+            <div class="col-sm-9">
+                <input type="text" formControlName="phNo" class="form-control" placeholder="Enter phone no" name="phNo">
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['phNo'].hasError('required')  && editcordForm.controls['phNo'].touched">
+                phone no is required.
+                <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['phNo'].hasError('pattern') && editcordForm.controls['phNo'].touched">*Enter
+                    valid Phone no/ phone no can only be a number
+                </div>
+                <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['phNo'].hasError('minlength') || editcordForm.controls['phNo'].hasError('maxlength')  && editcordForm.controls['phNo'].touched">
+                    *phone no must be 10 digits only.
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" mat-dialog-close>Close</button>
+            <button type="button" class="btn btn-primary" [mat-dialog-close]="true" cdkFocusInitial [disabled]="!editcordForm.valid"
+                type="submit">Save changes</button>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <!-- <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+
+</mat-dialog-actions>

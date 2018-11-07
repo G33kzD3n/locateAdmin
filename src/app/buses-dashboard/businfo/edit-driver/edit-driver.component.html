@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>Enter new Driver details</h2>
+<mat-dialog-content class="mat-typography">
+
+    <form [formGroup]="editdriverForm" (ngSubmit)="editDriver(editdriverForm)">
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Driver Name</label>
+            <div class="col-sm-9">
+                <input type="text" formControlName="driverName" class="form-control" placeholder="Driver name" name="Driver name">
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['driverName'].hasError('required')  && editdriverForm.controls['driverName'].touched">*Driver
+                name is required.
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Phone no</label>
+            <div class="col-sm-9">
+                <input type="text" formControlName="phNo" class="form-control" placeholder="Enter phone no" name="phNo">
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['phNo'].hasError('required')  && editdriverForm.controls['phNo'].touched">
+                phone no is required.
+                <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['phNo'].hasError('pattern') && editdriverForm.controls['phNo'].touched">*Enter
+                        valid bus no/ phNo can only be a number
+                    </div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['phNo'].hasError('minlength') || editdriverForm.controls['phNo'].hasError('maxlength')  && editdriverForm.controls['phNo'].touched">
+                        *phNo must be 4 chars only.
+                    </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" mat-dialog-close>Close</button>
+            <button type="button" class="btn btn-primary" [mat-dialog-close]="true" cdkFocusInitial [disabled]="!editdriverForm.valid"
+                type="submit">Save changes</button>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <!-- <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+
+</mat-dialog-actions>

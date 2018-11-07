@@ -1,7 +1,11 @@
 <mat-card>
   <mat-card-content>
-      <mat-card-title>List of Users</mat-card-title>
-      <hr>
+    <mat-card-title>List of Users
+      <button class="btn btn-success float-right" title="compose" data-target="#compose" data-toggle="modal"><img src="../../assets/imgs/baseline-add-24px.svg">Compose
+        message
+      </button>
+    </mat-card-title>
+    <hr>
     <div class="form-inline float-right">
       <input class="form-control mr-sm-2" [(ngModel)]="searchText" type="search" placeholder="Search Table" aria-label="Search">
     </div>
@@ -16,78 +20,247 @@
       </select> entries
       <!-- <label for="exampleFormControlSelect1">entries</label> -->
     </div>
-    
-    <div class="table-responsive">
-      
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">UserName</th>
-            <th scope="col">Name</th>
-            <th scope="col">Dept</th>
-            <th scope="col">Course</th>
-            <th scope="col">Semester</th>
-            <th scope="col">Phone No</th>
-            <th scope="col">Bus_no</th>
-            <th scope="col">Stop_id</th>
-            <th scope="col">Type of user</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of (users | filter : 'name' : searchText); let i=index">
-            <!-- <tr *ngFor="let user of (users | filter: ['name','dept_id'] : searchText); let i=index"> -->
-            <th scope="row">{{i}}</th>
-            <td>{{ user.username }}</td>
-            <td>{{ user.name | uppercase }}</td>
-            <td>{{ user.dept_id }}</td>
-            <td>{{ user.course_id }}</td>
-            <td>{{ user.semester }}</td>
-            <td>{{ user.phone_no }}</td>
-            <td>{{ user.bus_no }}</td>
-            <td>{{ user.stop_id }}</td>
-            <td>{{ user.level }}</td>
-            <td><button class="pr-2" title="Edit"><img src="../../assets/imgs/trashed.svg"> </button>
-              <button type="button" data-toggle="modal" title="Delete record" data-target="#exampleModal"><img src="../../assets/imgs/outline-restore_from_trash-24px.svg">
-              </button>
-            </td>
-          </tr>
-        </tbody>
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">UserName</th>
-            <th scope="col">Name</th>
-            <th scope="col">Dept</th>
-            <th scope="col">Course</th>
-            <th scope="col">Semester</th>
-            <th scope="col">Phone No</th>
-            <th scope="col">Bus_no</th>
-            <th scope="col">Stop_id</th>
-            <th scope="col">Type of user</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-      </table>
+    <ul class="nav nav-tabs nav-pills nav-fill" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link {{students ==true ?'active':''}}" id="home-tab" (click)="showStudents()">Students</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{drivers ==true ?'active':''}}" (click)="showDrivers()">Drivers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{cordinators ==true ?'active':''}}" (click)="showCordinators()">Cordinators</a>
+      </li>
+    </ul>
 
-      <div class="form-inline float-right">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination text-right">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
+    <!-- <div class="tab-content"> -->
+
+      <!------------------------------------------- Displays Students tab content ----------------------------------->
+      
+        <div *ngIf="students === true" class="table-responsive">
+          <table class="table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">UserName</th>
+                <th scope="col">Name</th>
+                <th scope="col">Dept</th>
+                <th scope="col">Course</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Phone No</th>
+                <th scope="col">Bus_no</th>
+                <th scope="col">Stop_id</th>
+                <th scope="col">Type of user</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let user of (users | filter : 'name' : searchText); let i=index">
+              <tr *ngIf="user.level == 0">
+                <th scope="row">{{i}}</th>
+                <td>{{ user.username }}</td>
+                <td>{{ user.name | uppercase }}</td>
+                <td>{{ user.dept_id }}</td>
+                <td>{{ user.course_id }}</td>
+                <td>{{ user.semester }}</td>
+                <td>{{ user.phone_no }}</td>
+                <td>{{ user.bus_no }}</td>
+                <td>{{ user.stop_id }}</td>
+                <td>{{ user.level }}</td>
+                <td><button class="pr-2" title="Edit"><img src="../../assets/imgs/trashed.svg"> </button>
+                  <button type="button" data-toggle="modal" title="Delete record" data-target="#exampleModal"><img src="../../assets/imgs/outline-restore_from_trash-24px.svg">
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">UserName</th>
+                <th scope="col">Name</th>
+                <th scope="col">Dept</th>
+                <th scope="col">Course</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Phone No</th>
+                <th scope="col">Bus_no</th>
+                <th scope="col">Stop_id</th>
+                <th scope="col">Type of user</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+          </table>
+          <div class="form-inline float-right">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination text-right">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+ <!------------------------------------------- Ends Students tab content ----------------------------------->     
+<!------------------------------------------- Displays Drivers tab content ----------------------------------->
+    
+        <div *ngIf="drivers === true" class="table-responsive">
+          <table class="table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">UserName</th>
+                <th scope="col">Name</th>
+                <th scope="col">Dept</th>
+                <th scope="col">Course</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Phone No</th>
+                <th scope="col">Bus_no</th>
+                <th scope="col">Stop_id</th>
+                <th scope="col">Type of user</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let user of (users | filter : 'name' : searchText); let i=index">
+              <tr *ngIf="user.level == 1">
+                <th scope="row">{{i}}</th>
+                <td>{{ user.username }}</td>
+                <td>{{ user.name | uppercase }}</td>
+                <td>{{ user.dept_id }}</td>
+                <td>{{ user.course_id }}</td>
+                <td>{{ user.semester }}</td>
+                <td>{{ user.phone_no }}</td>
+                <td>{{ user.bus_no }}</td>
+                <td>{{ user.stop_id }}</td>
+                <td>{{ user.level }}</td>
+                <td><button class="pr-2" title="Edit"><img src="../../assets/imgs/trashed.svg"> </button>
+                  <button type="button" data-toggle="modal" title="Delete record" data-target="#exampleModal"><img src="../../assets/imgs/outline-restore_from_trash-24px.svg">
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">UserName</th>
+                <th scope="col">Name</th>
+                <th scope="col">Dept</th>
+                <th scope="col">Course</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Phone No</th>
+                <th scope="col">Bus_no</th>
+                <th scope="col">Stop_id</th>
+                <th scope="col">Type of user</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+          </table>
+          <div class="form-inline float-right">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination text-right">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      
+<!------------------------------------------- Displays Driverss tab content ----------------------------------->
+<!------------------------------------------- Displays Cordinatorss tab content ----------------------------------->
+    
+        <div *ngIf="cordinators === true" class="table-responsive">
+          <table class="table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">UserName</th>
+                <th scope="col">Name</th>
+                <th scope="col">Dept</th>
+                <th scope="col">Course</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Phone No</th>
+                <th scope="col">Bus_no</th>
+                <th scope="col">Stop_id</th>
+                <th scope="col">Type of user</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let user of (users | filter : 'name' : searchText); let i=index">
+              <tr *ngIf="user.level == 2">
+                <th scope="row">{{i}}</th>
+                <td>{{ user.username }}</td>
+                <td>{{ user.name | uppercase }}</td>
+                <td>{{ user.dept_id }}</td>
+                <td>{{ user.course_id }}</td>
+                <td>{{ user.semester }}</td>
+                <td>{{ user.phone_no }}</td>
+                <td>{{ user.bus_no }}</td>
+                <td>{{ user.stop_id }}</td>
+                <td>{{ user.level }}</td>
+                <td><button class="pr-2" title="Edit"><img src="../../assets/imgs/trashed.svg"> </button>
+                  <button type="button" data-toggle="modal" title="Delete record" data-target="#exampleModal"><img src="../../assets/imgs/outline-restore_from_trash-24px.svg">
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">UserName</th>
+                <th scope="col">Name</th>
+                <th scope="col">Dept</th>
+                <th scope="col">Course</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Phone No</th>
+                <th scope="col">Bus_no</th>
+                <th scope="col">Stop_id</th>
+                <th scope="col">Type of user</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+          </table>
+          <div class="form-inline float-right">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination text-right">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      
+<!------------------------------------------- Ends Cordinators tab content ----------------------------------->
+    <!-- </div> -->
   </mat-card-content>
 </mat-card>
 <hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal for deleting a user record-->
 <div class="form-inline float-right"></div>
-<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -107,3 +280,48 @@
     </div>
   </div>
 </div>
+
+<!-- Modal for composing a new message-->
+<div class="modal fade" id="compose" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Enter a message for the Students</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Subject</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" placeholder="Subject of the message" name="subject">
+            </div>
+            <!-- <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['busno'].hasError('required')  && busForm.controls['busno'].touched">*Bus
+              no required.
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['busno'].hasError('pattern') && busForm.controls['busno'].touched">*Enter
+              valid bus no/ busno can only be a number
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['busno'].hasError('minlength') || busForm.controls['busno'].hasError('maxlength')  && busForm.controls['busno'].touched">
+              *busno must be 4 chars only.
+            </div> -->
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Message</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" placeholder="Message"></textarea>
+            </div>
+            <!-- <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['gpsid'].hasError('required')  && busForm.controls['gpsid'].touched">*GPS
+              Id required.
+            </div> -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" value="submit" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" value="submit" class="btn btn-primary">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

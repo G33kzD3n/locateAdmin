@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from '@angular/router';
 import { LoginService } from '../login/services/login.service';
-import {AppService} from '../app.service';
+import { AppService } from '../app.service';
 // import { toastr } from 'toastr';
 // import{ toast }from 'angular-toastr';
 
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   heading = "Singn Up";
   disableSignUp = true;
   constructor(protected fb: FormBuilder, protected router: Router, protected logSer: LoginService,
-    protected app:AppService) {
+    protected app: AppService) {
     //this.disableSignUp=false;
   }
 
@@ -53,12 +53,11 @@ export class LoginComponent implements OnInit {
           this.logSer.loggedIn = true;
           localStorage.setItem('username', res.data.name);
           localStorage.setItem('token', res.data.api_token);
-          
+          localStorage.setItem('email', res.data.email);
           this.router.navigate(['home']);
-          this.app.openSnackBar('Welcome','');
+          this.app.openSnackBar('Welcome', '');
         },
         err => {
-          console.log(err.status);
           if (err.status == 0) {
             alert("Check your Internet connection");
           }

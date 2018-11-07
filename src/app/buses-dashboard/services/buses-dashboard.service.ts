@@ -14,21 +14,20 @@ export class BusesDashboardService {
   getBuses(): Observable<any> {
     return this.http.get(this.app.baseUrl2 + '/buses');
   }
-  editBus(bus_no, options): Observable<any> {
-    console.log(options);
-    return this.http.put(this.app.baseUrl + '/buses/' + bus_no + '/edit', options);
-  }
-  addBus(payload): Observable<any> {
-    // console.log(options);
-    const token = localStorage.getItem('token');
-    return this.http.post(this.app.baseUrl + '/buses/create', payload, {
-      headers: new HttpHeaders({
-        'Authorization': 'Bearer ' + token,
-        'Accept': 'application/json'
-      })
-    });
+
+  addBus(payload, options): Observable<any> {
+    return this.http.post(this.app.baseUrl + '/buses/create', payload, options);
+    // another way to set headers
+    //     headers: new HttpHeaders({
+    //     'Authorization': 'Bearer ' +token,
+    //     'Accept': 'application/json'
+    //   })
+    // });
   }
   deleteBus(bus_no, options): Observable<any> {
     return this.http.delete(this.app.baseUrl + '/buses/' + bus_no + '/delete', options);
   }
+  // editBus(bus_no, payload, options): Observable<any> {
+  //   return this.http.put(this.app.baseUrl + '/buses/' + bus_no + '/edit',payload, options);
+  // }
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BusesDashboardService } from '../buses-dashboard/services/buses-dashboard.service';
-import { RequestOptions, Headers } from '@angular/http';
 import { Router } from '@angular/router'
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
+import { HttpHeaders } from '@angular/common/http';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-buses-dashboard',
@@ -11,9 +12,12 @@ import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 })
 export class BusesDashboardComponent implements OnInit {
   buses: any;
+  bus_no: any;
   stops: any;
   busForm: FormGroup;
-  constructor(protected fb: FormBuilder, protected busSer: BusesDashboardService, protected router: Router) { }
+  showModal=true;
+  constructor(protected app: AppService, protected fb: FormBuilder, protected busSer: BusesDashboardService,
+    protected router: Router) { }
 
   ngOnInit() {
     if (localStorage.getItem('loggedIn') !== 'true') {
@@ -24,7 +28,7 @@ export class BusesDashboardComponent implements OnInit {
       busno: ['', Validators.compose([
         Validators.required,
         Validators.pattern(/^[0-9]*$/),
-        Validators.maxLength(6),
+        Validators.maxLength(4),
         Validators.minLength(4),
       ])],
       gpsid: ['', Validators.compose([
@@ -38,8 +42,7 @@ export class BusesDashboardComponent implements OnInit {
       .subscribe(
         res => {
           this.buses = res.buses;
-          this.stops = res.buses[0].stops.names.split(';');
-
+         
         },
         err => {
           if (err.status == 0) {
@@ -51,61 +54,76 @@ export class BusesDashboardComponent implements OnInit {
         }
       );
   }
-  editBus(bus_no: number) {
-    let token = localStorage.getItem('token');
-    // let headers = new Headers({ 'Content-Type': 'application/json' });
-    // headers.append('Authorization', 'Bearer ' + token);
-    let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer ' + token });
-    let options = new RequestOptions({ headers: headers });
-    this.busSer.editBus(bus_no, options)
-      .subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-          console.log(err);
-          if (err.status == 0) {
-            alert("Check your Internet connection");
-          }
-        }
-      );
+  itemClicked(bus_no) {
+    this.bus_no = bus_no;
+  }
+  gotoBusinfo(bus_no: number) {
+    this.router.navigate(['businfo'], { queryParams: { busno: bus_no } });
   }
   addBus(busForm) {
     let payload = {
       bus_no: this.busForm.controls['busno'].value,
-      gps_id: this.busForm.controls['gpsid'].value
+      gps_device_id: this.busForm.controls['gpsid'].value
     };
-    // let headers = new Headers({ 'Content-Type': 'application/json' });
-    // headers.append('Authorization', 'Bearer ' +localStorage.getItem('token'));
-    // let headers = new Headers({'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('token')});
-    //let options = new RequestOptions({ headers: headers });
-    this.busSer.addBus(payload)
+    let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
+    this.busSer.addBus(payload, options)
       .subscribe(
         res => {
-          console.log(res);
+          this.app.openSnackBar('New Bus Added', '');
+          // setTimeout(() => {
+          //   window.location.reload();
+          // }, 1000);
+          this.showModal=false;
+          this.router.navigate(['buses']);
+          this.ngOnInit();
         },
         err => {
-          console.log(err);
           if (err.status == 0) {
             alert("Check your Internet connection");
           }
         }
       );
   }
-  deleteBus(bus_no) {
-    let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') });
-    let options = new RequestOptions({ headers: headers });
-    this.busSer.deleteBus(bus_no, options)
+  deleteBus() {
+    let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
+    this.busSer.deleteBus(this.bus_no, options)
       .subscribe(
         res => {
-          console.log(res);
+          this.app.openSnackBar(this.bus_no + ' bus has been deleted', '');
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         },
         err => {
-          console.log(err);
           if (err.status == 0) {
             alert("Check your Internet connection");
           }
         }
       );
   }
+  // editBus(busForm) {
+  //   let payload = {
+  //     bus_no: this.busForm.controls['busno'].value,
+  //     gps_device_id: this.busForm.controls['gpsid'].value
+  //   };
+  //   //older way
+  //   // let headers = new Headers({ 'Content-Type': 'application/json' });
+  //   // headers.append('Authorization', 'Bearer ' +localStorage.getItem('token'));
+  //   //new way to set headers in angular 6
+  //   let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
+  //   this.busSer.editBus(this.bus_no, payload, options)
+  //     .subscribe(
+  //       res => {
+  //         this.app.openSnackBar(this.bus_no +' Bus no changed to : ' + payload.bus_no, '');
+  //         setTimeout(() => {
+  //           window.location.reload();
+  //         }, 1000);
+  //       },
+  //       err => {
+  //         if (err.status == 0) {
+  //           alert("Check your Internet connection");
+  //         }
+  //       }
+  //     );
+  // }
 }

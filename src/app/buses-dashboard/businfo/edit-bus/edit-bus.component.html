@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>Enter new Bus details</h2>
+<mat-dialog-content class="mat-typography">
+
+    <form [formGroup]="busForm" (ngSubmit)="editBus(busForm)">
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Bus No</label>
+            <div class="col-sm-9">
+                <input type="text" formControlName="busno" class="form-control" placeholder="Bus No" name="bus_no">
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['busno'].hasError('required')  && busForm.controls['busno'].touched">*Bus
+                no required.
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['busno'].hasError('pattern') && busForm.controls['busno'].touched">*Enter
+                valid bus no/ busno can only be a number
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['busno'].hasError('minlength') || busForm.controls['busno'].hasError('maxlength')  && busForm.controls['busno'].touched">
+                *busno must be 4 chars only.
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Gps Device Id</label>
+            <div class="col-sm-9">
+                <input type="text" formControlName="gpsid" class="form-control" placeholder="Enter GPS id" name="gps_id">
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['gpsid'].hasError('required')  && busForm.controls['gpsid'].touched">*GPS
+                Id required.
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group" style="float: left;">
+                    <input name="image" type="file" (change)="fileUpload($event)" class="input-group">
+                </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" mat-dialog-close>Close</button>
+                <button type="button" class="btn btn-primary" [disabled]="!busForm.valid" type="submit">Save changes</button>
+            </div>
+
+    </form>
+    <!-- <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+</mat-dialog-actions>
