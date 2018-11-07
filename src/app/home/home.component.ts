@@ -63,8 +63,9 @@ export class HomeComponent implements OnInit {
       width: '800px',
       data: { username: username },
     });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog result: ${result}');
+    //recive the data from editDriverComponet on succes or error when closing the matdialog
+    dialogRef.beforeClose().subscribe(result => {
+      console.log('*******' + JSON.stringify(result));
     });
   }
 }
