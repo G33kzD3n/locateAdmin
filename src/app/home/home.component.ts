@@ -14,12 +14,12 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 
 export class HomeComponent implements OnInit {
   public users: any;
-  public students: boolean = true;
-  public drivers: boolean = false;
-  public cordinators: boolean = false;
+  public students: Boolean = true;
+  public drivers: Boolean = false;
+  public cordinators: Boolean = false;
 
 
-  constructor(protected dialog:MatDialog,protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
+  constructor(protected dialog: MatDialog, protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
 
   ngOnInit() {
     if (localStorage.getItem('loggedIn') !== 'true') {
@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
     this.cordinators = true;
   }
   openDialogdriver(username) {
-    const dialogRef = this.dialog.open(EditDriverComponent,{
+    const dialogRef = this.dialog.open(EditDriverComponent, {
       height: '600px',
       width: '800px',
       data: { username: username },

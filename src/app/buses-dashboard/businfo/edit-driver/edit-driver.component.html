@@ -80,7 +80,9 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Bus no</label>
             <div class="col-sm-9">
-                <input type="text" formControlName="busno" class="form-control" placeholder="Enter bus no" name="busno">
+                <select class="form-control" formControlName="busno" id="power" required>
+                    <option *ngFor="let bus of busList" [value]="bus.bus_no" (onChange)="selectedBus(bus)">{{bus.bus_no}}</option>
+                </select>
             </div>
             <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['busno'].hasError('required')  && editdriverForm.controls['busno'].touched">
                 phone no is required.</div>
