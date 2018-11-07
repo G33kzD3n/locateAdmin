@@ -8,9 +8,9 @@ import { AppService } from '../../../app.service';
 })
 export class RoutesService {
 
-  constructor(protected http:HttpClient,protected app:AppService) { }
+  constructor(protected http: HttpClient, protected app: AppService) { }
 
-  getRoutes(bus_no: number): Observable<any> {
+  getRoutes(bus_no: Number): Observable<any> {
     return this.http.get(this.app.baseUrl2 + '/buses/' + bus_no);
   }
 }

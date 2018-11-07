@@ -51,7 +51,7 @@
                   {{user.bus_no}}
                   <!-- <span </span> -->
                 </option>
-                <option *ngFor="let bus of buses" (onChange)="busChoosen(i,$event.value)">{{bus.bus_no}}</option>
+                <option *ngFor="let bus of buses" (onChange)="busChoosen($event.value)">{{bus.bus_no}}</option>
               </select>
 
             </td>

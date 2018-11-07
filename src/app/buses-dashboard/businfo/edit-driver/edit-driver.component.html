@@ -5,10 +5,47 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Driver Name</label>
             <div class="col-sm-9">
-                <input type="text" formControlName="driverName" class="form-control" placeholder="Driver name" name="Driver name">
+                <input type="text" formControlName="driverName" class="form-control" placeholder="Enter Driver name"
+                    name="Driver name">
             </div>
             <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['driverName'].hasError('required')  && editdriverForm.controls['driverName'].touched">*Driver
                 name is required.
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['driverName'].hasError('pattern') && editdriverForm.controls['driverName'].touched">*Enter
+                valid Name/ Name can only be from Alphabets
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Driver Username</label>
+            <div class="col-sm-9">
+                <input type="text" formControlName="driverUsername" class="form-control" placeholder="Enter Username"
+                    name="username">
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['driverUsername'].hasError('required')  && editdriverForm.controls['driverUsername'].touched">*Driver
+                name is required.
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['driverUsername'].hasError('pattern') && editdriverForm.controls['driverUsername'].touched">*Enter
+                valid username/ Username can only be a number
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['driverUsername'].hasError('minlength') || editdriverForm.controls['driverUsername'].hasError('maxlength')  && editdriverForm.controls['level'].touched">
+                *Username must be of 12 digits.
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Level</label>
+            <div class="col-sm-9">
+                <input type="text" formControlName="level" class="form-control" placeholder="Enter level" name="level">
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['level'].hasError('required')  && editdriverForm.controls['level'].touched">
+                phone no is required.
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['level'].hasError('pattern') && editdriverForm.controls['level'].touched">*Enter
+                valid level/ level can only be a number either 0,1 or 2.
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['level'].hasError('minlength') || editdriverForm.controls['level'].hasError('maxlength')  && editdriverForm.controls['level'].touched">
+                *level must be 1 digit only .
             </div>
 
         </div>
@@ -17,20 +54,64 @@
             <div class="col-sm-9">
                 <input type="text" formControlName="phNo" class="form-control" placeholder="Enter phone no" name="phNo">
             </div>
-            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['phNo'].hasError('required')  && editdriverForm.controls['phNo'].touched">
+            <!-- <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['phNo'].hasError('required')  && editdriverForm.controls['phNo'].touched">
                 phone no is required.
-                <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['phNo'].hasError('pattern') && editdriverForm.controls['phNo'].touched">*Enter
-                        valid bus no/ phNo can only be a number
-                    </div>
-                    <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['phNo'].hasError('minlength') || editdriverForm.controls['phNo'].hasError('maxlength')  && editdriverForm.controls['phNo'].touched">
-                        *phNo must be 4 chars only.
-                    </div>
+            </div> -->
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['phNo'].hasError('pattern') && editdriverForm.controls['phNo'].touched">*Enter
+                valid phone no/ phone no can only be a number
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['phNo'].hasError('minlength') || editdriverForm.controls['phNo'].hasError('maxlength')  && editdriverForm.controls['phNo'].touched">
+                *phNo must be 10 digits only.
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Department Id</label>
+            <div class="col-sm-9">
+                <input type="text" formControlName="driverDeptname" class="form-control" placeholder="Enter Department name"
+                    name="deptname">
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['driverDeptname'].hasError('required')  && editdriverForm.controls['driverDeptname'].touched">*Driver
+                name is required.
+            </div>
+
+
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Bus no</label>
+            <div class="col-sm-9">
+                <input type="text" formControlName="busno" class="form-control" placeholder="Enter bus no" name="busno">
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['busno'].hasError('required')  && editdriverForm.controls['busno'].touched">
+                phone no is required.</div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['busno'].hasError('pattern') && editdriverForm.controls['busno'].touched">*Enter
+                valid bus no/ busno can only be a number
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['busno'].hasError('minlength') || editdriverForm.controls['busno'].hasError('maxlength')  && editdriverForm.controls['phNo'].touched">
+                *Bus no must be 4 digits only.
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Date</label>
+            <div class="col-sm-9">
+                <input type="text" formControlName="regOn" class="form-control" placeholder="Enter regOn" name="regOn">
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['regOn'].hasError('required')  && editdriverForm.controls['regOn'].touched">
+                phone no is required.</div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['regOn'].hasError('pattern') && editdriverForm.controls['regOn'].touched">*Enter
+                dob in the yyyy mm dd format
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-6">
+                <div class="input-group" style="float: left;">
+                    <input name="image" type="file" (change)="fileUpload($event)" class="input-group">
+                </div>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" mat-dialog-close>Close</button>
-            <button type="button" class="btn btn-primary" [mat-dialog-close]="true" cdkFocusInitial [disabled]="!editdriverForm.valid"
-                type="submit">Save changes</button>
+            <button type="button" class="btn btn-primary" [disabled]="!editdriverForm.valid" type="submit">Save changes</button>
         </div>
     </form>
 </mat-dialog-content>

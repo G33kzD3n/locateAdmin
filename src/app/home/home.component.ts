@@ -4,7 +4,8 @@ import { LoginService } from '../login/services/login.service';
 import { Router } from '@angular/router';
 import { FilterPipe } from '../filter.pipe';
 
-
+import { EditDriverComponent } from '../buses-dashboard/businfo/edit-driver/edit-driver.component';
+import { MatDialog, MatDialogRef } from '@angular/material';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,7 +19,7 @@ export class HomeComponent implements OnInit {
   public cordinators: boolean = false;
 
 
-  constructor(protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
+  constructor(protected dialog:MatDialog,protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
 
   ngOnInit() {
     if (localStorage.getItem('loggedIn') !== 'true') {
@@ -55,5 +56,15 @@ export class HomeComponent implements OnInit {
     this.students = false;
     this.drivers = false;
     this.cordinators = true;
+  }
+  openDialogdriver(username) {
+    const dialogRef = this.dialog.open(EditDriverComponent,{
+      height: '600px',
+      width: '800px',
+      data: { username: username },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog result: ${result}');
+    });
   }
 }
