@@ -49,6 +49,7 @@ export class EditBusComponent implements OnInit {
     this.editBusser.editBus(this.bus_no, payload, options)
       .subscribe(
         res => {
+          console.log(res);
           this.app.openSnackBar(this.bus_no + ' Bus no changed to : ' + payload.bus_no, '');
           this.router.navigate(['businfo'],{ queryParams: { busno: payload.bus_no }});
          

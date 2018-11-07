@@ -57,11 +57,12 @@ export class FeeComponent implements OnInit {
         }
       );
   }
-  busChosen(index: any, value: any) {
-    const control = <FormArray>this.busForm.controls['lineEntries'];
-    console.log('hhello');
-     let busno = this.getChartAccNos(control.value);
-     console.log('accounts choosen are : ' + busno);
+  busChosen( value: any) {
+    console.log("heloo"+value);
+    // const control = <FormArray>this.busForm.controls['lineEntries'];
+    // console.log('hhello');
+    //  let busno = this.getChartAccNos(control.value);
+    //  console.log('accounts choosen are : ' + busno);
     // if (accNos.includes(value)) {
     //   this.invalidForm = true;
     //   this.alertErrorMessage = "Cannot choose same account, for debit and credit.";

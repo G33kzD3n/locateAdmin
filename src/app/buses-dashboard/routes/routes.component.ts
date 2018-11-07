@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PassengersService } from '../passengers/services/passengers.service';
 import { Route, ActivatedRoute } from '@angular/router';
-import { RoutesService } from '../../buses-dashboard/routes/services/routes.service'
-  ;
+import { RoutesService } from '../../buses-dashboard/routes/services/routes.service';
+import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-routes',
   templateUrl: './routes.component.html',
@@ -13,7 +13,19 @@ export class RoutesComponent implements OnInit {
   stops:string;
   latLngs:number;
 
-  constructor(protected routesSer:RoutesService, protected ar: ActivatedRoute) { }
+  latitude: number;
+  longitude:number;
+  lat: number = 34.084745;
+  lng: number = 74.797019;
+
+  getCoords(event){
+    console.log(event);
+    this.latitude = event.coords.lat;
+    this.longitude = event.coords.lng;
+
+  } 
+
+  constructor(protected routesSer:RoutesService, protected ar: ActivatedRoute)  { }
 
   ngOnInit() {
     this.bus_no = this.ar.snapshot.queryParams.busno;
