@@ -1,28 +1,93 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Example - example-filter-filter-production</title>
-  
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>List of Users
+      <!-- <button class="btn btn-success float-right" title="compose" data-target="#compose" data-toggle="modal"><img src="../../assets/imgs/baseline-add-24px.svg">Compose
+        message
+      </button> -->
+    </mat-card-title>
 
-  <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
-  
+    <div class="form-inline mb-3">
+      <!-- <label for="exampleFormControlSelect1">Show</label> -->
+      Show <select class="custom-select" id="inputGroupSelect01">
+        <option active>10</option>
+        <option value="2">20</option>
+        <option value="3">50</option>
+        <option value="4">100</option>
+      </select> entries
+      <!-- <label for="exampleFormControlSelect1">entries</label> -->
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">UserName</th>
+            <th scope="col">Name</th>
+            <th scope="col">Dept</th>
+            <th scope="col">Course</th>
+            <th scope="col">Semester</th>
+            <th scope="col">Phone No</th>
+            <th scope="col">Bus_no</th>
+            <th scope="col">Stop_id</th>
+            <th scope="col">Type of user</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let user of users; let i=index">
+          <tr>
+            <th scope="row">{{i}}</th>
+            <td>{{ user.username }}</td>
+            <td>{{ user.name | uppercase }}</td>
+            <td>{{ user.dept_id }}</td>
+            <td>{{ user.course_id }}</td>
+            <td>{{ user.semester }}</td>
+            <td>{{ user.phone_no }}</td>
+            <td>
 
-  
-</head>
-<body ng-app="">
-  <div ng-init="friends = [{name:'John', phone:'555-1276'},
-                         {name:'Mary', phone:'800-BIG-MARY'},
-                         {name:'Mike', phone:'555-4321'},
-                         {name:'Adam', phone:'555-5678'},
-                         {name:'Julie', phone:'555-8765'},
-                         {name:'Juliette', phone:'555-5678'}]"></div>
+              <select>
+                <!-- <select (onChange)="busChoosen(i,$event.value)"> -->
+                <option>
+                  <!-- <option *ngFor="let bus of buses"  > -->
+                  {{user.bus_no}}
+                  <!-- <span </span> -->
+                </option>
+                <option *ngFor="let bus of buses" (onChange)="busChoosen(i,$event.value)">{{bus.bus_no}}</option>
+              </select>
 
-<label>Search: <input ng-model="searchText"></label>
-<table id="searchTextResults">
-  <tr><th>Name</th><th>Phone</th></tr>
-  <tr ng-repeat="friend in friends | filter:searchText">
-    <td>{{friend.name}}</td>
-    <td>{{friend.phone}}</td>
-  </tr>
-</table>
+            </td>
+            <td>{{ user.stop_id }}</td>
+            <td>{{ user.level }}</td>
+            <td><button class="pr-2" title="Edit"><img src="../../assets/imgs/trashed.svg"> </button>
+              <button type="button" data-toggle="modal" title="Delete record" data-target="#exampleModal"><img src="../../assets/imgs/outline-restore_from_trash-24px.svg">
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">UserName</th>
+            <th scope="col">Name</th>
+            <th scope="col">Dept</th>
+            <th scope="col">Course</th>
+            <th scope="col">Semester</th>
+            <th scope="col">Phone No</th>
+            <th scope="col">Bus_no</th>
+            <th scope="col">Stop_id</th>
+            <th scope="col">Type of user</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+      </table>
+      <div class="form-inline float-right">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination text-right">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>

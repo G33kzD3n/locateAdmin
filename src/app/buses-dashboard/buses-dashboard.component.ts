@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { BusesDashboardService } from '../buses-dashboard/services/buses-dashboard.service';
 import { Router } from '@angular/router'
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
@@ -15,7 +15,7 @@ export class BusesDashboardComponent implements OnInit {
   bus_no: any;
   stops: any;
   busForm: FormGroup;
-  showModal=true;
+
   constructor(protected app: AppService, protected fb: FormBuilder, protected busSer: BusesDashboardService,
     protected router: Router) { }
 
@@ -73,7 +73,6 @@ export class BusesDashboardComponent implements OnInit {
           // setTimeout(() => {
           //   window.location.reload();
           // }, 1000);
-          this.showModal=false;
           this.router.navigate(['buses']);
           this.ngOnInit();
         },

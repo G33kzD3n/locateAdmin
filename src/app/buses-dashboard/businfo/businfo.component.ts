@@ -56,7 +56,7 @@ export class BusinfoComponent implements OnInit {
     });
     
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(result);
+      console.log('Dialog result: ${result}');
     });
   }
   openDialogdriver() {

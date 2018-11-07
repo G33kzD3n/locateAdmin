@@ -13,9 +13,9 @@ import { FilterPipe } from '../filter.pipe';
 
 export class HomeComponent implements OnInit {
   public users: any;
-  public students: boolean=true;
-  public drivers: boolean=false;
-  public cordinators: boolean=false;
+  public students: boolean = true;
+  public drivers: boolean = false;
+  public cordinators: boolean = false;
 
 
   constructor(protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
@@ -34,30 +34,26 @@ export class HomeComponent implements OnInit {
         },
         err => {
           if (err.status == 0) {
-            alert("Check your Internet connection");
-          }
-          else {
-            alert("Wrong username or password");
+            alert('Check your Internet connection');
+          } else {
+            alert('Wrong username or password');
           }
         }
       );
   }
-  showStudents()
-  {
-    this.students=true;
-    this.drivers=false;
-    this.cordinators=false;
+  showStudents() {
+    this.students = true;
+    this.drivers = false;
+    this.cordinators = false;
   }
-  showDrivers()
-  {
-    this.students=false;
-    this.drivers=true;
-    this.cordinators=false;
+  showDrivers() {
+    this.students = false;
+    this.drivers = true;
+    this.cordinators = false;
   }
-  showCordinators()
-  {
-    this.students=false;
-    this.drivers=false;
-    this.cordinators=true;
+  showCordinators() {
+    this.students = false;
+    this.drivers = false;
+    this.cordinators = true;
   }
 }
