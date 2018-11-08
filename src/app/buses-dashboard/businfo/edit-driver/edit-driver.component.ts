@@ -22,7 +22,6 @@ export class EditDriverComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) data: any, private dialogRef: MatDialogRef<EditDriverComponent>,
     protected editdriSer: EditDriverService, protected router: Router, protected fb: FormBuilder) {
     this.username = data.username;
-    console.log(this.username);
   }
 
   ngOnInit() {
@@ -100,14 +99,11 @@ export class EditDriverComponent implements OnInit {
     payload.append('bus_no', this.editdriverForm.controls['busno'].value);
     payload.append('registered_on', this.editdriverForm.controls['regOn'].value);
 
-    console.log(payload);
-    console.log(this.username);
     const options = {
       headers: new HttpHeaders({
         'Accept': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token')
       })
     };
-    console.log(localStorage.getItem('token'));
     this.editdriSer.editDriver(payload, this.username, options)
       .subscribe(
         res => {
@@ -128,7 +124,6 @@ export class EditDriverComponent implements OnInit {
   }
   fileUpload(event) {
     this.file = event.target.files[0];
-    console.log(this.file);
   }
 
   loadEditFormWithApiData() {

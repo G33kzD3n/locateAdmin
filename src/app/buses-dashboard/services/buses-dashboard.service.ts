@@ -12,11 +12,11 @@ export class BusesDashboardService {
   constructor(protected http: HttpClient, protected app: AppService) { }
 
   getBuses(): Observable<any> {
-    return this.http.get(this.app.baseUrl2 + '/buses');
+    return this.http.get(this.app.baseUrl + '/1.0/buses');
   }
 
   addBus(payload, options): Observable<any> {
-    return this.http.post(this.app.baseUrl + '/buses/create', payload, options);
+    return this.http.post(this.app.baseUrl + '/admin/1.0/buses/create', payload, options);
     // another way to set headers
     //     headers: new HttpHeaders({
     //     'Authorization': 'Bearer ' +token,
@@ -25,7 +25,7 @@ export class BusesDashboardService {
     // });
   }
   deleteBus(bus_no, options): Observable<any> {
-    return this.http.delete(this.app.baseUrl + '/buses/' + bus_no + '/delete', options);
+    return this.http.delete(this.app.baseUrl + '/admin/1.0/buses/' + bus_no + '/delete', options);
   }
   // editBus(bus_no, payload, options): Observable<any> {
   //   return this.http.put(this.app.baseUrl + '/buses/' + bus_no + '/edit',payload, options);

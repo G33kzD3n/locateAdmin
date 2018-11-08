@@ -12,6 +12,6 @@ export class BusinfoService {
   constructor(protected http: HttpClient, protected app: AppService) { }
 
   getBuses(): Observable<any> {
-    return this.http.get(this.app.baseUrl2 + '/buses');
+    return this.http.get(this.app.baseUrl + '/1.0/buses');
   }
 }
