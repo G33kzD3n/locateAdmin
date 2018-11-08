@@ -20,12 +20,10 @@
           role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Buses
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">bus no 8840</a>
-          <a class="dropdown-item" href="#">bus no 8839</a>
-          <a class="dropdown-item" href="#">bus no 8801</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else</a>
+        <div class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['businfo']" [queryParams]="{ busno: bus.bus_no }" *ngFor="let bus of buses;">bus no: {{bus.bus_no}}</a>
+          <!-- <div class="dropdown-divider"></div> -->
+          <!-- <a class="dropdown-item" href="#">Something else</a> -->
         </div>
       </li>
       <li class="nav-item">

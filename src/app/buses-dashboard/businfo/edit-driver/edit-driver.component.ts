@@ -21,7 +21,9 @@ export class EditDriverComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) data: any, private dialogRef: MatDialogRef<EditDriverComponent>,
     protected editdriSer: EditDriverService, protected router: Router, protected fb: FormBuilder) {
+
     this.username = data.username;
+
   }
 
   ngOnInit() {

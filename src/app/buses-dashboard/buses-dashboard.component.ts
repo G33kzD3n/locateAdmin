@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BusesDashboardService } from '../buses-dashboard/services/buses-dashboard.service';
 import { Router } from '@angular/router'
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
@@ -42,7 +42,6 @@ export class BusesDashboardComponent implements OnInit {
       .subscribe(
         res => {
           this.buses = res.buses;
-         
         },
         err => {
           if (err.status == 0) {
@@ -100,29 +99,22 @@ export class BusesDashboardComponent implements OnInit {
         }
       );
   }
-  // editBus(busForm) {
-  //   let payload = {
-  //     bus_no: this.busForm.controls['busno'].value,
-  //     gps_device_id: this.busForm.controls['gpsid'].value
-  //   };
-  //   //older way
-  //   // let headers = new Headers({ 'Content-Type': 'application/json' });
-  //   // headers.append('Authorization', 'Bearer ' +localStorage.getItem('token'));
-  //   //new way to set headers in angular 6
-  //   let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
-  //   this.busSer.editBus(this.bus_no, payload, options)
-  //     .subscribe(
-  //       res => {
-  //         this.app.openSnackBar(this.bus_no +' Bus no changed to : ' + payload.bus_no, '');
-  //         setTimeout(() => {
-  //           window.location.reload();
-  //         }, 1000);
-  //       },
-  //       err => {
-  //         if (err.status == 0) {
-  //           alert("Check your Internet connection");
-  //         }
-  //       }
-  //     );
-  // }
+  assignedRoute(busno) {
+    console.log(busno);
+    this.busSer.getBus(busno)
+      .subscribe(
+        res => {
+          if (!res.bus.stops.names) {
+            console.log('no stops aasigned yet');
+            this.stops = [];
+          }
+          else {
+            this.stops = res.bus.stops.names.split(';');
+          }
+        },
+        err => {
+          console.log(err);
+        },
+      )
+  }
 }

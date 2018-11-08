@@ -75,7 +75,7 @@
     <div class="form-group row">
       <label class="col-sm-3 col-form-label">Bus no</label>
       <div class="col-sm-9">
-        <select class="form-control" formControlName="busno" id="power" required [ngModel]="bussno" (ngModelChange)="onChange($event)">
+        <select class="form-control" formControlName="busno" id="power" required  (ngModelChange)="selectBus($event)">
           <option *ngFor="let bus of busList" [value]="bus.bus_no" (Change)="selectedBus(bus)">{{bus.bus_no}}</option>
         </select>
       </div>
@@ -140,6 +140,22 @@
         *stop id must be 2 digit only .
       </div>
     </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Stops</label>
+      <div class="col-sm-9">
+        <select class="form-control" formControlName="stops" id="power" required  >
+          <option *ngFor="let stop of stops" [value]="stop">{{stop}}</option>
+        </select>
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['stops'].hasError('required')  && editstudentForm.controls['stops'].touched">Bus
+        no is required.</div>
+      <!-- <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['stops'].hasError('pattern') && editstudentForm.controls['stops'].touched">*Enter
+        valid bus no/ stops can only be a number
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['stops'].hasError('minlength') || editstudentForm.controls['stops'].hasError('maxlength')  && editstudentForm.controls['phNo'].touched">
+        *Bus no must be 4 digits only.
+      </div> -->
+      </div>
     <div class="form-group row">
       <div class="col-md-6">
         <div class="input-group" style="float: left;">

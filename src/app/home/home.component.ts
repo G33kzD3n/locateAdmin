@@ -3,9 +3,9 @@ import { HomeService } from '../home/services/home.service';
 import { LoginService } from '../login/services/login.service';
 import { Router } from '@angular/router';
 import { EditDriverComponent } from '../buses-dashboard/businfo/edit-driver/edit-driver.component';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { EditCordinatorComponent } from '../buses-dashboard/businfo/edit-cordinator/edit-cordinator.component';
 import { EditStudentComponent } from '../home/edit-student/edit-student.component';
-import { MatDialog } from '@angular/material';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -58,8 +58,19 @@ export class HomeComponent implements OnInit {
     this.cordinators = true;
   }
   openDialogdriver(username) {
-    console.log(username);
     const dialogRef = this.dialog.open(EditDriverComponent, {
+      height: '600px',
+      width: '800px',
+      data: { username: username },
+    });
+    //recive the data from editDriverComponet on succes or error when closing the matdialog
+    dialogRef.beforeClose().subscribe(result => {
+      console.log('*******' + JSON.stringify(result));
+    });
+  }
+
+  openDialogCoord(username) {
+    const dialogRef = this.dialog.open(EditCordinatorComponent, {
       height: '600px',
       width: '800px',
       data: { username: username },

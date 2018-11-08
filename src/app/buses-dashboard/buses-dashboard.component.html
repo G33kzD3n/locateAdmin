@@ -37,10 +37,11 @@
                         <td>{{bus.driver.cell_no}}</td>
                         <td>{{bus.cordinator.name}}</td>
                         <td>{{bus.cordinator.cell_no}}</td>
-                        <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#routes">Assigned
+                        <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#routes"
+                                (click)="assignedRoute(bus.bus_no)">Assigned
                                 Route</button></td>
                         <td>
-            
+
                             <button title="Full edit" type="submit" (click)="gotoBusinfo(bus.bus_no)">
                                 <img src="../../assets/imgs/trashed.svg"></button>
                             <button type="button" data-toggle="modal" title="Delete record" data-target="#exampleModal"><img
@@ -55,48 +56,7 @@
 <hr>
 <hr>
 
-<div class="card" style="width:100%; display:none;">
-    <div class="card-body">
 
-        <h5 class="card-title">Bus Inventory (Simple Bootstrap Card)
-
-            <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#exampleModalCenter">
-                Add New Bus</button></h5>
-
-
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Bus Photo</th>
-                        <th scope="col">Bus No</th>
-                        <th scope="col">Driver Assigned</th>
-                        <th scope="col">Driver's Phone</th>
-                        <th scope="col">Coordinator Assigned</th>
-                        <th scope="col">Coordinator Phone</th>
-                        <th scope="col">Route Assigned</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let bus of buses;let i=index">
-                        <th scope="row">{{i}}</th>
-                        <td>Icon</td>
-                        <td>{{ bus.bus_no }}</td>
-                        <td>{{bus.driver.name}}</td>
-                        <td>{{bus.driver.cell_no}}</td>
-                        <td>{{bus.cordinator.name}}</td>
-                        <td>{{bus.cordinator.cell_no}}</td>
-                        <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#routes">Assigned
-                                Route</button></td>
-                        <td><button class="btn btn-primary" type="submit">Edit </button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-    </div>
-</div>
 
 <!-- modal for adding new bus -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -151,14 +111,14 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Assigned Stops</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Assigned Route</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div>
-                    {{stops}}
+            <div class="modal-body" *ngIf="stops">
+                <div *ngFor="let stop of stops; let i=index">
+                    {{stop}}
                 </div>
 
             </div>

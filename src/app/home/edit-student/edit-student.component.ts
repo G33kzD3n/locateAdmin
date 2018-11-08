@@ -16,6 +16,7 @@ export class EditStudentComponent implements OnInit {
   file: any = null;
   busList;
   student;
+  stops;
   constructor(@Inject(MAT_DIALOG_DATA) data: any, private dialogRef: MatDialogRef<EditStudentComponent>,
     protected editstudSer: EditStudentService, protected router: Router, protected fb: FormBuilder) {
     this.username = data.username;
@@ -94,6 +95,9 @@ export class EditStudentComponent implements OnInit {
         Validators.minLength(2),
         Validators.maxLength(2),
       ])],
+      stops: ['', Validators.compose([
+        Validators.required,
+      ])],
     });
   }
 
@@ -153,6 +157,7 @@ export class EditStudentComponent implements OnInit {
   }
 
   setStudentDataInForm(user: any) {
+    console.log(user);
     this.editstudentForm.controls['studentName'].setValue(user.name);
     this.editstudentForm.controls['studentUsername'].setValue(this.username);
     this.editstudentForm.controls['level'].setValue(user.level);
@@ -163,6 +168,7 @@ export class EditStudentComponent implements OnInit {
     this.editstudentForm.controls['semester'].setValue(user.semester_level);
     this.editstudentForm.controls['course'].setValue(user.dept_code);
     this.editstudentForm.controls['stop_id'].setValue(user.stop.stop_no);
+    this.editstudentForm.controls['stops'].setValue(user.stop.name);
   }
 
   selectedBus(bus: any) {
@@ -170,7 +176,22 @@ export class EditStudentComponent implements OnInit {
     this.editstudentForm.controls['busno'].setValue(bus.bus_no);
   }
 
-  onChange(event){
-    console.log(event);
+  selectBus(busno) {
+    console.log(busno);
+    this.editstudSer.fetchBus(busno).subscribe(
+      res => {
+        if (!res.bus.stops.names) {
+          console.log('no stops aasigned yet');
+          this.stops = [];
+        }
+        else {
+          this.stops = res.bus.stops.names.split(';');
+          console.log(this.stops);
+        }
+      },
+      err => {
+        console.log(err);
+      },
+    )
   }
 }

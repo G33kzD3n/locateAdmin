@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material';
 })
 
 export class AppService {
+  
   baseUrl = '';
   baseUrl2 = '';
 
@@ -14,9 +15,8 @@ export class AppService {
    
     // this.baseUrl = "http://192.168.43.58:9000/api/admin/1.0";
     // this.baseUrl2 = "http://192.168.43.58:9000/api/1.0";
-
     this.baseUrl = "http://192.168.43.58:9000/api";
-    // this.baseUrl2 = "http://192.168.43.58:9000/api";
+    
 
   }
   openSnackBar(message: string, action: string) {

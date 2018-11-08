@@ -14,6 +14,9 @@ export class BusesDashboardService {
   getBuses(): Observable<any> {
     return this.http.get(this.app.baseUrl + '/1.0/buses');
   }
+  getBus(busno): Observable<any> {
+    return this.http.get(this.app.baseUrl + '/1.0/buses/' + busno);
+  }
 
   addBus(payload, options): Observable<any> {
     return this.http.post(this.app.baseUrl + '/admin/1.0/buses/create', payload, options);
