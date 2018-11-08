@@ -10,7 +10,7 @@ export class MenuService {
 
   constructor(protected http: HttpClient, protected app: AppService) { }
   
-  fetchBuses() : Observable<any> {{
+  fetchBuses() : Observable<any> {
     return this.http.get(this.app.baseUrl + '/1.0/buses');
   }
 }
