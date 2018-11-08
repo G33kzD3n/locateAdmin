@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Enter new Driver details</h2>
 <mat-dialog-content class="mat-typography">
 
-    <form [formGroup]="editdriverForm" (ngSubmit)="editDriver(editdriverForm)">
+    <form [formGroup]="editdriverForm" (ngSubmit)="saveUser(editdriverForm)">
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Driver Name</label>
             <div class="col-sm-9">
@@ -12,6 +12,48 @@
             </div>
 
         </div>
+
+        <div class="form-group row"><label class="col-sm-3 col-form-label">Bus No</label>
+            <div class="col-sm-9">
+                    <input type="text" formControlName="bus_no" class="form-control" placeholder="Bus No" name="driver bus">
+                </div>
+        
+        </div>
+        <div class="form-group row"><label class="col-sm-3 col-form-label">Username</label>
+            <div class="col-sm-9">
+                    <input type="text" formControlName="username" class="form-control" placeholder="username" name="driver username">
+                </div>
+        
+        </div>
+
+        <div class="form-group row"><label class="col-sm-3 col-form-label">Level</label>
+            <div class="col-sm-9">
+                    <input type="number" formControlName="level" class="form-control" placeholder="level" name="driver level">
+                </div>
+        
+        </div>
+
+        <div class="form-group row"><label class="col-sm-3 col-form-label">Department ID</label>
+            <div class="col-sm-9">
+                    <input type="text" formControlName="dept_id" class="form-control" placeholder="Department" name="driver dept">
+                </div>
+        
+        </div>
+
+        <div class="form-group row"><label class="col-sm-3 col-form-label">Registered On</label>
+            <div class="col-sm-9">
+                    <input type="text" formControlName="registered_on" class="form-control" placeholder="Date" name="driverregistered_on">
+                </div>
+        
+        </div>
+
+        <div class="form-group row">
+                <div class="form-group" style="float: left;">
+                  <input name="image" type="file" (change)="fileUpload($event)" i18n="File upload| File upload button in edit post">
+                </div>
+              </div>
+
+
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Phone no</label>
             <div class="col-sm-9">
@@ -29,7 +71,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" mat-dialog-close>Close</button>
-            <button type="button" class="btn btn-primary" [mat-dialog-close]="true" cdkFocusInitial [disabled]="!editdriverForm.valid"
+            <button  class="btn btn-primary"  [disabled]="!editdriverForm.valid"
                 type="submit">Save changes</button>
         </div>
     </form>
