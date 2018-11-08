@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Router, ActivatedRoute } from '@angular/router'
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { HttpHeaders } from '@angular/common/http';
@@ -39,24 +38,27 @@ export class EditBusComponent implements OnInit {
     });
   }
   editBus(busForm) {
-    
+
     let payload = {
       bus_no: this.busForm.controls['busno'].value,
-      gps_device_id: this.busForm.controls['gpsid'].value
+      gps_device_id: this.busForm.controls['gpsid'].value,
+      photo: this.file,
     };
-
+    // console.log(payload);
     let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
     this.editBusser.editBus(this.bus_no, payload, options)
       .subscribe(
         res => {
+          console.log(res);
           this.app.openSnackBar(this.bus_no + ' Bus no changed to : ' + payload.bus_no, '');
-          this.router.navigate(['businfo'],{ queryParams: { busno: payload.bus_no }});
-         
+          this.router.navigate(['businfo'], { queryParams: { busno: payload.bus_no } });
+
           // setTimeout(() => {
           //   window.location.reload();
           // }, 1000);
         },
         err => {
+          console.log(err);
           if (err.status == 0) {
             alert("Check your Internet connection");
           }
@@ -65,5 +67,6 @@ export class EditBusComponent implements OnInit {
   }
   fileUpload(event) {
     this.file = event.target.files[0];
+    console.log(this.file);
   }
 }

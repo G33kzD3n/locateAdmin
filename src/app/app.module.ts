@@ -23,7 +23,8 @@ import { EditDriverComponent } from './buses-dashboard/businfo/edit-driver/edit-
 import { EditCordinatorComponent } from './buses-dashboard/businfo/edit-cordinator/edit-cordinator.component';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { EditBusComponent } from './buses-dashboard/businfo/edit-bus/edit-bus.component';
-import {AgmCoreModule} from '@agm/core'
+import { AgmCoreModule } from '@agm/core';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 // import { toastr } from 'toastr';
 
@@ -44,6 +45,7 @@ import {AgmCoreModule} from '@agm/core'
     EditDriverComponent,
     EditCordinatorComponent,
     EditBusComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
@@ -54,14 +56,14 @@ import {AgmCoreModule} from '@agm/core'
     MaterialModule,
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
-      apiKey:"AIzaSyAimSdtntTqL2lHcj7iEX5yqTZgjL2NGFA"
+      apiKey: 'AIzaSyAimSdtntTqL2lHcj7iEX5yqTZgjL2NGFA'
     })
-    //toastr
   ],
   entryComponents: [
     EditDriverComponent,
     EditCordinatorComponent,
-    EditBusComponent
+    EditBusComponent,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

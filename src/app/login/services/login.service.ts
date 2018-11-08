@@ -11,6 +11,6 @@ export class LoginService {
 
   loginUser(payload: any): Observable<any> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
-    return this.http.post(this.app.baseUrl + '/login', payload);
+    return this.http.post(this.app.baseUrl + '/admin/1.0/login', payload);
   }
 }

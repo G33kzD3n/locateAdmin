@@ -11,7 +11,7 @@ export class PassengersService {
   constructor(protected app: AppService, protected http: HttpClient) { }
 
   getPassengers(bus_no: number): Observable<any> {
-    return this.http.get(this.app.baseUrl2 + '/buses/' + bus_no + '/passengers');
+    return this.http.get(this.app.baseUrl + '/1.0/buses/' + bus_no + '/passengers');
   }
 }
 

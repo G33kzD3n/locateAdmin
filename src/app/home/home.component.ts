@@ -4,7 +4,9 @@ import { LoginService } from '../login/services/login.service';
 import { Router } from '@angular/router';
 import { FilterPipe } from '../filter.pipe';
 
-
+import { EditDriverComponent } from '../buses-dashboard/businfo/edit-driver/edit-driver.component';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { EditCordinatorComponent } from '../buses-dashboard/businfo/edit-cordinator/edit-cordinator.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,12 +15,12 @@ import { FilterPipe } from '../filter.pipe';
 
 export class HomeComponent implements OnInit {
   public users: any;
-  public students: boolean=true;
-  public drivers: boolean=false;
-  public cordinators: boolean=false;
+  public students: Boolean = true;
+  public drivers: Boolean = false;
+  public cordinators: Boolean = false;
 
 
-  constructor(protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
+  constructor(protected dialog: MatDialog, protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
 
   ngOnInit() {
     if (localStorage.getItem('loggedIn') !== 'true') {
@@ -34,30 +36,51 @@ export class HomeComponent implements OnInit {
         },
         err => {
           if (err.status == 0) {
-            alert("Check your Internet connection");
-          }
-          else {
-            alert("Wrong username or password");
+            alert('Check your Internet connection');
+          } else {
+            alert('Wrong username or password');
           }
         }
       );
   }
-  showStudents()
-  {
-    this.students=true;
-    this.drivers=false;
-    this.cordinators=false;
+  showStudents() {
+    this.students = true;
+    this.drivers = false;
+    this.cordinators = false;
   }
-  showDrivers()
-  {
-    this.students=false;
-    this.drivers=true;
-    this.cordinators=false;
+  showDrivers() {
+    this.students = false;
+    this.drivers = true;
+    this.cordinators = false;
   }
-  showCordinators()
-  {
-    this.students=false;
-    this.drivers=false;
-    this.cordinators=true;
+  showCordinators() {
+    this.students = false;
+    this.drivers = false;
+    this.cordinators = true;
+  }
+  openDialogdriver(username) {
+    console.log(username);
+    const dialogRef = this.dialog.open(EditDriverComponent, {
+      height: '600px',
+      width: '800px',
+      data: { username: username },
+    });
+    //recive the data from editDriverComponet on succes or error when closing the matdialog
+    dialogRef.beforeClose().subscribe(result => {
+      console.log('*******' + JSON.stringify(result));
+    });
+  }
+
+  openDialogCoord(username) {
+    console.log(username);
+    const dialogRef = this.dialog.open(EditCordinatorComponent, {
+      height: '600px',
+      width: '800px',
+      data: { username: username },
+    });
+    //recive the data from editDriverComponet on succes or error when closing the matdialog
+    dialogRef.beforeClose().subscribe(result => {
+      console.log('*******' + JSON.stringify(result));
+    });
   }
 }

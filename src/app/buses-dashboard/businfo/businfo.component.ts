@@ -7,7 +7,7 @@ import { EditCordinatorComponent } from '../businfo/edit-cordinator/edit-cordina
 import { EditBusComponent } from '../businfo/edit-bus/edit-bus.component';
 import {AppService} from '../../app.service'
 
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-businfo',
@@ -54,9 +54,9 @@ export class BusinfoComponent implements OnInit {
       height: '400px',
       width: '600px',
     });
-    
+    console.log('hhhhhhh');
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(result);
+      console.log('Dialog result: ${result}');
     });
   }
   openDialogdriver() {

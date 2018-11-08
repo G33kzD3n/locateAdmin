@@ -1,90 +1,134 @@
 <h2 mat-dialog-title>Enter new Cordinator details</h2>
 <mat-dialog-content class="mat-typography">
 
-    <form [formGroup]="editcordForm" (ngSubmit)="saveUser(editcordForm)">
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Driver Name</label>
-            <div class="col-sm-9">
-                <input type="text" formControlName="cordName" class="form-control" placeholder="Cordinator name" name="Cordinator name">
-            </div>
-            <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['cordName'].hasError('required')  && editcordForm.controls['cordName'].touched">*Cordinator
-                name required.
-            </div>
+    <form [formGroup]="editcordForm" (ngSubmit)="editCoord(editcordForm)">
 
-        </div>
-
-        <div class="form-group row"><label class="col-sm-3 col-form-label">Bus No</label>
-            <div class="col-sm-9">
-                    <input type="text" formControlName="bus_no" class="form-control" placeholder="Bus No" name="Cordinator bus">
-                </div>
+            <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Coordinator Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="Name" class="form-control" placeholder="Enter Name"
+                            name="Coordinator name">
+                    </div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['Name'].hasError('required')  && editcordForm.controls['Name'].touched">*Driver
+                        name is required.
+                    </div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['Name'].hasError('pattern') && editcordForm.controls['Name'].touched">*Enter
+                        valid Name/ Name can only be from Alphabets
+                    </div>
         
-        </div>
-        <div class="form-group row"><label class="col-sm-3 col-form-label">Username</label>
-            <div class="col-sm-9">
-                    <input type="text" formControlName="username" class="form-control" placeholder="username" name="Cordinator username">
                 </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Coordinator Username</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="Username" class="form-control" placeholder="Enter Username"
+                            name="username">
+                    </div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['Username'].hasError('required')  && editcordForm.controls['Username'].touched">*Driver
+                        name is required.
+                    </div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['Username'].hasError('pattern') && editcordForm.controls['Username'].touched">*Enter
+                        valid username/ Username can only be a number
+                    </div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['Username'].hasError('minlength') || editcordForm.controls['Username'].hasError('maxlength')  && editcordForm.controls['level'].touched">
+                        *Username must be of 12 digits.
+                    </div>
         
-        </div>
-
-        <div class="form-group row"><label class="col-sm-3 col-form-label">Level</label>
-            <div class="col-sm-9">
-                    <input type="number" formControlName="level" class="form-control" placeholder="level" name="Cordinator level">
                 </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Level</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="level" class="form-control" placeholder="Enter level" name="level">
+                    </div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['level'].hasError('required')  && editcordForm.controls['level'].touched">
+                        phone no is required.
+                    </div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['level'].hasError('pattern') && editcordForm.controls['level'].touched">*Enter
+                        valid level/ level can only be a number either 0,1 or 2.
+                    </div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['level'].hasError('minlength') || editcordForm.controls['level'].hasError('maxlength')  && editcordForm.controls['level'].touched">
+                        *level must be 1 digit only .
+                    </div>
         
-        </div>
-
-        <div class="form-group row"><label class="col-sm-3 col-form-label">Department ID</label>
-            <div class="col-sm-9">
-                    <input type="text" formControlName="dept_id" class="form-control" placeholder="Department" name="Cordinator dept">
                 </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Phone no</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="phNo" class="form-control" placeholder="Enter phone no" name="phNo">
+                    </div>
+                    <!-- <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['phNo'].hasError('required')  && editcordForm.controls['phNo'].touched">
+                        phone no is required.
+                    </div> -->
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['phNo'].hasError('pattern') && editcordForm.controls['phNo'].touched">*Enter
+                        valid phone no/ phone no can only be a number
+                    </div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['phNo'].hasError('minlength') || editcordForm.controls['phNo'].hasError('maxlength')  && editcordForm.controls['phNo'].touched">
+                        *phNo must be 10 digits only.
+                    </div>
         
-        </div>
-
-        <div class="form-group row"><label class="col-sm-3 col-form-label">Stop Id</label>
-            <div class="col-sm-9">
-                    <input type="text" formControlName="stop_id" class="form-control" placeholder="stop id" name="Cordinator stop">
                 </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Stop Id</label>
+                    <div class="col-sm-9">
+                            <input type="text" formControlName="StopId" class="form-control" placeholder="stop id" name="Cordinator stop">
+                        </div>
+                        <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['StopId'].hasError('required')  && editcordForm.controls['StopId'].touched">*Required.
+                            </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Department Id</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="Deptname" class="form-control" placeholder="Enter Department name"
+                            name="deptname">
+                    </div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['Deptname'].hasError('required')  && editcordForm.controls['Deptname'].touched">*Name is required.
+                    </div>
         
-        </div>
-
-        <div class="form-group row"><label class="col-sm-3 col-form-label">Registered On</label>
-            <div class="col-sm-9">
-                    <input type="text" formControlName="registered_on" class="form-control" placeholder="Date" name="Cordinator registered_on">
-                </div>
         
-        </div>
-
-        <div class="form-group row">
-                <div class="form-group" style="float: left;">
-                  <input name="image" type="file" (change)="fileUpload($event)" i18n="File upload| File upload button in edit post">
                 </div>
-              </div>
-
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Phone no</label>
-            <div class="col-sm-9">
-                <input type="text" formControlName="phNo" class="form-control" placeholder="Enter phone no" name="phNo">
-            </div>
-            <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['phNo'].hasError('required')  && editcordForm.controls['phNo'].touched">
-                phone no is required.
-                <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['phNo'].hasError('pattern') && editcordForm.controls['phNo'].touched">*Enter
-                    valid Phone no/ phone no can only be a number
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Bus no</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" formControlName="busno" id="power" required>
+                            <option *ngFor="let bus of busList" [value]="bus.bus_no" (onChange)="selectedBus(bus)">{{bus.bus_no}}</option>
+                        </select>
+                    </div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['busno'].hasError('required')  && editcordForm.controls['busno'].touched">
+                        phone no is required.</div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['busno'].hasError('pattern') && editcordForm.controls['busno'].touched">*Enter
+                        valid bus no/ busno can only be a number
+                    </div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['busno'].hasError('minlength') || editcordForm.controls['busno'].hasError('maxlength')  && editcordForm.controls['phNo'].touched">
+                        *Bus no must be 4 digits only.
+                    </div>
                 </div>
-                <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['phNo'].hasError('minlength') || editcordForm.controls['phNo'].hasError('maxlength')  && editcordForm.controls['phNo'].touched">
-                    *phone no must be 10 digits only.
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Date</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="regOn" class="form-control" placeholder="Enter regOn" name="regOn">
+                    </div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['regOn'].hasError('required')  && editcordForm.controls['regOn'].touched">
+                        phone no is required.</div>
+                    <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['regOn'].hasError('pattern') && editcordForm.controls['regOn'].touched">*Enter
+                        dob in the yyyy mm dd format
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" mat-dialog-close>Close</button>
-            <button  class="btn btn-primary" [disabled]="!editcordForm.valid"
-                type="submit">Save changes</button>
-        </div>
-    </form>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-    <!-- <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
-
-</mat-dialog-actions>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <div class="input-group" style="float: left;">
+                            <input name="image" type="file" (change)="fileUpload($event)" class="input-group">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" mat-dialog-close>Close</button>
+                    <button type="button" class="btn btn-primary" [disabled]="!editcordForm.valid" type="submit">Save changes</button>
+                </div>
+            </form>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <!-- <button mat-button mat-dialog-close>Cancel</button>
+          <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+        
+        </mat-dialog-actions>
+        
