@@ -75,7 +75,7 @@
     <div class="form-group row">
       <label class="col-sm-3 col-form-label">Bus no</label>
       <div class="col-sm-9">
-        <select class="form-control" formControlName="busno" id="power" required [ngModel]="bussno" (ngModelChange)="onChange($event)">
+        <select class="form-control" formControlName="busno" id="power" required  (ngModelChange)="onChange($event)">
           <option *ngFor="let bus of busList" [value]="bus.bus_no" (Change)="selectedBus(bus)">{{bus.bus_no}}</option>
         </select>
       </div>
