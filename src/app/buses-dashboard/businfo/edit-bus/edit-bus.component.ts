@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { HttpHeaders } from '@angular/common/http';
@@ -38,7 +38,7 @@ export class EditBusComponent implements OnInit {
     });
   }
   editBus(busForm) {
-    
+
     let payload = {
       bus_no: this.busForm.controls['busno'].value,
       gps_device_id: this.busForm.controls['gpsid'].value,
@@ -51,8 +51,8 @@ export class EditBusComponent implements OnInit {
         res => {
           console.log(res);
           this.app.openSnackBar(this.bus_no + ' Bus no changed to : ' + payload.bus_no, '');
-          this.router.navigate(['businfo'],{ queryParams: { busno: payload.bus_no }});
-         
+          this.router.navigate(['businfo'], { queryParams: { busno: payload.bus_no } });
+
           // setTimeout(() => {
           //   window.location.reload();
           // }, 1000);

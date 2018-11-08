@@ -9,12 +9,12 @@ export class EditDriverService {
 
   constructor(protected http: HttpClient, protected app: AppService) { }
   editDriver(payload, username, options): Observable<any> {
-    return this.http.post(this.app.baseUrl + '/users/' + username + '/edit', payload, options);
+    return this.http.post(this.app.baseUrl + '/admin/1.0/users/' + username + '/edit', payload, options);
   }
   fetchUser(username: any) {
-    return this.http.get('http://localhost:8000/api/1.0/users/' + username);
+    return this.http.get(this.app.baseUrl + '/1.0/users/' + username);
   }
   fetchBuses() {
-    return this.http.get('http://localhost:8000/api/1.0/buses');
+    return this.http.get(this.app.baseUrl + '/1.0/buses');
   }
 }

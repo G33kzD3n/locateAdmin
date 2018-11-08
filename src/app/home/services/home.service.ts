@@ -11,6 +11,6 @@ export class HomeService {
   constructor(protected http: HttpClient, protected app: AppService) { }
 
   getUsers(): Observable<any> {
-    return this.http.get(this.app.baseUrl2 + '/users');
+    return this.http.get(this.app.baseUrl + '/1.0/users');
   }
 }

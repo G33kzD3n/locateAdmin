@@ -11,6 +11,6 @@ export class RoutesService {
   constructor(protected http: HttpClient, protected app: AppService) { }
 
   getRoutes(bus_no: Number): Observable<any> {
-    return this.http.get(this.app.baseUrl2 + '/buses/' + bus_no);
+    return this.http.get(this.app.baseUrl + '/1.0/buses/' + bus_no);
   }
 }

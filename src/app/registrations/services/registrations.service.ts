@@ -10,6 +10,6 @@ export class RegistrationsService {
 
   constructor(protected http: HttpClient, protected app: AppService) { }
   getRegistrations(): Observable<any> {
-    return this.http.get(this.app.baseUrl2 + '/users');
+    return this.http.get(this.app.baseUrl + '/1.0/users');
   }
 }
