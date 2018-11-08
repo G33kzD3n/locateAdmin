@@ -39,10 +39,10 @@
                     <!-- <td>Icon</td> -->
                     <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" (click)="openDialogbus()">{{bus.bus_no}}
                         <img src="/src/assets/imgs/trashed.svg"></button></td>
-                    <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" (click)="openDialogdriver()">{{bus.driver.name}}
+                    <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" >{{bus.driver.name}}
                         <span *ngIf=bus.driver.name><img src="/src/assets/imgs/trashed.svg"></span></button></td>
                     <!-- <td>{{bus.driver.cell_no}}</td> -->
-                    <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" (click)="openDialogcordinator()">{{bus.cordinator.name}}
+                    <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" >{{bus.cordinator.name}}
                         <span *ngIf=bus.cordinator.name><img src="/src/assets/imgs/trashed.svg"></span></button></td>
                   </tr>
                 </tbody>

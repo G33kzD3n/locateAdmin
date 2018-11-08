@@ -59,29 +59,6 @@ export class BusinfoComponent implements OnInit {
       console.log('Dialog result: ${result}');
     });
   }
-  openDialogdriver() {
-    const dialogRef = this.dialog.open(EditDriverComponent,{
-      height: '335px',
-      width: '600px',
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log('Dialog result: ${result}');
-    });
-  }
-  openDialogcordinator() {
-    const dialogRef = this.dialog.open(EditCordinatorComponent,{
-      height: '335px',
-      width: '600px',
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log('Dialog result: ${result}');
-    });
-  }
-  // closeDialog() {
-  //   this.dialogRef.close('Pizza!');
-  // }
 
   showBus(){
     this.bus=true;

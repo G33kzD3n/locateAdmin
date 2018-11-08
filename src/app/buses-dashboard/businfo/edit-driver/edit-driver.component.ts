@@ -49,7 +49,7 @@ export class EditDriverComponent implements OnInit {
     return this.fb.group({
       driverName: ['', Validators.compose([
         Validators.required,
-        Validators.pattern(/^([a-zA-z\s]{4,32})$/),
+        Validators.pattern(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/),
       ])],
       driverUsername: ['', Validators.compose([
         Validators.required,

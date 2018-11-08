@@ -1,0 +1,160 @@
+<h2 mat-dialog-title>Enter new Student details</h2>
+<mat-dialog-content class="mat-typography">
+
+  <form [formGroup]="editstudentForm" (ngSubmit)="editStudent(editstudentForm)">
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Student Name</label>
+      <div class="col-sm-9">
+        <input type="text" formControlName="studentName" class="form-control" placeholder="Enter Student name" name="Student name">
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['studentName'].hasError('required')  && editstudentForm.controls['studentName'].touched">*Student
+        name is required.
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['studentName'].hasError('pattern') && editstudentForm.controls['studentName'].touched">*Enter
+        valid Name/ Name can only be from Alphabets
+      </div>
+
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Student Username</label>
+      <div class="col-sm-9">
+        <input type="text" formControlName="studentUsername" class="form-control" placeholder="Enter Username" name="username">
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['studentUsername'].hasError('required')  && editstudentForm.controls['studentUsername'].touched">*Username
+        is required.
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['studentUsername'].hasError('pattern') && editstudentForm.controls['studentUsername'].touched">*Enter
+        valid username/ Username can only be a number
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['studentUsername'].hasError('minlength') || editstudentForm.controls['studentUsername'].hasError('maxlength')  && editstudentForm.controls['studentUsername'].touched">
+        *Username must be of 12 digits.
+      </div>
+
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Level</label>
+      <div class="col-sm-9">
+        <input type="text" formControlName="level" class="form-control" placeholder="Enter level 0, 1, 2" name="level">
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['level'].hasError('required')  && editstudentForm.controls['level'].touched">*Level
+        is required.
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['level'].hasError('pattern') && editstudentForm.controls['level'].touched">*Enter
+        valid level/ level can only be a number either 0,1 or 2.
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['level'].hasError('minlength') || editstudentForm.controls['level'].hasError('maxlength')  && editstudentForm.controls['level'].touched">
+        *level must be 1 digit only .
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Phone no</label>
+      <div class="col-sm-9">
+        <input type="text" formControlName="phNo" class="form-control" placeholder="Enter phone no" name="phNo">
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['phNo'].hasError('required')  && editstudentForm.controls['phNo'].touched">*Phone
+        no is required.
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['phNo'].hasError('pattern') && editstudentForm.controls['phNo'].touched">*Enter
+        valid phone no/ phone no can only be a number
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['phNo'].hasError('minlength') || editstudentForm.controls['phNo'].hasError('maxlength')  && editstudentForm.controls['phNo'].touched">
+        *phNo must be 10 digits only.
+      </div>
+
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Department Id</label>
+      <div class="col-sm-9">
+        <input type="text" formControlName="studentDeptname" class="form-control" placeholder="Enter Department name"
+          name="deptname">
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['studentDeptname'].hasError('required')  && editstudentForm.controls['studentDeptname'].touched">*Student
+        name is required.
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Bus no</label>
+      <div class="col-sm-9">
+        <select class="form-control" formControlName="busno" id="power" required [ngModel]="bussno" (ngModelChange)="onChange($event)">
+          <option *ngFor="let bus of busList" [value]="bus.bus_no" (Change)="selectedBus(bus)">{{bus.bus_no}}</option>
+        </select>
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['busno'].hasError('required')  && editstudentForm.controls['busno'].touched">Bus
+        no is required.</div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['busno'].hasError('pattern') && editstudentForm.controls['busno'].touched">*Enter
+        valid bus no/ busno can only be a number
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['busno'].hasError('minlength') || editstudentForm.controls['busno'].hasError('maxlength')  && editstudentForm.controls['phNo'].touched">
+        *Bus no must be 4 digits only.
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Registered On</label>
+      <div class="col-sm-9">
+        <input type="text" formControlName="regOn" class="form-control" placeholder="Enter regOn" name="regOn">
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['regOn'].hasError('required')  && editstudentForm.controls['regOn'].touched">
+        phone no is required.</div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['regOn'].hasError('pattern') && editstudentForm.controls['regOn'].touched">*Enter
+        dob in the yyyy mm dd format
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Semester</label>
+      <div class="col-sm-9">
+        <input type="text" formControlName="semester" class="form-control" placeholder="Enter semester 1,2,3,4,5,6"
+          name="semester">
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['semester'].hasError('required')  && editstudentForm.controls['semester'].touched">
+        Semester id is required.
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['semester'].hasError('pattern') && editstudentForm.controls['semester'].touched">*Enter
+        valid Semester/ Semester can only be a number from 0 to 6.
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['semester'].hasError('minlength') || editstudentForm.controls['semester'].hasError('maxlength')  && editstudentForm.controls['semester'].touched">
+        *Semester must be 1 digit only .
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Course Id</label>
+      <div class="col-sm-9">
+        <input type="text" formControlName="course" class="form-control" placeholder="Enter Course name" name="deptname">
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['course'].hasError('required')  && editstudentForm.controls['course'].touched">*Course
+        name is required.
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Stop Id</label>
+      <div class="col-sm-9">
+        <input type="text" formControlName="stop_id" class="form-control" placeholder="Enter stop_id form 10 to 99"
+          name="stop_id">
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['stop_id'].hasError('required')  && editstudentForm.controls['stop_id'].touched">*Stop
+        id is required.
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['stop_id'].hasError('pattern') && editstudentForm.controls['stop_id'].touched">*Enter
+        stop id/ stop id can only be a number from 0 to 99.
+      </div>
+      <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['stop_id'].hasError('minlength') || editstudentForm.controls['stop_id'].hasError('maxlength')  && editstudentForm.controls['stop_id'].touched">
+        *stop id must be 2 digit only .
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-6">
+        <div class="input-group" style="float: left;">
+          <input name="image" type="file" (change)="fileUpload($event)" class="input-group">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" mat-dialog-close>Close</button>
+      <button type="button" class="btn btn-primary" [disabled]="!editstudentForm.valid" type="submit">Save changes</button>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <!-- <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+
+</mat-dialog-actions>

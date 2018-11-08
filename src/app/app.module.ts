@@ -25,6 +25,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { EditBusComponent } from './buses-dashboard/businfo/edit-bus/edit-bus.component';
 import { AgmCoreModule } from '@agm/core';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { EditStudentComponent } from './home/edit-student/edit-student.component';
 
 // import { toastr } from 'toastr';
 
@@ -45,7 +46,8 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     EditDriverComponent,
     EditCordinatorComponent,
     EditBusComponent,
-    UserEditComponent
+    UserEditComponent,
+    EditStudentComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +65,7 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     EditDriverComponent,
     EditCordinatorComponent,
     EditBusComponent,
+    EditStudentComponent,
 
   ],
   providers: [],
