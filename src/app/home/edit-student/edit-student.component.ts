@@ -4,6 +4,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { EditStudentService } from '../../home/edit-student/services/edit-student.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { HttpHeaders } from '@angular/common/http';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-edit-student',
@@ -17,8 +18,9 @@ export class EditStudentComponent implements OnInit {
   busList;
   student;
   stops;
+  id: any = null;
   constructor(@Inject(MAT_DIALOG_DATA) data: any, private dialogRef: MatDialogRef<EditStudentComponent>,
-    protected editstudSer: EditStudentService, protected router: Router, protected fb: FormBuilder) {
+    protected editstudSer: EditStudentService, protected router: Router, protected fb: FormBuilder, protected app: AppService) {
     this.username = data.username;
   }
 
@@ -92,7 +94,7 @@ export class EditStudentComponent implements OnInit {
       stop_id: ['', Validators.compose([
         Validators.required,
         Validators.pattern(/^[0-99]*$/),
-        Validators.minLength(2),
+        Validators.minLength(1),
         Validators.maxLength(2),
       ])],
       stops: ['', Validators.compose([
@@ -102,6 +104,7 @@ export class EditStudentComponent implements OnInit {
   }
 
   editStudent(editstudentForm: any) {
+    console.log(this.editstudentForm.controls['stops'].value);
     const payload = new FormData();
 
 
@@ -116,7 +119,7 @@ export class EditStudentComponent implements OnInit {
     payload.append('registered_on', this.editstudentForm.controls['regOn'].value);
     payload.append('semester', this.editstudentForm.controls['semester'].value);
     payload.append('course_id', this.editstudentForm.controls['course'].value);
-    payload.append('stop_id', this.editstudentForm.controls['stop_id'].value);
+    payload.append('stop_id', this.id);
 
     const options = {
       headers: new HttpHeaders({
@@ -130,7 +133,7 @@ export class EditStudentComponent implements OnInit {
           setTimeout(() => {
             this.dialogRef.close(res);
           }, 900);
-
+          this.app.openSnackBar('Student Record has been modified', '');
         },
         err => {
           {
@@ -157,7 +160,7 @@ export class EditStudentComponent implements OnInit {
   }
 
   setStudentDataInForm(user: any) {
-    console.log(user);
+    console.log(user.stop.name);
     this.editstudentForm.controls['studentName'].setValue(user.name);
     this.editstudentForm.controls['studentUsername'].setValue(this.username);
     this.editstudentForm.controls['level'].setValue(user.level);
@@ -171,27 +174,35 @@ export class EditStudentComponent implements OnInit {
     this.editstudentForm.controls['stops'].setValue(user.stop.name);
   }
 
-  selectedBus(bus: any) {
-    console.log(bus);
-    this.editstudentForm.controls['busno'].setValue(bus.bus_no);
-  }
+  // selectedBus(bus: any) {
+  //   console.log(bus);
+  //   this.editstudentForm.controls['busno'].setValue(bus.bus_no);
+  // }
 
-  selectBus(busno) {
-    console.log(busno);
+  selectedBus(busno) {
     this.editstudSer.fetchBus(busno).subscribe(
-      res => {
+      (res: any) => {
         if (!res.bus.stops.names) {
-          console.log('no stops aasigned yet');
+          this.app.openSnackBar('No Stops assigned for this bus yet', '');
           this.stops = [];
         }
         else {
-          this.stops = res.bus.stops.names.split(';');
-          console.log(this.stops);
+          this.stops = res.bus.stops.stop_detail;
         }
       },
       err => {
         console.log(err);
       },
     )
+  }
+  selectedStop(stop) {
+    if (this.stops !== undefined) {
+      for (let i = 0; i < (this.stops.length); i++) {
+        if (stop == this.stops[i].name) {
+          this.id = this.stops[i].id;
+          console.log('id: ' + this.id);
+        }
+      }
+    }
   }
 }

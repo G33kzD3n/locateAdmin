@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BusinfoService } from '../businfo/services/businfo.service';
 import { MaterialModule } from '../../material';
-import { EditDriverComponent } from '../businfo/edit-driver/edit-driver.component';
-import { EditCordinatorComponent } from '../businfo/edit-cordinator/edit-cordinator.component';
+
 import { EditBusComponent } from '../businfo/edit-bus/edit-bus.component';
 import {AppService} from '../../app.service'
 

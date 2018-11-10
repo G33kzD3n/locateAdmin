@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home/services/home.service';
 import { LoginService } from '../login/services/login.service';
 import { Router } from '@angular/router';
-import { EditDriverComponent } from '../buses-dashboard/businfo/edit-driver/edit-driver.component';
+import { EditDriverComponent } from '../home/edit-driver/edit-driver.component';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { EditCordinatorComponent } from '../buses-dashboard/businfo/edit-cordinator/edit-cordinator.component';
+import { EditCordinatorComponent } from '../home/edit-cordinator/edit-cordinator.component';
 import { EditStudentComponent } from '../home/edit-student/edit-student.component';
-
+import { MessageComponent } from '../message/message.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -87,6 +87,16 @@ export class HomeComponent implements OnInit {
       height: '600px',
       width: '800px',
       data: { username: username },
+    });
+    //recive the data from editDriverComponet on succes or error when closing the matdialog
+    dialogRef.beforeClose().subscribe(result => {
+      console.log('*******' + JSON.stringify(result));
+    });
+  }
+  openDialogmessage(username) {
+    const dialogRef = this.dialog.open(MessageComponent, {
+      height: '452px',
+      width: '600px',
     });
     //recive the data from editDriverComponet on succes or error when closing the matdialog
     dialogRef.beforeClose().subscribe(result => {

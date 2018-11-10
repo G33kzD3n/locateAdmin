@@ -15,6 +15,6 @@ export class EditBusService {
 
 
   editBus(bus_no, payload, options): Observable<any> {
-    return this.http.put(this.app.baseUrl + '/1.0/buses/' + bus_no + '/edit', payload, options);
+    return this.http.put(this.app.baseUrl + '/admin/1.0/buses/' + bus_no + '/edit', payload, options);
   }
 }

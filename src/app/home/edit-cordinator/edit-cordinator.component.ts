@@ -4,8 +4,9 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { HttpHeaders } from '@angular/common/http';
 import { EditCoordinatorService } from './services/edit-cordinator.service';
-import {MatExpansionModule} from '@angular/material/expansion';
 
+
+import { AppService } from '../../app.service';
 @Component({
   selector: 'app-edit-cordinator',
   templateUrl: './edit-cordinator.component.html',
@@ -20,7 +21,7 @@ export class EditCordinatorComponent implements OnInit {
   coordinator: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) data: any, private dialogRef: MatDialogRef<EditCordinatorComponent>,
-    protected router: Router, protected fb: FormBuilder,
+    protected router: Router, protected fb: FormBuilder,protected app:AppService,
     protected editcordSer: EditCoordinatorService) {
     this.username = data.username;
   }
@@ -119,7 +120,7 @@ export class EditCordinatorComponent implements OnInit {
           setTimeout(() => {
             this.dialogRef.close(res);
           }, 900);
-
+          this.app.openSnackBar('Coordinator Record has been modified', '');
         },
         err => {
           {

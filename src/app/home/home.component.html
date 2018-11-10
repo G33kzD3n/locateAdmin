@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-content>
     <mat-card-title>List of Users
-      <button class="btn btn-success float-right" title="compose" data-target="#compose" data-toggle="modal"><img src="../../assets/imgs/baseline-add-24px.svg">Compose
+      <button class="btn btn-success float-right" title="compose" (click)="openDialogmessage()"><img src="../../assets/imgs/baseline-add-24px.svg">Compose
         message
       </button>
     </mat-card-title>
@@ -428,7 +428,7 @@
 </div>
 
 <!-- Modal for composing a new message-->
-<div class="modal fade" id="compose" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="compose" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -444,24 +444,13 @@
             <div class="col-sm-9">
               <input type="text" class="form-control" placeholder="Subject of the message" name="subject">
             </div>
-            <!-- <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['busno'].hasError('required')  && busForm.controls['busno'].touched">*Bus
-              no required.
-            </div>
-            <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['busno'].hasError('pattern') && busForm.controls['busno'].touched">*Enter
-              valid bus no/ busno can only be a number
-            </div>
-            <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['busno'].hasError('minlength') || busForm.controls['busno'].hasError('maxlength')  && busForm.controls['busno'].touched">
-              *busno must be 4 chars only.
-            </div> -->
+           
           </div>
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Message</label>
             <div class="col-sm-9">
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" placeholder="Message"></textarea>
             </div>
-            <!-- <div class="errorBox pl-6 pr-6" *ngIf="busForm.controls['gpsid'].hasError('required')  && busForm.controls['gpsid'].touched">*GPS
-              Id required.
-            </div> -->
           </div>
           <div class="modal-footer">
             <button type="button" value="submit" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -470,4 +459,4 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> -->

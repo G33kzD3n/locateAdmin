@@ -19,13 +19,13 @@ import { PassengersComponent } from './buses-dashboard/passengers/passengers.com
 import { RoutesComponent } from './buses-dashboard/routes/routes.component';
 import { BusinfoComponent } from './buses-dashboard/businfo/businfo.component';
 import { ProfileComponent } from './profile/profile.component';
-import { EditDriverComponent } from './buses-dashboard/businfo/edit-driver/edit-driver.component';
-import { EditCordinatorComponent } from './buses-dashboard/businfo/edit-cordinator/edit-cordinator.component';
+import { EditDriverComponent } from './home/edit-driver/edit-driver.component';
+import { EditCordinatorComponent } from './home/edit-cordinator/edit-cordinator.component';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { EditBusComponent } from './buses-dashboard/businfo/edit-bus/edit-bus.component';
 import { AgmCoreModule } from '@agm/core';
-import { UserEditComponent } from './user-edit/user-edit.component';
 import { EditStudentComponent } from './home/edit-student/edit-student.component';
+import { MessageComponent } from './message/message.component';
 
 // import { toastr } from 'toastr';
 
@@ -46,8 +46,8 @@ import { EditStudentComponent } from './home/edit-student/edit-student.component
     EditDriverComponent,
     EditCordinatorComponent,
     EditBusComponent,
-    UserEditComponent,
-    EditStudentComponent
+    EditStudentComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +66,7 @@ import { EditStudentComponent } from './home/edit-student/edit-student.component
     EditCordinatorComponent,
     EditBusComponent,
     EditStudentComponent,
+    MessageComponent,
 
   ],
   providers: [],

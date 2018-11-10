@@ -9,7 +9,7 @@ import { BusesDashboardComponent } from '../app/buses-dashboard/buses-dashboard.
 // import { RoutesComponent } from '../app/buses-dashboard/routes/routes.component';
 import { BusinfoComponent } from '../app/buses-dashboard/businfo/businfo.component';
 import { ProfileComponent } from '../app/profile/profile.component';
-import { UserEditComponent } from './user-edit/user-edit.component';
+// import { UserEditComponent } from './user-edit/user-edit.component';
 const routes: Routes = [
     { path: '', component: LoginComponent, },
     { path: 'login', component: LoginComponent, },

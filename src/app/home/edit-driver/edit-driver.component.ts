@@ -4,6 +4,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { EditDriverService } from '../edit-driver/services/edit-driver.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { HttpHeaders } from '@angular/common/http';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-edit-driver',
@@ -20,7 +21,7 @@ export class EditDriverComponent implements OnInit {
   driver: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) data: any, private dialogRef: MatDialogRef<EditDriverComponent>,
-    protected editdriSer: EditDriverService, protected router: Router, protected fb: FormBuilder) {
+    protected editdriSer: EditDriverService, protected router: Router, protected fb: FormBuilder,protected app:AppService) {
 
     this.username = data.username;
 
@@ -113,7 +114,7 @@ export class EditDriverComponent implements OnInit {
           setTimeout(() => {
             this.dialogRef.close(res);
           }, 900);
-
+          this.app.openSnackBar('Driver Record has been modified', '');
         },
         err => {
           {
