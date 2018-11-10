@@ -1,5 +1,6 @@
-<h2 mat-dialog-title>Enter new Student details</h2>
+<h4>Enter new Student details</h4>
 <mat-dialog-content class="mat-typography">
+  <div class="modal-footer"></div>
 
   <form [formGroup]="editstudentForm" (ngSubmit)="editStudent(editstudentForm)">
     <div class="form-group row">
@@ -29,7 +30,6 @@
       <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['studentUsername'].hasError('minlength') || editstudentForm.controls['studentUsername'].hasError('maxlength')  && editstudentForm.controls['studentUsername'].touched">
         *Username must be of 12 digits.
       </div>
-
     </div>
     <div class="form-group row">
       <label class="col-sm-3 col-form-label">Level</label>
@@ -75,8 +75,8 @@
     <div class="form-group row">
       <label class="col-sm-3 col-form-label">Bus no</label>
       <div class="col-sm-9">
-        <select class="form-control" formControlName="busno" id="power" required  (ngModelChange)="selectBus($event)">
-          <option *ngFor="let bus of busList" [value]="bus.bus_no" (Change)="selectedBus(bus)">{{bus.bus_no}}</option>
+        <select class="form-control" formControlName="busno" id="power" required (ngModelChange)="selectedBus($event)">
+          <option *ngFor="let bus of busList" [value]="bus.bus_no">{{bus.bus_no}}</option>
         </select>
       </div>
       <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['busno'].hasError('required')  && editstudentForm.controls['busno'].touched">Bus
@@ -124,7 +124,7 @@
         name is required.
       </div>
     </div>
-    <div class="form-group row">
+    <!-- <div class="form-group row">
       <label class="col-sm-3 col-form-label">Stop Id</label>
       <div class="col-sm-9">
         <input type="text" formControlName="stop_id" class="form-control" placeholder="Enter stop_id form 10 to 99"
@@ -139,12 +139,12 @@
       <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['stop_id'].hasError('minlength') || editstudentForm.controls['stop_id'].hasError('maxlength')  && editstudentForm.controls['stop_id'].touched">
         *stop id must be 2 digit only .
       </div>
-    </div>
+    </div> -->
     <div class="form-group row">
       <label class="col-sm-3 col-form-label">Stops</label>
       <div class="col-sm-9">
-        <select class="form-control" formControlName="stops" id="power" required  >
-          <option *ngFor="let stop of stops" [value]="stop">{{stop}}</option>
+        <select class="form-control" formControlName="stops" id="power" required (ngModelChange)="selectedStop($event)">
+          <option *ngFor="let stop of stops" [value]="stop.name">{{stop.name}} - {{stop.id}}</option>
         </select>
       </div>
       <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['stops'].hasError('required')  && editstudentForm.controls['stops'].touched">Bus
@@ -155,7 +155,7 @@
       <div class="errorBox pl-6 pr-6" *ngIf="editstudentForm.controls['stops'].hasError('minlength') || editstudentForm.controls['stops'].hasError('maxlength')  && editstudentForm.controls['phNo'].touched">
         *Bus no must be 4 digits only.
       </div> -->
-      </div>
+    </div>
     <div class="form-group row">
       <div class="col-md-6">
         <div class="input-group" style="float: left;">
@@ -169,8 +169,3 @@
     </div>
   </form>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <!-- <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
-
-</mat-dialog-actions>

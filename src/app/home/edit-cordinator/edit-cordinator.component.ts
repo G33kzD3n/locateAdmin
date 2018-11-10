@@ -1,45 +1,40 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { EditDriverService } from '../edit-driver/services/edit-driver.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { HttpHeaders } from '@angular/common/http';
-
+import { EditCoordinatorService } from './services/edit-cordinator.service';
+import { AppService } from '../../app.service';
 @Component({
-  selector: 'app-edit-driver',
-  templateUrl: './edit-driver.component.html',
-  styleUrls: ['./edit-driver.component.css']
+  selector: 'app-edit-cordinator',
+  templateUrl: './edit-cordinator.component.html',
+  styleUrls: ['./edit-cordinator.component.css']
 })
-export class EditDriverComponent implements OnInit {
-
-  editdriverForm: FormGroup;
+export class EditCordinatorComponent implements OnInit {
+  editcordForm: FormGroup;
   public file: any = null;
+
   username: any;
   busList: any[];
-  stopList: any = [];
-  driver: any;
+  coordinator: any;
 
-  constructor(@Inject(MAT_DIALOG_DATA) data: any, private dialogRef: MatDialogRef<EditDriverComponent>,
-    protected editdriSer: EditDriverService, protected router: Router, protected fb: FormBuilder) {
-
+  constructor(@Inject(MAT_DIALOG_DATA) data: any, private dialogRef: MatDialogRef<EditCordinatorComponent>,
+    protected router: Router, protected fb: FormBuilder,protected app:AppService,
+    protected editcordSer: EditCoordinatorService) {
     this.username = data.username;
-
   }
 
   ngOnInit() {
     if (localStorage.getItem('loggedIn') !== 'true') {
       this.router.navigate(['login']);
     }
-    /*
-    creating the form
-    */
     this.loadBusList();
     this.loadEditFormWithApiData();
-    this.editdriverForm = this.makeEditForm();
-
+    this.editcordForm = this.makeEditForm();
   }
+
   loadBusList() {
-    this.editdriSer.fetchBuses()
+    this.editcordSer.fetchBuses()
       .subscribe((res: any) => {
         this.busList = res.buses;
       },
@@ -47,13 +42,14 @@ export class EditDriverComponent implements OnInit {
           console.log(err);
         });
   }
+
   makeEditForm() {
     return this.fb.group({
-      driverName: ['', Validators.compose([
+      Name: ['', Validators.compose([
         Validators.required,
         Validators.pattern(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/),
       ])],
-      driverUsername: ['', Validators.compose([
+      Username: ['', Validators.compose([
         Validators.required,
         Validators.pattern(/^[0-9]*$/),
         Validators.minLength(11),
@@ -77,7 +73,10 @@ export class EditDriverComponent implements OnInit {
         Validators.minLength(4),
         Validators.maxLength(4),
       ])],
-      driverDeptname: ['', Validators.compose([
+      StopId: ['', Validators.compose([
+        Validators.required,
+      ])],
+      Deptname: ['', Validators.compose([
         Validators.required,
       ])],
       regOn: ['', Validators.compose([
@@ -87,33 +86,39 @@ export class EditDriverComponent implements OnInit {
     });
   }
 
-  editDriver(editdriverForm: any) {
+  fileUpload(event) {
+    this.file = event.target.files[0];
+  }
+
+
+  editCoord(editcordForm: any) {
     const payload = new FormData();
 
 
     payload.append('_method', 'PATCH');
     payload.append('avatar', this.file == null ? null : this.file, this.file == null ? null : this.file.name);
-    payload.append('name', this.editdriverForm.controls['driverName'].value);
-    payload.append('username', this.editdriverForm.controls['driverUsername'].value);
-    payload.append('level', this.editdriverForm.controls['level'].value);
-    payload.append('phone_no', this.editdriverForm.controls['phNo'].value);
-    payload.append('dept_id', this.editdriverForm.controls['driverDeptname'].value);
-    payload.append('bus_no', this.editdriverForm.controls['busno'].value);
-    payload.append('registered_on', this.editdriverForm.controls['regOn'].value);
+    payload.append('name', this.editcordForm.controls['Name'].value);
+    payload.append('username', this.editcordForm.controls['Username'].value);
+    payload.append('level', this.editcordForm.controls['level'].value);
+    payload.append('phone_no', this.editcordForm.controls['phNo'].value);
+    payload.append('stop_id', this.editcordForm.controls['StopId'].value);
+    payload.append('dept_id', this.editcordForm.controls['Deptname'].value);
+    payload.append('bus_no', this.editcordForm.controls['busno'].value);
+    payload.append('registered_on', this.editcordForm.controls['regOn'].value);
 
     const options = {
       headers: new HttpHeaders({
         'Accept': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token')
       })
     };
-    this.editdriSer.editDriver(payload, this.username, options)
+    this.editcordSer.editCoord(payload, this.username, options)
       .subscribe(
         res => {
           console.log(res);
           setTimeout(() => {
             this.dialogRef.close(res);
           }, 900);
-
+          this.app.openSnackBar('Coordinator Record has been modified', '');
         },
         err => {
           {
@@ -124,34 +129,29 @@ export class EditDriverComponent implements OnInit {
         }
       );
   }
-  fileUpload(event) {
-    this.file = event.target.files[0];
-  }
 
   loadEditFormWithApiData() {
-    this.editdriSer.fetchUser(this.username)
+    this.editcordSer.fetchUser(this.username)
       .subscribe((res: any) => {
-        this.driver = res.data;
-        this.setDriverDataInForm(this.driver);
-        console.log(res);
+        this.coordinator = res.data;
+        this.setDataInForm(this.coordinator);
       }, err => {
         console.log(err);
       }
       );
   }
 
-  setDriverDataInForm(user: any) {
-    this.editdriverForm.controls['driverName'].setValue(user.name);
-    this.editdriverForm.controls['driverUsername'].setValue(this.username);
-    this.editdriverForm.controls['level'].setValue(user.level);
-    this.editdriverForm.controls['phNo'].setValue(user.cell_no);
-    this.editdriverForm.controls['busno'].setValue(user.bus_no);
-    this.editdriverForm.controls['driverDeptname'].setValue(user.dept_code);
-    this.editdriverForm.controls['regOn'].setValue(user.registration_date);
+  setDataInForm(user: any) {
+    this.editcordForm.controls['Name'].setValue(user.name);
+    this.editcordForm.controls['Username'].setValue(this.username);
+    this.editcordForm.controls['level'].setValue(user.level);
+    this.editcordForm.controls['phNo'].setValue(user.cell_no);
+    this.editcordForm.controls['busno'].setValue(user.bus_no);
+    this.editcordForm.controls['StopId'].setValue(user.stop.stop_no);
+    this.editcordForm.controls['Deptname'].setValue(user.dept_code);
+    this.editcordForm.controls['regOn'].setValue(user.registration_date);
   }
-
   selectedBus(bus: any) {
-    this.editdriverForm.controls['busno'].setValue(bus.bus_no);
+    this.editcordForm.controls['busno'].setValue(bus.bus_no);
   }
-
 }

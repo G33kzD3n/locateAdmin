@@ -1,0 +1,30 @@
+<h4>Enter a message for the Students</h4>
+<div class="modal-footer"></div>
+<mat-dialog-content>
+  <div class="modal-body">
+    <form  [formGroup]="messageForm" (ngSubmit)="messageStudent(messageForm)">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Subject</label>
+        <div class="col-sm-9">
+          <input type="text" formControlName="subject" class="form-control" placeholder="Subject of the message" name="subject">
+        </div>
+        <div class="errorBox pl-6 pr-6" *ngIf="messageForm.controls['subject'].hasError('required')  && messageForm.controls['subject'].touched">*Subject
+        is required.
+      </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Message</label>
+        <div class="col-sm-9">
+          <textarea type="text" class="form-control" formControlName="message" id="exampleFormControlTextarea1" rows="6" placeholder="Message"></textarea>
+        </div>
+        <div class="errorBox pl-6 pr-6" *ngIf="messageForm.controls['message'].hasError('required')  && messageForm.controls['message'].touched">*Message
+          is required.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" mat-dialog-close>Cancel</button>
+        <button type="submit" value="submit" class="btn btn-primary" [disabled]="!messageForm.valid">Send</button>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>

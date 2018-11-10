@@ -1,6 +1,6 @@
-<h2 mat-dialog-title>Enter new Driver details</h2>
+<h4>Enter new Driver details</h4>
 <mat-dialog-content class="mat-typography">
-
+    <div class="modal-footer"></div>
     <form [formGroup]="editdriverForm" (ngSubmit)="editDriver(editdriverForm)">
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Driver Name</label>
@@ -22,7 +22,8 @@
                 <input type="text" formControlName="driverUsername" class="form-control" placeholder="Enter Username"
                     name="username">
             </div>
-            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['driverUsername'].hasError('required')  && editdriverForm.controls['driverUsername'].touched">*Username is required.
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['driverUsername'].hasError('required')  && editdriverForm.controls['driverUsername'].touched">*Username
+                is required.
             </div>
             <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['driverUsername'].hasError('pattern') && editdriverForm.controls['driverUsername'].touched">*Enter
                 valid username/ Username can only be a number
@@ -37,7 +38,8 @@
             <div class="col-sm-9">
                 <input type="text" formControlName="level" class="form-control" placeholder="Enter level 0, 1, 2" name="level">
             </div>
-            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['level'].hasError('required')  && editdriverForm.controls['level'].touched">*Level is required.
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['level'].hasError('required')  && editdriverForm.controls['level'].touched">*Level
+                is required.
             </div>
             <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['level'].hasError('pattern') && editdriverForm.controls['level'].touched">*Enter
                 valid level/ level can only be a number either 0,1 or 2.
@@ -45,7 +47,6 @@
             <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['level'].hasError('minlength') || editdriverForm.controls['level'].hasError('maxlength')  && editdriverForm.controls['level'].touched">
                 *level must be 1 digit only .
             </div>
-
         </div>
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Phone no</label>
@@ -82,7 +83,8 @@
                     <option *ngFor="let bus of busList" [value]="bus.bus_no" (onChange)="selectedBus(bus)">{{bus.bus_no}}</option>
                 </select>
             </div>
-            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['busno'].hasError('required')  && editdriverForm.controls['busno'].touched">*Bus no is required.</div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['busno'].hasError('required')  && editdriverForm.controls['busno'].touched">*Bus
+                no is required.</div>
             <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['busno'].hasError('pattern') && editdriverForm.controls['busno'].touched">*Enter
                 valid bus no/ busno can only be a number
             </div>
@@ -95,7 +97,8 @@
             <div class="col-sm-9">
                 <input type="text" formControlName="regOn" class="form-control" placeholder="Enter regOn" name="regOn">
             </div>
-            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['regOn'].hasError('required')  && editdriverForm.controls['regOn'].touched">*Date is required.</div>
+            <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['regOn'].hasError('required')  && editdriverForm.controls['regOn'].touched">*Date
+                is required.</div>
             <div class="errorBox pl-6 pr-6" *ngIf="editdriverForm.controls['regOn'].hasError('pattern') && editdriverForm.controls['regOn'].touched">*Enter
                 dob in the yyyy mm dd format
             </div>

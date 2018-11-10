@@ -31,7 +31,6 @@ export class MenuComponent implements OnInit {
     .subscribe(
       res=>{
         this.buses=res.buses;
-        console.log(this.buses);
       },
       err=>{
         console.log(err);
