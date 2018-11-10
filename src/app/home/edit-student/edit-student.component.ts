@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { EditStudentService } from '../../home/edit-student/services/edit-student.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef , MatDialogConfig} from '@angular/material';
 import { HttpHeaders } from '@angular/common/http';
 import { AppService } from '../../app.service';
 
@@ -95,7 +95,7 @@ export class EditStudentComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[0-99]*$/),
         Validators.minLength(1),
-        Validators.maxLength(2),
+        Validators.maxLength(3),
       ])],
       stops: ['', Validators.compose([
         Validators.required,
