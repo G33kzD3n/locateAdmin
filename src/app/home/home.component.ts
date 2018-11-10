@@ -6,6 +6,7 @@ import { EditDriverComponent } from '../buses-dashboard/businfo/edit-driver/edit
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { EditCordinatorComponent } from '../buses-dashboard/businfo/edit-cordinator/edit-cordinator.component';
 import { EditStudentComponent } from '../home/edit-student/edit-student.component';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   public students: Boolean = true;
   public drivers: Boolean = false;
   public cordinators: Boolean = false;
+  
 
 
   constructor(protected dialog: MatDialog, protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
