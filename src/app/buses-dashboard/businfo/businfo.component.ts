@@ -59,18 +59,18 @@ export class BusinfoComponent implements OnInit {
     });
   }
 
-  showBus(){
-    this.bus=true;
-    this.passengers=false;
-    this.routes=false;
-  }
+  // showBus(){
+  //   this.bus=true;
+  //   this.passengers=false;
+  //   this.routes=false;
+  // }
   showPassengers(){
-    this.bus=false;
+    // this.bus=false;
     this.passengers=true;
     this.routes=false;
   }
   showRoutes(){
-    this.bus=false;
+    // this.bus=false;
     this.passengers=false;
     this.routes=true;
   }

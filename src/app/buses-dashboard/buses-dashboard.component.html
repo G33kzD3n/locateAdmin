@@ -1,20 +1,83 @@
 <mat-card>
-    <mat-card-content>
-        <mat-card-title>Bus Inventory
-
-            <hr>
-            <div class="form-inline float-right">
-                <input class="form-control mr-sm-2" [(ngModel)]="searchText" type="search" placeholder="Search Table"
-                    aria-label="Search">
-            </div>
-            <div class="pull-left">
-                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#exampleModalCenter">
-                    <img src="../../assets/imgs/baseline-add-24px.svg">
-                    Add New Bus</button>
-            </div>
+    <mat-card-header> 
+        
+        <mat-card-title>
+                Bus Inventory 
         </mat-card-title>
+        
 
-        <div class="table-responsive">
+        <hr>
+        <div class="form-inline float-right">
+            <input class="form-control mr-sm-2" [(ngModel)]="searchText" type="search" placeholder="Search Table"
+                aria-label="Search">
+        </div>
+        <div class="pull-left">
+            <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#exampleModalCenter">
+                <img src="../../assets/imgs/baseline-add-24px.svg">
+                Add New Bus</button>
+        </div>
+    </mat-card-header>
+
+
+    <mat-card-content>
+
+
+
+        <div>
+            <mat-accordion *ngFor="let bus of buses | filter: 'bus_no': searchText; let i=index">
+                <mat-expansion-panel class="panel-ex">
+                    <mat-expansion-panel-header class="header-ex">
+                        <mat-panel-title>
+                            Bus No: {{ bus.bus_no }}
+                        </mat-panel-title>
+                        <mat-panel-description>
+
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="row">
+                        <div class="col"><img src="../../assets/imgs/111.svg" alt=""></div>
+                        <div class="col">
+                            <label>Assigned Driver:</label>
+                            <p> {{bus.driver.name}}</p>
+                            <label> Driver Phone:</label>
+                            <p>{{bus.driver.cell_no}}</p>
+
+
+                        </div>
+                        <div class="col">
+                            <label>Assigned Coordinator: </label>
+                            <p>{{bus.cordinator.name}}</p>
+                            <label> Coordinator Phone: </label>
+                            <p>{{bus.cordinator.cell_no}}</p>
+
+                        </div>
+                    </div>
+
+                    <mat-action-row class="row-ex">
+                        <button class="btn btn-light" title="Full edit" type="submit">
+                            <img src="../../assets/imgs/trashed.svg">Change Driver</button>
+                        <button class="btn btn-light" title="Full edit" type="submit">
+                            <button class="btn btn-light" title="Full edit" type="submit">
+                                <img src="../../assets/imgs/trashed.svg">Change Bus No</button>
+                            <img src="../../assets/imgs/trashed.svg">Change Coordinator</button>
+                        <button class="btn btn-light" title="Full edit" type="submit" (click)="gotoBusinfo(bus.bus_no)">
+                            <img src="../../assets/imgs/trashed.svg">Edit</button>
+                        <button class="btn btn-light" type="button" data-toggle="modal" title="Delete record"
+                            data-target="#exampleModal"><img src="../../assets/imgs/outline-restore_from_trash-24px.svg"
+                                (click)="itemClicked(bus.bus_no)">Delete
+                        </button>
+                    </mat-action-row>
+
+                </mat-expansion-panel>
+
+            </mat-accordion>
+        </div>
+
+    </mat-card-content>
+</mat-card>
+
+<!-- <div class="table-responsive">
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
@@ -51,9 +114,8 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </mat-card-content>
-</mat-card>
+        </div> -->
+
 <hr>
 
 
