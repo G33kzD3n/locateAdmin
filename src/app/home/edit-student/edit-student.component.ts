@@ -60,7 +60,7 @@ export class EditStudentComponent implements OnInit {
       level: ['', Validators.compose([
         Validators.required,
         Validators.pattern(/^[0-2]*$/),
-        Validators.minLength(1),
+        Validators.minLength(0),
         Validators.maxLength(1),
       ])],
       phNo: ['', Validators.compose([
@@ -163,7 +163,7 @@ export class EditStudentComponent implements OnInit {
     console.log(user.stop.name);
     this.editstudentForm.controls['studentName'].setValue(user.name);
     this.editstudentForm.controls['studentUsername'].setValue(this.username);
-    this.editstudentForm.controls['level'].setValue(user.level);
+    this.editstudentForm.controls['level'].setValue(<string> user.level);
     this.editstudentForm.controls['phNo'].setValue(user.cell_no);
     this.editstudentForm.controls['busno'].setValue(user.bus_no);
     this.editstudentForm.controls['studentDeptname'].setValue(user.dept_code);

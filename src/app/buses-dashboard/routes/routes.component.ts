@@ -35,10 +35,9 @@ export class RoutesComponent implements OnInit {
     this.routesSer.getRoutes(this.bus_no)
       .subscribe(
         res => {
-          this.stops = res.bus.stops.names.split(';');
-          this.latLngs = res.bus.stops.latLngs;
+          console.log(res);
+          this.stops = res.bus.stops.stop_detail;
           console.log(this.stops);
-          console.log(this.latLngs);
         },
         err => {
         }
