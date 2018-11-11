@@ -53,14 +53,14 @@
                 <div class="col"> <label>Name: </label>
                   <p>{{ user.name | uppercase }}</p> <br>
                   <label>Department: </label>
-                  <p> {{ user.dept_id }}</p> <br>
+                  <p> {{ user.dept_code }}</p> <br>
                   <label> Bus Number: </label>
                   <p>{{ user.bus_no }}</p><br>
                   <label>Course:</label>
                   <p>{{user.course_id}}</p>
                 </div>
                 <div class="col"> <label> Phone Number: </label>
-                  <p>{{ user.phone_no }}</p> <br>
+                  <p>{{ user.cell_no }}</p> <br>
                   
                   <label> Level: </label>
                   <p>{{ user.level }}</p><br>
@@ -324,6 +324,9 @@
         </nav>
       </div>
   </div>
+</mat-card-content>
+</mat-card>
+<hr>
     
     <!-- <div *ngIf="cordinators === true" class="table-responsive">
       <table class="table table-hover table-bordered">
@@ -381,31 +384,9 @@
 
     <!------------------------------------------- Ends Cordinators tab content ----------------------------------->
     <!-- </div> -->
-  </mat-card-content>
-</mat-card>
-<hr>
+  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Modal for deleting a user record-->
+<!------------------------------ Modal for deleting a user record-------------------------------------->
 <div class="form-inline float-right"></div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

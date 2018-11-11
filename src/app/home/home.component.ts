@@ -33,7 +33,8 @@ export class HomeComponent implements OnInit {
     this.homeSer.getUsers()
       .subscribe(
         res => {
-          this.users = res;
+          this.users = res.data;
+          console.log(this.users);
         },
         err => {
           if (err.status == 0) {
