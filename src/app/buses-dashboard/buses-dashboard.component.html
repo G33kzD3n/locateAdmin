@@ -1,29 +1,21 @@
 <mat-card>
-    <mat-card-header> 
-        
-        <mat-card-title>
-                Bus Inventory 
-        </mat-card-title>
-        
-
-        <hr>
-        <div class="form-inline float-right">
-            <input class="form-control mr-sm-2" [(ngModel)]="searchText" type="search" placeholder="Search Table"
-                aria-label="Search">
-        </div>
-        <div class="pull-left">
-            <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#exampleModalCenter">
-                <img src="../../assets/imgs/baseline-add-24px.svg">
-                Add New Bus</button>
-        </div>
-    </mat-card-header>
-
-
     <mat-card-content>
+        <mat-card-title>Bus Inventory
+            <hr>
+            <div class="form-inline float-right">
+                <input class="form-control mr-sm-2" [(ngModel)]="searchText" type="search" placeholder="Search Table"
+                    aria-label="Search">
+            </div>
+            <div class="pull-left pb-6">
+                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#exampleModalCenter">
+                    <img src="../../assets/imgs/baseline-add-24px.svg">
+                    Add New Bus</button>
+            </div>
+        </mat-card-title>
 
 
 
-        <div>
+        <div class="table-responsive">
             <mat-accordion *ngFor="let bus of buses | filter: 'bus_no': searchText; let i=index">
                 <mat-expansion-panel class="panel-ex">
                     <mat-expansion-panel-header class="header-ex">
@@ -55,11 +47,11 @@
                     </div>
 
                     <mat-action-row class="row-ex">
+                        <button class="btn btn-link" data-target="#routes" data-toggle="modal" type="submit" (click)="assignedRoute(bus.bus_no)">Assigned
+                            Stops</button>
                         <button class="btn btn-light" title="Full edit" type="submit">
                             <img src="../../assets/imgs/trashed.svg">Change Driver</button>
                         <button class="btn btn-light" title="Full edit" type="submit">
-                            <button class="btn btn-light" title="Full edit" type="submit">
-                                <img src="../../assets/imgs/trashed.svg">Change Bus No</button>
                             <img src="../../assets/imgs/trashed.svg">Change Coordinator</button>
                         <button class="btn btn-light" title="Full edit" type="submit" (click)="gotoBusinfo(bus.bus_no)">
                             <img src="../../assets/imgs/trashed.svg">Edit</button>
@@ -178,15 +170,35 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" *ngIf="stops">
-                <div *ngFor="let stop of stops; let i=index">
-                    {{stop}}
-                </div>
-
+            <div class="modal-body">
+                    <table class="table table-striped" *ngIf="!stops">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Stop Name</th>
+                                <th scope="col">Latitude</th>
+                                <th scope="col">Longitude</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let stop of stops; let i=index">
+                                <th scope="row">{{i}}</th>
+                                <td>{{stop.name}}</td>
+                                <td>{{stop.lat}}</td>
+                                <td>{{stop.lng}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Stop Name</th>
+                                <th scope="col">Latitude</th>
+                                <th scope="col">Longitude</th>
+                            </tr>
+                        </tbody>
+                    </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
             </div>
         </div>
     </div>
@@ -214,8 +226,8 @@
     </div>
 </div>
 
-<!-- modal for basic edit -->
-<!-- <div class="modal fade" id="basicEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+<!-- modal for basic edit
+<div class="modal fade" id="basicEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -254,7 +266,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" [disabled]="!busForm.valid" type="submit">Save changes</button>
+                        <button type="button" class="btn btn-primary" [disabled]="!busForm.valid" type="submit">Save
+                            changes</button>
                     </div>
                 </form>
             </div>

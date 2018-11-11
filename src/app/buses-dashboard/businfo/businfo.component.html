@@ -5,7 +5,9 @@
     <div class="row">
       <div class="col">
         <ul class="nav nav-tabs nav-pills nav-fill" id="myTab" role="tablist">
-          
+          <li class="nav-item">
+            <a id="bus-tab" class="nav-link {{bus==true ?' active':''}}" (click)="showBus()">Bus</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link {{passengers==true ?' active':''}}" (click)="showPassengers()">Passengers</a>
           </li>
@@ -14,12 +16,45 @@
           </li>
         </ul>
         <div class="tab-content">
+          <div *ngIf="bus === true">
+            <hr>
+            <div class="table-responsive">
+              <table class="table table-hover table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <!-- <th scope="col">Bus Photo</th> -->
+                    <th scope="col">Bus No</th>
+                    <th scope="col">Driver Assigned</th>
+                    <!-- <th scope="col">Driver's Phone</th> -->
+                    <th scope="col">Coordinator Assigned</th>
+                    <!-- <th scope="col">Coordinator Phone</th> -->
+                    <!-- <th scope="col">Route Assigned</th> -->
+                  </tr>
+                </thead>
+                <tbody *ngFor="let bus of buses; let i=index">
+                  <tr *ngIf="bus_no == bus.bus_no">
+                    <!-- <button (click)="openDialog()">Open dialog</button> -->
+                    <th scope="row">{{i}}</th>
+                    <!-- <td>Icon</td> -->
+                    <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="" (click)="openDialogbus()">{{bus.bus_no}}
+                        <img src="/src/assets/imgs/trashed.svg"></button></td>
+                    <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="">{{bus.driver.name}}
+                        <span *ngIf=bus.driver.name><img src="/src/assets/imgs/trashed.svg"></span></button></td>
+                    <!-- <td>{{bus.driver.cell_no}}</td> -->
+                    <td><button class="btn btn-link" title="Edit" data-toggle="" data-target="">{{bus.cordinator.name}}
+                        <span *ngIf=bus.cordinator.name><img src="/src/assets/imgs/trashed.svg"></span></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
           <div *ngIf="passengers === true">
             <hr>
             <app-passengers></app-passengers>
           </div>
           <div *ngIf="routes === true">
-            
+
             <app-routes></app-routes>
           </div>
         </div>

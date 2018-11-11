@@ -17,7 +17,7 @@ export class BusinfoComponent implements OnInit {
   bus_no: any;
   buses: any;
   buss: any;
-  bus: boolean =true;
+  bus:Boolean=true;
   passengers:boolean=false;
   routes:boolean=false;
   constructor(protected app:AppService,protected ar: ActivatedRoute, protected businfoSer: BusinfoService, protected dialog: MatDialog) { }
@@ -59,18 +59,18 @@ export class BusinfoComponent implements OnInit {
     });
   }
 
-  // showBus(){
-  //   this.bus=true;
-  //   this.passengers=false;
-  //   this.routes=false;
-  // }
+  showBus(){
+    this.bus=true;
+    this.passengers=false;
+    this.routes=false;
+  }
   showPassengers(){
-    // this.bus=false;
+    this.bus=false;
     this.passengers=true;
     this.routes=false;
   }
   showRoutes(){
-    // this.bus=false;
+    this.bus=false;
     this.passengers=false;
     this.routes=true;
   }

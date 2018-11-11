@@ -21,7 +21,7 @@ export class RegistrationsComponent implements OnInit {
     this.regSer.getRegistrations()
       .subscribe(
         res => {
-          this.users = res;
+          this.users = res.data;
         },
         err => {
           if (err.status == 0) {

@@ -4,7 +4,7 @@ import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { HttpHeaders } from '@angular/common/http';
 import { AppService } from '../app.service';
 import { MessageService } from './services/message.service';
-
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material';
 
 @Component({
   selector: 'app-message',
@@ -13,7 +13,7 @@ import { MessageService } from './services/message.service';
 })
 export class MessageComponent implements OnInit {
   messageForm: FormGroup;
-  constructor(protected router: Router, protected fb: FormBuilder, protected app: AppService, protected message: MessageService) { }
+  constructor(protected router: Router, protected fb: FormBuilder, private dialogRef: MatDialogRef<MessageComponent>, protected app: AppService, protected message: MessageService) { }
 
   ngOnInit() {
     if (localStorage.getItem('loggedIn') !== 'true') {
@@ -42,10 +42,17 @@ export class MessageComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
-
+          setTimeout(() => {
+            this.dialogRef.close(res);
+          }, 800);
+          this.app.openSnackBar('Message sent', '');
         }, err => {
-          console.log(err);
-
+          if (err.status == 400) {
+            setTimeout(() => {
+              this.dialogRef.close(err);
+            }, 900);
+            this.app.openSnackBar('Subejct is too small', '');
+          }
         }
       );
   }

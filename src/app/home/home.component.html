@@ -37,60 +37,61 @@
     <!------------------------------------------- Displays Students tab content ----------------------------------->
 
     <div *ngIf="students === true">
-        <mat-accordion *ngFor="let user of (users | filter : 'name' : searchText); let i=index">
-          <mat-expansion-panel class="panel-ex" *ngIf="user.level == 0">
-            <mat-expansion-panel-header class="header-ex">
-              <mat-panel-title>
-                Enrollment Number: {{ user.username }}
-              </mat-panel-title>
-              <mat-panel-description>
-                <!-- <p> # {{i}}</p> -->
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div class="container">
-              <div class="row">
-                <div class="col"><img src="{{user.avatar}}" alt=""></div>
-                <div class="col"> <label>Name: </label>
-                  <p>{{ user.name | uppercase }}</p> <br>
-                  <label>Department: </label>
-                  <p> {{ user.dept_code }}</p> <br>
-                  <label> Bus Number: </label>
-                  <p>{{ user.bus_no }}</p><br>
-                  <label>Course:</label>
-                  <p>{{user.course_code}}</p>
-                </div>
-                <div class="col"> <label> Phone Number: </label>
-                  <p>{{ user.cell_no }}</p> <br>
-                  
-                  <label> Level: </label>
-                  <p>{{ user.level }}</p><br>
-                  <label>Semester:</label>
-                  <p>{{user.semester_level}}</p>
-                  <label>Stop Number:</label>
-                  <p>{{user.stop_id}}</p>
-                </div>
-    
+      <mat-accordion *ngFor="let user of (users | filter : 'name' : searchText); let i=index">
+        <mat-expansion-panel class="panel-ex" *ngIf="user.level == 0">
+          <mat-expansion-panel-header class="header-ex">
+            <mat-panel-title>
+              Enrollment Number: {{ user.username }}
+            </mat-panel-title>
+            <mat-panel-description>
+              <!-- <p> # {{i}}</p> -->
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="container">
+            <div class="row">
+              <div class="col"><img src="{{user.avatar}}" alt=""></div>
+              <div class="col"> <label>Name: </label>
+                <p>{{ user.name | uppercase }}</p> <br>
+                <label>Department: </label>
+                <p> {{ user.dept_code }}</p> <br>
+                <label> Bus Number: </label>
+                <p>{{ user.bus_no }}</p><br>
+                <label>Course:</label>
+                <p>{{user.course_code}}</p>
               </div>
+              <div class="col"> <label> Phone Number: </label>
+                <p>{{ user.cell_no }}</p> <br>
+
+                <label> Level: </label>
+                <p>{{ user.level }}</p><br>
+                <label>Semester:</label>
+                <p>{{user.semester_level}}</p>
+                <label>Stop Number:</label>
+                <p>{{user.stop_id}}</p>
+              </div>
+
             </div>
-            <mat-action-row class="row-ex">
-              <button title="Edit" (click)="openDialogstudent(user.username)" type="button" class="btn btn-light"><img src="../../assets/imgs/trashed.svg">Edit</button>
-              <button data-toggle="modal" title="Delete record" data-target="#exampleModal" type="button" class="btn btn-light"><img
-                  src="../../assets/imgs/outline-restore_from_trash-24px.svg"> Delete</button>
-            </mat-action-row>
-          </mat-expansion-panel>
-        </mat-accordion>
-        <div class="form-inline">
-            <nav aria-label="Page navigation example">
-              <ul class="pagination text-right">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-              </ul>
-            </nav>
           </div>
+          <mat-action-row class="row-ex">
+            <button title="Edit" (click)="openDialogstudent(user.username)" type="button" class="btn btn-light"><img
+                src="../../assets/imgs/trashed.svg">Edit</button>
+            <button data-toggle="modal" title="Delete record" data-target="#exampleModal" type="button" class="btn btn-light"><img
+                src="../../assets/imgs/outline-restore_from_trash-24px.svg"> Delete</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div class="form-inline">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination text-right">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
       </div>
+    </div>
 
     <!-- <div *ngIf="students === true" class="table-responsive">
       <table class="table table-hover table-bordered">
@@ -160,54 +161,54 @@
     <!------------------------------------------- Displays Drivers tab content ----------------------------------->
 
     <div *ngIf="drivers === true">
-        <mat-accordion *ngFor="let user of (users | filter : 'name' : searchText); let i=index">
-          <mat-expansion-panel class="panel-ex" *ngIf="user.level == 1">
-            <mat-expansion-panel-header class="header-ex">
-              <mat-panel-title>
-                Employee ID: {{ user.username }}
-              </mat-panel-title>
-              <mat-panel-description>
-                <!-- <p> # {{i}}</p> -->
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div class="container">
-              <div class="row">
-                <div class="col"><img src="{{user.avatar}}" alt=""></div>
-                <div class="col"> <label>Name: </label>
-                  <p>{{ user.name | uppercase }}</p> <br>
-                  <label>Department: </label>
-                  <p> {{ user.dept_code }}</p> <br>
-                  <label> Bus Number: </label>
-                  <p>{{ user.bus_no }}</p><br>
-                </div>
-                <div class="col"> <label> Phone Number: </label>
-                  <p>{{ user.cell_no }}</p> <br>
-                  
-                  <label> Level: </label>
-                  <p>{{ user.level }}</p><br>
-                </div>
-    
+      <mat-accordion *ngFor="let user of (users | filter : 'name' : searchText); let i=index">
+        <mat-expansion-panel class="panel-ex" *ngIf="user.level == 1">
+          <mat-expansion-panel-header class="header-ex">
+            <mat-panel-title>
+              Employee ID: {{ user.username }}
+            </mat-panel-title>
+            <mat-panel-description>
+              <!-- <p> # {{i}}</p> -->
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="container">
+            <div class="row">
+              <div class="col"><img src="{{user.avatar}}" alt=""></div>
+              <div class="col"> <label>Name: </label>
+                <p>{{ user.name | uppercase }}</p> <br>
+                <label>Department: </label>
+                <p> {{ user.dept_code }}</p> <br>
+                <label> Bus Number: </label>
+                <p>{{ user.bus_no }}</p><br>
               </div>
+              <div class="col"> <label> Phone Number: </label>
+                <p>{{ user.cell_no }}</p> <br>
+
+                <label> Level: </label>
+                <p>{{ user.level }}</p><br>
+              </div>
+
             </div>
-            <mat-action-row class="row-ex">
-              <button title="Edit" (click)="openDialogdriver(user.username)" type="button" class="btn btn-light"><img src="../../assets/imgs/trashed.svg">Edit</button>
-              <button data-toggle="modal" title="Delete record" data-target="#exampleModal" type="button" class="btn btn-light"><img
-                  src="../../assets/imgs/outline-restore_from_trash-24px.svg"> Delete</button>
-            </mat-action-row>
-          </mat-expansion-panel>
-        </mat-accordion>
-        <div class="form-inline">
-            <nav aria-label="Page navigation example">
-              <ul class="pagination text-right">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-              </ul>
-            </nav>
           </div>
+          <mat-action-row class="row-ex">
+            <button title="Edit" (click)="openDialogdriver(user.username)" type="button" class="btn btn-light"><img src="../../assets/imgs/trashed.svg">Edit</button>
+            <button data-toggle="modal" title="Delete record" data-target="#exampleModal" type="button" class="btn btn-light"><img
+                src="../../assets/imgs/outline-restore_from_trash-24px.svg"> Delete</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div class="form-inline">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination text-right">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
       </div>
+    </div>
     <!-- <div *ngIf="drivers === true" class="table-responsive">
       <table class="table table-hover table-bordered">
         <thead>
@@ -217,11 +218,11 @@
             <th scope="col">Name</th>
             <th scope="col">Dept</th>
             <th scope="col">Course</th> -->
-            <!-- <th scope="col">Semester</th> -->
-            <!-- <th scope="col">Phone No</th>
+    <!-- <th scope="col">Semester</th> -->
+    <!-- <th scope="col">Phone No</th>
             <th scope="col">Bus_no</th> -->
-            <!-- <th scope="col">Stop_id</th> -->
-            <!-- <th scope="col">Type of user</th>
+    <!-- <th scope="col">Stop_id</th> -->
+    <!-- <th scope="col">Type of user</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -232,11 +233,11 @@
             <td>{{ user.name | uppercase }}</td>
             <td>{{ user.dept_id }}</td>
             <td>{{ user.course_id }}</td> -->
-            <!-- <td>{{ user.semester }}</td> -->
-            <!-- <td>{{ user.cell_no }}</td>
+    <!-- <td>{{ user.semester }}</td> -->
+    <!-- <td>{{ user.cell_no }}</td>
             <td>{{ user.bus_no }}</td> -->
-            <!-- <td>{{ user.stop_id }}</td> -->
-            <!-- <td>{{ user.level }}</td>
+    <!-- <td>{{ user.stop_id }}</td> -->
+    <!-- <td>{{ user.level }}</td>
             <td><button class="pr-2" title="Edit"><img src="../../assets/imgs/trashed.svg" (click)="openDialogdriver(user.username)"></button>
               <button type="button" data-toggle="modal" title="Delete record" data-target="#exampleModal"><img src="../../assets/imgs/outline-restore_from_trash-24px.svg">
               </button>
@@ -250,11 +251,11 @@
             <th scope="col">Name</th>
             <th scope="col">Dept</th>
             <th scope="col">Course</th> -->
-            <!-- <th scope="col">Semester</th> -->
-            <!-- <th scope="col">Phone No</th>
+    <!-- <th scope="col">Semester</th> -->
+    <!-- <th scope="col">Phone No</th>
             <th scope="col">Bus_no</th> -->
-            <!-- <th scope="col">Stop_id</th> -->
-            <!-- <th scope="col">Type of user</th>
+    <!-- <th scope="col">Stop_id</th> -->
+    <!-- <th scope="col">Type of user</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -274,45 +275,45 @@
 
     <!------------------------------------------- Displays Driverss tab content ----------------------------------->
     <!------------------------------------------- Displays Cordinatorss tab content ----------------------------------->
-<div *ngIf="cordinators === true">
-    <mat-accordion *ngFor="let user of (users | filter : 'name' : searchText); let i=index">
-      <mat-expansion-panel class="panel-ex" *ngIf="user.level == 2">
-        <mat-expansion-panel-header class="header-ex">
-          <mat-panel-title>
-            Employee ID: {{ user.username }}
-          </mat-panel-title>
-          <mat-panel-description>
-            <!-- <p> # {{i}}</p> -->
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="container">
-          <div class="row">
-            <div class="col"><img src="{{user.avatar}}" alt=""></div>
-            <div class="col"> <label>Name: </label>
-              <p>{{ user.name | uppercase }}</p> <br>
-              <label>Department: </label>
-              <p> {{ user.dept_code }}</p> <br>
-              <label> Stop Number: </label>
-              <p>{{ user.stop_id }}</p><br>
-            </div>
-            <div class="col"> <label> Phone Number: </label>
-              <p>{{ user.cell_no }}</p> <br>
-              <label> Bus Number: </label>
-              <p>{{ user.bus_no }}</p><br>
-              <label> Level: </label>
-              <p>{{ user.level }}</p><br>
-            </div>
+    <div *ngIf="cordinators === true">
+      <mat-accordion *ngFor="let user of (users | filter : 'name' : searchText); let i=index">
+        <mat-expansion-panel class="panel-ex" *ngIf="user.level == 2">
+          <mat-expansion-panel-header class="header-ex">
+            <mat-panel-title>
+              Employee ID: {{ user.username }}
+            </mat-panel-title>
+            <mat-panel-description>
+              <!-- <p> # {{i}}</p> -->
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="container">
+            <div class="row">
+              <div class="col"><img src="{{user.avatar}}" alt=""></div>
+              <div class="col"> <label>Name: </label>
+                <p>{{ user.name | uppercase }}</p> <br>
+                <label>Department: </label>
+                <p> {{ user.dept_code }}</p> <br>
+                <label> Stop Number: </label>
+                <p>{{ user.stop_id }}</p><br>
+              </div>
+              <div class="col"> <label> Phone Number: </label>
+                <p>{{ user.cell_no }}</p> <br>
+                <label> Bus Number: </label>
+                <p>{{ user.bus_no }}</p><br>
+                <label> Level: </label>
+                <p>{{ user.level }}</p><br>
+              </div>
 
+            </div>
           </div>
-        </div>
-        <mat-action-row class="row-ex">
-          <button title="Edit" (click)="openDialogCoord(user.username)" type="button" class="btn btn-light"><img src="../../assets/imgs/trashed.svg">Edit</button>
-          <button data-toggle="modal" title="Delete record" data-target="#exampleModal" type="button" class="btn btn-light"><img
-              src="../../assets/imgs/outline-restore_from_trash-24px.svg"> Delete</button>
-        </mat-action-row>
-      </mat-expansion-panel>
-    </mat-accordion>
-    <div class="form-inline">
+          <mat-action-row class="row-ex">
+            <button title="Edit" (click)="openDialogCoord(user.username)" type="button" class="btn btn-light"><img src="../../assets/imgs/trashed.svg">Edit</button>
+            <button data-toggle="modal" title="Delete record" data-target="#exampleModal" type="button" class="btn btn-light"><img
+                src="../../assets/imgs/outline-restore_from_trash-24px.svg"> Delete</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div class="form-inline">
         <nav aria-label="Page navigation example">
           <ul class="pagination text-right">
             <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -323,8 +324,8 @@
           </ul>
         </nav>
       </div>
-  </div>
-    
+    </div>
+
     <!-- <div *ngIf="cordinators === true" class="table-responsive">
       <table class="table table-hover table-bordered">
         <thead>
@@ -334,7 +335,7 @@
             <th scope="col">Name</th>
             <th scope="col">Dept</th>
             <th scope="col">Course</th> -->
-            <!-- <th scope="col">Semester</th>
+    <!-- <th scope="col">Semester</th>
             <th scope="col">Phone No</th>
             <th scope="col">Bus_no</th>
             <th scope="col">Stop_id</th>
@@ -349,8 +350,8 @@
             <td>{{ user.name | uppercase }}</td>
             <td>{{ user.dept_id }}</td>
             <td>{{ user.course_id }}</td> -->
-            <!-- <td>{{ user.semester }}</td> -->
-            <!-- <td>{{ user.phone_no }}</td>
+    <!-- <td>{{ user.semester }}</td> -->
+    <!-- <td>{{ user.phone_no }}</td>
             <td>{{ user.bus_no }}</td>
             <td>{{ user.stop_id }}</td>
             <td>{{ user.level }}</td>
@@ -367,8 +368,8 @@
             <th scope="col">Name</th>
             <th scope="col">Dept</th>
             <th scope="col">Course</th> -->
-            <!-- <th scope="col">Semester</th> -->
-            <!-- <th scope="col">Phone No</th>
+    <!-- <th scope="col">Semester</th> -->
+    <!-- <th scope="col">Phone No</th>
             <th scope="col">Bus_no</th>
             <th scope="col">Stop_id</th>
             <th scope="col">Type of user</th>
@@ -376,7 +377,7 @@
           </tr>
         </thead>
       </table> -->
-     
+
     <!-- </div> -->
 
     <!------------------------------------------- Ends Cordinators tab content ----------------------------------->

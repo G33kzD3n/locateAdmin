@@ -91,12 +91,12 @@ export class EditStudentComponent implements OnInit {
       course: ['', Validators.compose([
         Validators.required,
       ])],
-      stop_id: ['', Validators.compose([
-        Validators.required,
-        Validators.pattern(/^[0-99]*$/),
-        Validators.minLength(1),
-        Validators.maxLength(3),
-      ])],
+      // stop_id: ['', Validators.compose([
+      //   Validators.required,
+      //   Validators.pattern(/^[0-99]*$/),
+      //   Validators.minLength(1),
+      //   Validators.maxLength(3),
+      // ])],
       stops: ['', Validators.compose([
         Validators.required,
       ])],
@@ -152,7 +152,11 @@ export class EditStudentComponent implements OnInit {
     this.editstudSer.fetchUser(this.username)
       .subscribe((res: any) => {
         this.student = res.data;
-        this.setStudentDataInForm(this.student);
+        this.selectedBus(this.student.bus_no);
+        setTimeout(() => {
+            this.setStudentDataInForm(this.student);
+          }, 500);
+        // this.setStudentDataInForm(this.student);
       }, err => {
         console.log(err);
       }
@@ -161,6 +165,11 @@ export class EditStudentComponent implements OnInit {
 
   setStudentDataInForm(user: any) {
     console.log(user.stop.name);
+    console.log(user.bus_no);
+    // this.selectedBus(user.bus_no);
+    console.log(this.stops);
+    this.selectedStop(user.stop.name);
+    console.log(this.id);
     this.editstudentForm.controls['studentName'].setValue(user.name);
     this.editstudentForm.controls['studentUsername'].setValue(this.username);
     this.editstudentForm.controls['level'].setValue(<string> user.level);
@@ -170,7 +179,7 @@ export class EditStudentComponent implements OnInit {
     this.editstudentForm.controls['regOn'].setValue(user.registration_date);
     this.editstudentForm.controls['semester'].setValue(user.semester_level);
     this.editstudentForm.controls['course'].setValue(user.dept_code);
-    this.editstudentForm.controls['stop_id'].setValue(user.stop.stop_no);
+    // this.editstudentForm.controls['stop_id'].setValue(user.stop.stop_no);
     this.editstudentForm.controls['stops'].setValue(user.stop.name);
   }
 
@@ -187,7 +196,9 @@ export class EditStudentComponent implements OnInit {
           this.stops = [];
         }
         else {
+          console.log('selected bus function assigning stops to this.stops');
           this.stops = res.bus.stops.stop_detail;
+          console.log(this.stops)
         }
       },
       err => {
@@ -196,12 +207,10 @@ export class EditStudentComponent implements OnInit {
     )
   }
   selectedStop(stop) {
-    if (this.stops !== undefined) {
       for (let i = 0; i < (this.stops.length); i++) {
         if (stop == this.stops[i].name) {
           this.id = this.stops[i].id;
           console.log('id: ' + this.id);
-        }
       }
     }
   }

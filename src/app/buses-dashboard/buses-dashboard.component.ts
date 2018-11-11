@@ -106,10 +106,12 @@ export class BusesDashboardComponent implements OnInit {
         res => {
           if (!res.bus.stops.names) {
             console.log('no stops aasigned yet');
+            this.app.openSnackBar("No Stops assigned yet", '');
             this.stops = [];
+            console.log(this.stops);
           }
           else {
-            this.stops = res.bus.stops.names.split(';');
+            this.stops = res.bus.stops.stop_detail;
           }
         },
         err => {
