@@ -16,26 +16,28 @@ import { PusherService } from './services/pusher.service';
 })
 
 export class HomeComponent implements OnInit {
-  public users: any;
+  public users: any=[];
   public students: Boolean = true;
   public drivers: Boolean = false;
   public cordinators: Boolean = false;
+  
 
 
-
-  constructor(protected pusher: PusherService, protected dialog: MatDialog, protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
+  constructor(protected pusher:PusherService ,protected dialog: MatDialog, protected homeSer: HomeService, protected logSer: LoginService, protected router: Router) { }
 
   ngOnInit() {
     if (localStorage.getItem('loggedIn') !== 'true') {
       this.router.navigate(['login']);
     }
     this.getUsers();
+    // this.pusher.setChannel("notifications-channel");
   }
   getUsers() {
     this.homeSer.getUsers()
       .subscribe(
         res => {
-          this.users = res;
+          console.log(res);
+          this.users = res.data;
         },
         err => {
           if (err.status == 0) {
@@ -88,27 +90,27 @@ export class HomeComponent implements OnInit {
   }
   openDialogstudent(username) {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.height = '600px';
-    dialogConfig.width = '800px';
+    dialogConfig.height='600px';
+    dialogConfig.width='800px';
     // dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.data = { username: username };
-    const dialogRef = this.dialog.open(EditStudentComponent, dialogConfig);
+    dialogConfig.data={ username: username };
+    const dialogRef = this.dialog.open(EditStudentComponent,dialogConfig);
     //recive the data from editDriverComponet on succes or error when closing the matdialog
     dialogRef.beforeClose().subscribe(result => {
       console.log('*******' + JSON.stringify(result));
       this.ngOnInit();
-    });
+    });    
   }
   openDialogmessage(username) {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.height = '452px';
-    dialogConfig.width = '600px';
+    dialogConfig.height='452px';
+    dialogConfig.width='600px';
     dialogConfig.autoFocus = true;
     dialogConfig.position = {
-      top: '40px'
-    };
-    const dialogRef = this.dialog.open(MessageComponent, dialogConfig);
+      top:'40px'
+  };
+    const dialogRef = this.dialog.open(MessageComponent,dialogConfig);
     //recive the data from editDriverComponet on succes or error when closing the matdialog
     dialogRef.beforeClose().subscribe(result => {
       console.log('*******' + JSON.stringify(result));
