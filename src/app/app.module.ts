@@ -27,6 +27,8 @@ import { AgmCoreModule } from '@agm/core';
 import { EditStudentComponent } from './home/edit-student/edit-student.component';
 import { MessageComponent } from './message/message.component';
 import { DatePipe } from '@angular/common';
+import { ChangeDriverComponent } from './buses-dashboard/change-driver/change-driver.component';
+import { ChangeCoordinatorComponent } from './buses-dashboard/change-coordinator/change-coordinator.component';
 
 // import { toastr } from 'toastr';
 
@@ -48,7 +50,9 @@ import { DatePipe } from '@angular/common';
     EditCordinatorComponent,
     EditBusComponent,
     EditStudentComponent,
-    MessageComponent
+    MessageComponent,
+    ChangeDriverComponent,
+    ChangeCoordinatorComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +72,7 @@ import { DatePipe } from '@angular/common';
     EditBusComponent,
     EditStudentComponent,
     MessageComponent,
+    ChangeCoordinatorComponent
 
   ],
   providers: [
