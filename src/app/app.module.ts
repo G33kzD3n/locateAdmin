@@ -76,6 +76,7 @@ import { AddBusComponent } from './buses-dashboard/add-bus/add-bus.component';
     EditBusComponent,
     EditStudentComponent,
     MessageComponent,
+    ChangeCoordinatorComponent,
     ChangeDriverComponent,
     DeleteBusComponent,
     AddBusComponent

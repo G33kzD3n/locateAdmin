@@ -5,6 +5,8 @@ import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { HttpHeaders } from '@angular/common/http';
 import { AppService } from '../app.service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+import { ChangeCoordinatorComponent } from './change-coordinator/change-coordinator.component';
+
 import { ChangeDriverComponent } from '../buses-dashboard/change-driver/change-driver.component';
 import { DeleteBusComponent } from '../buses-dashboard/delete-bus/delete-bus.component';
 import { AddBusComponent } from '../buses-dashboard/add-bus/add-bus.component';
@@ -19,8 +21,9 @@ export class BusesDashboardComponent implements OnInit {
   stops: any;
   busForm: FormGroup;
 
-  constructor(protected dialog: MatDialog, protected app: AppService, protected fb: FormBuilder, protected busSer: BusesDashboardService,
-    protected router: Router) { }
+  constructor(protected app: AppService, protected fb: FormBuilder, protected busSer: BusesDashboardService,
+    protected router: Router,
+    protected dialog: MatDialog) { }
 
   ngOnInit() {
     if (localStorage.getItem('loggedIn') !== 'true') {
@@ -108,6 +111,22 @@ export class BusesDashboardComponent implements OnInit {
         },
       )
   }
+  openDialogChangeCoord(busno) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.height = '280px';
+    dialogConfig.width = '600px';
+    dialogConfig.autoFocus = true;
+    dialogConfig.position = {
+      top: '40px'
+    };
+    dialogConfig.data={ busno: busno };
+    const dialogRef = this.dialog.open(ChangeCoordinatorComponent, dialogConfig);
+    //recive the data from editcoordComponent on succes or error when closing the matdialog
+    dialogRef.beforeClose().subscribe(result => {
+      console.log('***' + JSON.stringify(result));
+    });
+  }
+
   openDialogChangeDriver(busno) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.height = '280px';
