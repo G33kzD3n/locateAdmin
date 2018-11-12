@@ -4,7 +4,9 @@ import { Router } from '@angular/router'
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { HttpHeaders } from '@angular/common/http';
 import { AppService } from '../app.service';
-
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { ChangeDriverComponent } from '../buses-dashboard/change-driver/change-driver.component';
+import { DeleteBusComponent} from '../buses-dashboard/delete-bus/delete-bus.component';
 @Component({
   selector: 'app-buses-dashboard',
   templateUrl: './buses-dashboard.component.html',
@@ -16,7 +18,7 @@ export class BusesDashboardComponent implements OnInit {
   stops: any;
   busForm: FormGroup;
 
-  constructor(protected app: AppService, protected fb: FormBuilder, protected busSer: BusesDashboardService,
+  constructor(protected dialog: MatDialog, protected app: AppService, protected fb: FormBuilder, protected busSer: BusesDashboardService,
     protected router: Router) { }
 
   ngOnInit() {
@@ -53,9 +55,10 @@ export class BusesDashboardComponent implements OnInit {
         }
       );
   }
-  itemClicked(bus_no) {
-    this.bus_no = bus_no;
-  }
+  // itemClicked(busno) {
+  //   this.bus_no = busno;
+  //   console.log(this.bus_no);
+  // }
   gotoBusinfo(bus_no: number) {
     this.router.navigate(['businfo'], { queryParams: { busno: bus_no } });
   }
@@ -82,23 +85,7 @@ export class BusesDashboardComponent implements OnInit {
         }
       );
   }
-  deleteBus() {
-    let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
-    this.busSer.deleteBus(this.bus_no, options)
-      .subscribe(
-        res => {
-          this.app.openSnackBar(this.bus_no + ' bus has been deleted', '');
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-        },
-        err => {
-          if (err.status == 0) {
-            alert("Check your Internet connection");
-          }
-        }
-      );
-  }
+
   assignedRoute(busno) {
     console.log(busno);
     this.busSer.getBus(busno)
@@ -112,11 +99,45 @@ export class BusesDashboardComponent implements OnInit {
           }
           else {
             this.stops = res.bus.stops.stop_detail;
+            console.log(this.stops);
           }
         },
         err => {
           console.log(err);
         },
       )
+  }
+  openDialogChangeDriver(busno) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.height = '280px';
+    dialogConfig.width = '600px';
+    dialogConfig.autoFocus = true;
+    dialogConfig.position = {
+      top: '40px'
+    };
+    dialogConfig.data={ busno: busno };
+    const dialogRef = this.dialog.open(ChangeDriverComponent, dialogConfig);
+    //recive the data from editDriverComponet on succes or error when closing the matdialog
+    dialogRef.beforeClose().subscribe(result => {
+      console.log('*******' + JSON.stringify(result));
+      this.ngOnInit();
+    });
+  }
+  openDialogDeleteBus(busno) {
+    console.log(busno);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.height = '155px';
+    dialogConfig.width = '600px';
+    dialogConfig.autoFocus = true;
+    dialogConfig.position = {
+
+    };
+    dialogConfig.data={ busno: busno };
+    const dialogRef = this.dialog.open(DeleteBusComponent, dialogConfig);
+    //recive the data from editDriverComponet on succes or error when closing the matdialog
+    dialogRef.beforeClose().subscribe(result => {
+      console.log('*******' + JSON.stringify(result));
+      this.ngOnInit();
+    });
   }
 }

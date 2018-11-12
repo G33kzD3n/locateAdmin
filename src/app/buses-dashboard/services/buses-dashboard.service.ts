@@ -27,9 +27,9 @@ export class BusesDashboardService {
     //   })
     // });
   }
-  deleteBus(bus_no, options): Observable<any> {
-    return this.http.delete(this.app.baseUrl + '/admin/1.0/buses/' + bus_no + '/delete', options);
-  }
+  // deleteBus(bus_no, options): Observable<any> {
+  //   return this.http.delete(this.app.baseUrl + '/admin/1.0/buses/' + bus_no + '/delete', options);
+  // }
   // editBus(bus_no, payload, options): Observable<any> {
   //   return this.http.put(this.app.baseUrl + '/buses/' + bus_no + '/edit',payload, options);
   // }
