@@ -6,7 +6,8 @@ import { HttpHeaders } from '@angular/common/http';
 import { AppService } from '../app.service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { ChangeDriverComponent } from '../buses-dashboard/change-driver/change-driver.component';
-import { DeleteBusComponent} from '../buses-dashboard/delete-bus/delete-bus.component';
+import { DeleteBusComponent } from '../buses-dashboard/delete-bus/delete-bus.component';
+import { AddBusComponent } from '../buses-dashboard/add-bus/add-bus.component';
 @Component({
   selector: 'app-buses-dashboard',
   templateUrl: './buses-dashboard.component.html',
@@ -62,29 +63,29 @@ export class BusesDashboardComponent implements OnInit {
   gotoBusinfo(bus_no: number) {
     this.router.navigate(['businfo'], { queryParams: { busno: bus_no } });
   }
-  addBus(busForm) {
-    let payload = {
-      bus_no: this.busForm.controls['busno'].value,
-      gps_device_id: this.busForm.controls['gpsid'].value
-    };
-    let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
-    this.busSer.addBus(payload, options)
-      .subscribe(
-        res => {
-          this.app.openSnackBar('New Bus Added', '');
-          // setTimeout(() => {
-          //   window.location.reload();
-          // }, 1000);
-          this.router.navigate(['buses']);
-          this.ngOnInit();
-        },
-        err => {
-          if (err.status == 0) {
-            alert("Check your Internet connection");
-          }
-        }
-      );
-  }
+  // addBus(busForm) {
+  //   let payload = {
+  //     bus_no: this.busForm.controls['busno'].value,
+  //     gps_device_id: this.busForm.controls['gpsid'].value
+  //   };
+  //   let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
+  //   this.busSer.addBus(payload, options)
+  //     .subscribe(
+  //       res => {
+  //         this.app.openSnackBar('New Bus Added', '');
+  //         // setTimeout(() => {
+  //         //   window.location.reload();
+  //         // }, 1000);
+  //         this.router.navigate(['buses']);
+  //         this.ngOnInit();
+  //       },
+  //       err => {
+  //         if (err.status == 0) {
+  //           alert("Check your Internet connection");
+  //         }
+  //       }
+  //     );
+  // }
 
   assignedRoute(busno) {
     console.log(busno);
@@ -115,7 +116,7 @@ export class BusesDashboardComponent implements OnInit {
     dialogConfig.position = {
       top: '40px'
     };
-    dialogConfig.data={ busno: busno };
+    dialogConfig.data = { busno: busno };
     const dialogRef = this.dialog.open(ChangeDriverComponent, dialogConfig);
     //recive the data from editDriverComponet on succes or error when closing the matdialog
     dialogRef.beforeClose().subscribe(result => {
@@ -132,7 +133,7 @@ export class BusesDashboardComponent implements OnInit {
     dialogConfig.position = {
 
     };
-    dialogConfig.data={ busno: busno };
+    dialogConfig.data = { busno: busno };
     const dialogRef = this.dialog.open(DeleteBusComponent, dialogConfig);
     //recive the data from editDriverComponet on succes or error when closing the matdialog
     dialogRef.beforeClose().subscribe(result => {
@@ -140,4 +141,20 @@ export class BusesDashboardComponent implements OnInit {
       this.ngOnInit();
     });
   }
+  openDialogAddBus() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.height = '335px';
+    dialogConfig.width = '700px';
+    dialogConfig.autoFocus = true;
+    dialogConfig.position = {
+
+    };
+    const dialogRef = this.dialog.open(AddBusComponent, dialogConfig);
+    //recive the data from editDriverComponet on succes or error when closing the matdialog
+    dialogRef.beforeClose().subscribe(result => {
+      console.log('*******' + JSON.stringify(result));
+      this.ngOnInit();
+    });
+  }
+
 }

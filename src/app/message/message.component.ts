@@ -19,7 +19,6 @@ export class MessageComponent implements OnInit {
     if (localStorage.getItem('loggedIn') !== 'true') {
       this.router.navigate(['login']);
     }
-    // this.getBuses();
     this.messageForm = this.fb.group({
       subject: ['', Validators.compose([
         Validators.required,
@@ -45,13 +44,10 @@ export class MessageComponent implements OnInit {
           setTimeout(() => {
             this.dialogRef.close(res);
           }, 800);
-          this.app.openSnackBar('Message sent', '');
+          this.app.openSnackBar('Message Sent.', '');
         }, err => {
           if (err.status == 400) {
-            setTimeout(() => {
-              this.dialogRef.close(err);
-            }, 900);
-            this.app.openSnackBar('Subejct is too small', '');
+            this.app.openSnackBar('Subejct is too small.', '');
           }
         }
       );

@@ -16,7 +16,7 @@ export class ChangeDriverComponent implements OnInit {
   busno: number;
   users;
   username;
-  constructor(@Inject(MAT_DIALOG_DATA) data: any,private dialogRef: MatDialogRef<ChangeDriverComponent>, protected driSer: ChangeDriverService,
+  constructor(@Inject(MAT_DIALOG_DATA) data: any, private dialogRef: MatDialogRef<ChangeDriverComponent>, protected driSer: ChangeDriverService,
     protected router: Router, protected app: AppService, protected fb: FormBuilder) {
     this.busno = data.busno;
   }
@@ -55,10 +55,13 @@ export class ChangeDriverComponent implements OnInit {
     for (let i = 0; i < (this.users.length); i++) {
       if (driver == this.users[i].name) {
         this.username = this.users[i].username;
+        console.log(this.username);
       }
     }
   }
   changeDriver() {
+    console.log(this.busno);
+    console.log(this.username);
     let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
     this.driSer.changeDriver(this.busno, this.username, options)
       .subscribe(

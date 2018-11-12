@@ -2,22 +2,22 @@
 <div class="modal-footer"></div>
 <mat-dialog-content>
   <div class="modal-body">
-    <form  [formGroup]="changeDriverForm" (ngSubmit)="changeDriver(changeDriverForm)">
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Drivers:</label>
-            <div class="col-sm-9">
-              <select class="form-control" formControlName="driverName" id="power" required (ngModelChange)="selectedDriver($event)">
-                  <ng-container *ngFor="let user of users">
-                <option *ngIf="user.level== 1" [value]="user.name">{{user.name}}</option>
-                </ng-container>
-              </select>
-            </div>
-            <div class="errorBox pl-6 pr-6" *ngIf="changeDriverForm.controls['driverName'].hasError('required')  && changeDriverForm.controls['driverName'].touched">Bus
-              no is required.</div>
-            <div class="errorBox pl-6 pr-6" *ngIf="changeDriverForm.controls['driverName'].hasError('pattern') && changeDriverForm.controls['driverName'].touched">*Enter
-              valid Driver Name/ Driver Name can only be a number
-            </div>
-          </div>
+    <form [formGroup]="changeDriverForm" (ngSubmit)="changeDriver(changeDriverForm)">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Drivers:</label>
+        <div class="col-sm-9">
+          <select class="form-control" formControlName="driverName" id="power" required (ngModelChange)="selectedDriver($event)">
+            <ng-container *ngFor="let user of users">
+              <option *ngIf="user.level== 1" [value]="user.name">{{ user.name }}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div class="errorBox pl-6 pr-6" *ngIf="changeDriverForm.controls['driverName'].hasError('required')  && changeDriverForm.controls['driverName'].touched">Driver
+          name is required.</div>
+        <div class="errorBox pl-6 pr-6" *ngIf="changeDriverForm.controls['driverName'].hasError('pattern') && changeDriverForm.controls['driverName'].touched">*Enter
+          valid Driver Name/ Driver Name can only be a number
+        </div>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" mat-dialog-close>Cancel</button>
         <button type="submit" value="submit" class="btn btn-primary" [disabled]="!changeDriverForm.valid">Save</button>
