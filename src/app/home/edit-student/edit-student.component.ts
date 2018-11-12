@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { EditStudentService } from '../../home/edit-student/services/edit-student.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef , MatDialogConfig} from '@angular/material';
 import { HttpHeaders } from '@angular/common/http';
 import { AppService } from '../../app.service';
 
@@ -60,7 +60,7 @@ export class EditStudentComponent implements OnInit {
       level: ['', Validators.compose([
         Validators.required,
         Validators.pattern(/^[0-2]*$/),
-        Validators.minLength(1),
+        Validators.minLength(0),
         Validators.maxLength(1),
       ])],
       phNo: ['', Validators.compose([
@@ -95,7 +95,7 @@ export class EditStudentComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[0-99]*$/),
         Validators.minLength(1),
-        Validators.maxLength(2),
+        Validators.maxLength(3),
       ])],
       stops: ['', Validators.compose([
         Validators.required,
@@ -163,7 +163,7 @@ export class EditStudentComponent implements OnInit {
     console.log(user.stop.name);
     this.editstudentForm.controls['studentName'].setValue(user.name);
     this.editstudentForm.controls['studentUsername'].setValue(this.username);
-    this.editstudentForm.controls['level'].setValue(user.level);
+    this.editstudentForm.controls['level'].setValue(<string> user.level);
     this.editstudentForm.controls['phNo'].setValue(user.cell_no);
     this.editstudentForm.controls['busno'].setValue(user.bus_no);
     this.editstudentForm.controls['studentDeptname'].setValue(user.dept_code);

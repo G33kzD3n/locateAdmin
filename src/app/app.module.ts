@@ -26,6 +26,7 @@ import { EditBusComponent } from './buses-dashboard/businfo/edit-bus/edit-bus.co
 import { AgmCoreModule } from '@agm/core';
 import { EditStudentComponent } from './home/edit-student/edit-student.component';
 import { MessageComponent } from './message/message.component';
+import { DatePipe } from '@angular/common';
 
 // import { toastr } from 'toastr';
 
@@ -69,7 +70,9 @@ import { MessageComponent } from './message/message.component';
     MessageComponent,
 
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    DatePipe
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

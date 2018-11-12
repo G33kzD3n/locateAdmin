@@ -49,7 +49,7 @@
             </mat-expansion-panel-header>
             <div class="container">
               <div class="row">
-                <div class="col"><img src="../../assets/imgs/111.svg" alt=""></div>
+                <div class="col"><img src="{{user.avatar}}" alt=""></div>
                 <div class="col"> <label>Name: </label>
                   <p>{{ user.name | uppercase }}</p> <br>
                   <label>Department: </label>
@@ -57,7 +57,7 @@
                   <label> Bus Number: </label>
                   <p>{{ user.bus_no }}</p><br>
                   <label>Course:</label>
-                  <p>{{user.course_id}}</p>
+                  <p>{{user.course_code}}</p>
                 </div>
                 <div class="col"> <label> Phone Number: </label>
                   <p>{{ user.cell_no }}</p> <br>
@@ -65,7 +65,7 @@
                   <label> Level: </label>
                   <p>{{ user.level }}</p><br>
                   <label>Semester:</label>
-                  <p>{{user.semester}}</p>
+                  <p>{{user.semester_level}}</p>
                   <label>Stop Number:</label>
                   <p>{{user.stop_id}}</p>
                 </div>
@@ -117,7 +117,7 @@
             <td>{{ user.dept_id }}</td>
             <td>{{ user.course_id }}</td>
             <td>{{ user.semester }}</td>
-            <td>{{ user.phone_no }}</td>
+            <td>{{ user.cell_no }}</td>
             <td>{{ user.bus_no }}</td>
             <td>{{ user.stop_id }}</td>
             <td>{{ user.level }}</td>
@@ -172,16 +172,16 @@
             </mat-expansion-panel-header>
             <div class="container">
               <div class="row">
-                <div class="col"><img src="../../assets/imgs/111.svg" alt=""></div>
+                <div class="col"><img src="{{user.avatar}}" alt=""></div>
                 <div class="col"> <label>Name: </label>
                   <p>{{ user.name | uppercase }}</p> <br>
                   <label>Department: </label>
-                  <p> {{ user.dept_id }}</p> <br>
+                  <p> {{ user.dept_code }}</p> <br>
                   <label> Bus Number: </label>
                   <p>{{ user.bus_no }}</p><br>
                 </div>
                 <div class="col"> <label> Phone Number: </label>
-                  <p>{{ user.phone_no }}</p> <br>
+                  <p>{{ user.cell_no }}</p> <br>
                   
                   <label> Level: </label>
                   <p>{{ user.level }}</p><br>
@@ -233,7 +233,7 @@
             <td>{{ user.dept_id }}</td>
             <td>{{ user.course_id }}</td> -->
             <!-- <td>{{ user.semester }}</td> -->
-            <!-- <td>{{ user.phone_no }}</td>
+            <!-- <td>{{ user.cell_no }}</td>
             <td>{{ user.bus_no }}</td> -->
             <!-- <td>{{ user.stop_id }}</td> -->
             <!-- <td>{{ user.level }}</td>
@@ -287,16 +287,16 @@
         </mat-expansion-panel-header>
         <div class="container">
           <div class="row">
-            <div class="col"><img src="../../assets/imgs/111.svg" alt=""></div>
+            <div class="col"><img src="{{user.avatar}}" alt=""></div>
             <div class="col"> <label>Name: </label>
               <p>{{ user.name | uppercase }}</p> <br>
               <label>Department: </label>
-              <p> {{ user.dept_id }}</p> <br>
+              <p> {{ user.dept_code }}</p> <br>
               <label> Stop Number: </label>
               <p>{{ user.stop_id }}</p><br>
             </div>
             <div class="col"> <label> Phone Number: </label>
-              <p>{{ user.phone_no }}</p> <br>
+              <p>{{ user.cell_no }}</p> <br>
               <label> Bus Number: </label>
               <p>{{ user.bus_no }}</p><br>
               <label> Level: </label>
@@ -407,37 +407,3 @@
     </div>
   </div>
 </div>
-
-<!-- Modal for composing a new message-->
-<!-- <div class="modal fade" id="compose" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Enter a message for the Students</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Subject</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" placeholder="Subject of the message" name="subject">
-            </div>
-           
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Message</label>
-            <div class="col-sm-9">
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" placeholder="Message"></textarea>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" value="submit" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" value="submit" class="btn btn-primary">Send</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div> -->
