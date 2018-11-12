@@ -29,6 +29,7 @@ import { MessageComponent } from './message/message.component';
 import { DatePipe } from '@angular/common';
 import { ChangeDriverComponent } from './buses-dashboard/change-driver/change-driver.component';
 import { ChangeCoordinatorComponent } from './buses-dashboard/change-coordinator/change-coordinator.component';
+import { DeleteBusComponent } from './buses-dashboard/delete-bus/delete-bus.component';
 
 // import { toastr } from 'toastr';
 
@@ -52,7 +53,8 @@ import { ChangeCoordinatorComponent } from './buses-dashboard/change-coordinator
     EditStudentComponent,
     MessageComponent,
     ChangeDriverComponent,
-    ChangeCoordinatorComponent
+    ChangeCoordinatorComponent,
+    DeleteBusComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,9 @@ import { ChangeCoordinatorComponent } from './buses-dashboard/change-coordinator
     EditBusComponent,
     EditStudentComponent,
     MessageComponent,
-    ChangeCoordinatorComponent
+    ChangeCoordinatorComponent,
+    ChangeDriverComponent,
+    DeleteBusComponent
 
   ],
   providers: [

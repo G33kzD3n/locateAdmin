@@ -48,16 +48,14 @@
 
                     <mat-action-row class="row-ex">
                         <button class="btn btn-link" data-target="#routes" data-toggle="modal" type="submit" (click)="assignedRoute(bus.bus_no)">Assigned
-                            Stops</button>
-                        <button class="btn btn-light" title="Full edit" type="submit">
+                            Route</button>
+                        <button class="btn btn-light" title="Full edit" type="submit" (click)="openDialogChangeDriver(bus.bus_no)">
                             <img src="../../assets/imgs/trashed.svg">Change Driver</button>
                         <button class="btn btn-light" title="edit" type="submit" (click)="openDialogChangeCoord()">
                             <img src="../../assets/imgs/trashed.svg" >Change Coordinator</button>
                         <button class="btn btn-light" title="Full edit" type="submit" (click)="gotoBusinfo(bus.bus_no)">
-                            <img src="../../assets/imgs/trashed.svg">Edit</button>
-                        <button class="btn btn-light" type="button" data-toggle="modal" title="Delete record"
-                            data-target="#exampleModal"><img src="../../assets/imgs/outline-restore_from_trash-24px.svg"
-                                (click)="itemClicked(bus.bus_no)">Delete
+                            <img src="../../assets/imgs/trashed.svg">Edit Bus, Passengers & routes</button>
+                        <button class="btn btn-light" type="button" title="Delete record" (click)="openDialogDeleteBus(bus.bus_no)"><img src="../../assets/imgs/outline-restore_from_trash-24px.svg">Delete
                         </button>
                     </mat-action-row>
 
@@ -171,7 +169,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                    <table class="table table-striped" *ngIf="!stops">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -206,7 +204,7 @@
 
 <div class="form-inline float-right"></div>
 <!-- Modal  for delete function-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -224,7 +222,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- modal for basic edit
 <div class="modal fade" id="basicEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"

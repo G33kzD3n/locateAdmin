@@ -1,3 +1,27 @@
-<p>
-  change-coordinator works!
-</p>
+<h4>Change Coordinator for <b>{{busno}}</b></h4>
+<div class="modal-footer"></div>
+<mat-dialog-content>
+  <div class="modal-body">
+    <form  [formGroup]="changeCoordForm" (ngSubmit)="changeCoord(changeCoordForm)">
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Coordinators:</label>
+            <div class="col-sm-9">
+              <select class="form-control" formControlName="coordName" id="power" required (ngModelChange)="selectedCoord($event)">
+                  <ng-container *ngFor="let user of users">
+                <option *ngIf="user.level== 2" [value]="user.name">{{user.name}}</option>
+                </ng-container>
+              </select>
+            </div>
+            <div class="errorBox pl-6 pr-6" *ngIf="changeCoordForm.controls['coordName'].hasError('required')  && changeCoordForm.controls['coordName'].touched">Bus
+              no is required.</div>
+            <div class="errorBox pl-6 pr-6" *ngIf="changeCoordForm.controls['coordName'].hasError('pattern') && changeCoordForm.controls['coordName'].touched">*Enter
+              valid Coordinator Name/ Coordinator Name can only be a number
+            </div>
+          </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" mat-dialog-close>Cancel</button>
+        <button type="submit" value="submit" class="btn btn-primary" [disabled]="!changeCoordForm.valid">Save</button>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>
