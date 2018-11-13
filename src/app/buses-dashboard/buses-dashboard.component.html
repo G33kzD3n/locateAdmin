@@ -46,14 +46,14 @@
                         </div>
                     </div>
 
-                    <mat-action-row class="row-ex">
-                        <button class="btn btn-link" data-target="#routes" data-toggle="modal" type="submit" (click)="assignedRoute(bus.bus_no)">Assigned
+                    <mat-action-row class="btn-toolbar row-ex">
+                        <button class="btn btn-primary" data-target="#routes" data-toggle="modal" type="submit" (click)="assignedRoute(bus.bus_no)">Assigned
                             Route</button>
-                        <button class="btn btn-light" title="Edit" type="submit" (click)="openDialogChangeDriver(bus.bus_no)">
+                        <button class="btn btn-warning" title="Edit" type="submit" (click)="openDialogChangeDriver(bus.bus_no)">
                             <img src="../../assets/imgs/trashed.svg">Change Driver</button>
-                        <button class="btn btn-light" title="edit" type="submit" (click)="openDialogChangeCoord(bus.bus_no)">
+                        <button class="btn btn-warning" title="edit" type="submit" (click)="openDialogChangeCoord(bus.bus_no)">
                             <img src="../../assets/imgs/trashed.svg" >Change Coordinator</button>
-                        <button class="btn btn-light" title="Full edit" type="submit" (click)="gotoBusinfo(bus.bus_no)">
+                        <button class="btn btn-warning" title="Full edit" type="submit" (click)="gotoBusinfo(bus.bus_no)">
                             <img src="../../assets/imgs/trashed.svg">Edit Bus, Passengers & routes</button>
                         <button class="btn btn-danger" type="button" title="Delete record" (click)="openDialogDeleteBus(bus.bus_no)"><img src="../../assets/imgs/outline-restore_from_trash-24px.svg">Delete
                         </button>

@@ -17,8 +17,8 @@
     </div>
     <div>
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let passenger of (passengers | filter : 'name' : searchText); let i=index">
-          <mat-expansion-panel-header>
+        <mat-expansion-panel class="panel-ex" *ngFor="let passenger of (passengers | filter : 'name' : searchText); let i=index">
+          <mat-expansion-panel-header class="header-ex">
             <mat-panel-title>
               {{ passenger.username }}
             </mat-panel-title>
@@ -52,7 +52,7 @@
             </div>
           </div>
 
-          <mat-action-row class="btn-toolbar text-center well">
+          <mat-action-row class="btn-toolbar row-ex">
             
             <button  type="button" class="btn btn-warning"> Edit</button> 
             <button type="button" class="btn btn-danger"> Delete</button>

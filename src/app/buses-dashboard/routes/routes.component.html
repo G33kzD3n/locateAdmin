@@ -6,8 +6,8 @@
         <div class="col">
 
           <mat-accordion>
-            <mat-expansion-panel *ngFor="let stop of stops; let i=index">
-              <mat-expansion-panel-header (click)="setStopDataInForm(stop)">
+            <mat-expansion-panel class="panel-ex" *ngFor="let stop of stops; let i=index">
+              <mat-expansion-panel-header class="header-ex" (click)="setStopDataInForm(stop)">
                 <mat-panel-title>
                   <p> {{stop.name}}</p>
                 </mat-panel-title>

@@ -2,5 +2,18 @@ agm-map {
     height: 500px;
     
   }
+  
+  .header-ex{
+    background-color:#e0e0e0;
+}
+.mat-expansion-panel-body{
+    background-color: aquamarine !important;
+}
 
+.row-ex{
+    background-color: #eeeeee
+}
+.panel-ex{
+    margin-bottom: 10px;
+}
   
