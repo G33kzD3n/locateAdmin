@@ -32,7 +32,7 @@ export class DeleteBusComponent implements OnInit {
         err => {
           setTimeout(() => {
             this.dialogRef.close(err);
-          }, 900);
+          }, 400);
           if (err.status == 0) {
             alert("Check your Internet connection");
           }

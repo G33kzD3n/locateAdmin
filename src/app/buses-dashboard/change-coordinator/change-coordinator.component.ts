@@ -19,7 +19,7 @@ export class ChangeCoordinatorComponent implements OnInit {
   protected coordSer: ChangeCoordinatorService,
     protected router: Router, protected app: AppService, protected fb: FormBuilder) {
     this.busno = data.busno;
-    console.log(this.busno+"cons")
+    console.log(this.busno)
   }
 
   ngOnInit() {

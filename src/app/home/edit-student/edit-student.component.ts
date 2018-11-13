@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { EditStudentService } from '../../home/edit-student/services/edit-student.service';
-import { MAT_DIALOG_DATA, MatDialogRef , MatDialogConfig} from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { HttpHeaders } from '@angular/common/http';
 import { AppService } from '../../app.service';
 
@@ -154,8 +154,8 @@ export class EditStudentComponent implements OnInit {
         this.student = res.data;
         this.selectedBus(this.student.bus_no);
         setTimeout(() => {
-            this.setStudentDataInForm(this.student);
-          }, 500);
+          this.setStudentDataInForm(this.student);
+        }, 500);
         // this.setStudentDataInForm(this.student);
       }, err => {
         console.log(err);
@@ -172,7 +172,7 @@ export class EditStudentComponent implements OnInit {
     console.log(this.id);
     this.editstudentForm.controls['studentName'].setValue(user.name);
     this.editstudentForm.controls['studentUsername'].setValue(this.username);
-    this.editstudentForm.controls['level'].setValue(<string> user.level);
+    this.editstudentForm.controls['level'].setValue(<string>user.level);
     this.editstudentForm.controls['phNo'].setValue(user.cell_no);
     this.editstudentForm.controls['busno'].setValue(user.bus_no);
     this.editstudentForm.controls['studentDeptname'].setValue(user.dept_code);
@@ -203,14 +203,19 @@ export class EditStudentComponent implements OnInit {
       },
       err => {
         console.log(err);
+        if(err.status==404){
+          this.app.openSnackBar('No data Found', '');
+        }
       },
     )
   }
   selectedStop(stop) {
+    if (this.stops) {
       for (let i = 0; i < (this.stops.length); i++) {
         if (stop == this.stops[i].name) {
           this.id = this.stops[i].id;
           console.log('id: ' + this.id);
+        }
       }
     }
   }

@@ -18,15 +18,16 @@ export class BusesDashboardService {
     return this.http.get(this.app.baseUrl + '/1.0/buses/' + busno);
   }
 
-  addBus(payload, options): Observable<any> {
-    return this.http.post(this.app.baseUrl + '/admin/1.0/buses/create', payload, options);
-    // another way to set headers
-    //     headers: new HttpHeaders({
-    //     'Authorization': 'Bearer ' +token,
-    //     'Accept': 'application/json'
-    //   })
-    // });
-  }
+  // addBus(payload, options): Observable<any> {
+  //   return this.http.post(this.app.baseUrl + '/admin/1.0/buses/create', payload, options);
+  //   // another way to set headers
+  //   //     headers: new HttpHeaders({
+  //   //     'Authorization': 'Bearer ' +token,
+  //   //     'Accept': 'application/json'
+  //   //   })
+  //   // });
+  // }
+  
   // deleteBus(bus_no, options): Observable<any> {
   //   return this.http.delete(this.app.baseUrl + '/admin/1.0/buses/' + bus_no + '/delete', options);
   // }
