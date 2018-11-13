@@ -55,12 +55,16 @@ export class ChangeDriverComponent implements OnInit {
     for (let i = 0; i < (this.users.length); i++) {
       if (driver == this.users[i].name) {
         this.username = this.users[i].username;
+        console.log(this.username + "driv")
       }
     }
   }
   changeDriver() {
     let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
+    console.log(this.busno );
+    console.log(this.username );
     this.driSer.changeDriver(this.busno, this.username, options)
+    
       .subscribe(
         res => {
           console.log(res);

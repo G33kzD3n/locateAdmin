@@ -19,6 +19,7 @@ export class ChangeCoordinatorComponent implements OnInit {
   protected coordSer: ChangeCoordinatorService,
     protected router: Router, protected app: AppService, protected fb: FormBuilder) {
     this.busno = data.busno;
+    console.log(this.busno+"cons")
   }
 
   ngOnInit() {
@@ -55,6 +56,8 @@ export class ChangeCoordinatorComponent implements OnInit {
     for (let i = 0; i < (this.users.length); i++) {
       if (coordinator == this.users[i].name) {
         this.username = this.users[i].username;
+        console.log(this.username);
+        console.log(this.busno);
       }
     }
   }

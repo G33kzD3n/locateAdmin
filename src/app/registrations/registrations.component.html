@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-content>
-      <mat-card-title>Registrations</mat-card-title>
+      <mat-card-title>Registrations Requests</mat-card-title>
       <hr>
     <div class="form-inline float-right">
       <input class="form-control mr-sm-2" type="search" placeholder="Search Table" [(ngModel)]="searchText" aria-label="Search">
@@ -15,8 +15,56 @@
       </select> entries
       <!-- <label for="exampleFormControlSelect1">entries</label> -->
     </div>
+
+    <div>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let user of users | filter: 'name': searchText; let i=index">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ user.username }}
+            </mat-panel-title>
+            <mat-panel-description>
+              
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="container">
+            <div class="row">
+              <div class="col"><img src="{{user.avatar}}" alt=""></div>
+              <div class="col"> <label>Name: </label>
+                <p>{{ user.name | uppercase }}</p> <br>
+                <label>Department: </label>
+                <p> {{ user.dept_code }}</p> <br>
+                <label> Bus Number: </label>
+                <p>{{ user.bus_no }}</p><br>
+                <label>Course:</label>
+                <p>{{user.course_code}}</p>
+              </div>
+              <div class="col"> <label> Phone Number: </label>
+                <p>{{ user.cell_no }}</p> <br>
+
+                <label> Level: </label>
+                <p>{{ user.level }}</p><br>
+                <label>Semester:</label>
+                <p>{{user.semester_level}}</p>
+                <label>Stop Number:</label>
+                <p>{{user.stop_id}}</p>
+              </div>
+
+            </div>
+          </div>
+
+          <mat-action-row class="btn-toolbar text-center well">
+            <button  type="button" class="btn btn-success">Approve</button> 
+            <button  type="button" class="btn btn-warning"> Modify</button> 
+            <button type="button" class="btn btn-danger"> Reject</button>
+          </mat-action-row>
+          
+        </mat-expansion-panel>
+      </mat-accordion>
+      
+    </div>
     <div class="table-responsive">
-      <table class="table table-bordered table-hover">
+      <!-- <table class="table table-bordered table-hover">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -67,7 +115,7 @@
             <th scope="col">Actions</th>
           </tr>
         </thead>
-      </table>
+      </table> -->
       <div class="form-inline float-right">
         <nav aria-label="Page navigation example">
           <ul class="pagination text-right">

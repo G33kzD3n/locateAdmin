@@ -15,9 +15,56 @@
       </select> entries
       <!-- <label for="exampleFormControlSelect1">entries</label> -->
     </div>
+    <div>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let passenger of (passengers | filter : 'name' : searchText); let i=index">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ passenger.username }}
+            </mat-panel-title>
+            <mat-panel-description>
+              
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="container">
+            <div class="row">
+              <div class="col"><img src="{{passenger.avatar}}" alt=""></div>
+              <div class="col"> <label>Name: </label>
+                <p>{{ passenger.name | uppercase }}</p> <br>
+                <label>Department: </label>
+                <p> {{ passenger.dept_code }}</p> <br>
+                <label> Bus Number: </label>
+                <p>{{ passenger.bus_no }}</p><br>
+                <label>Course:</label>
+                <p>{{passenger.course_code}}</p>
+              </div>
+              <div class="col"> <label> Phone Number: </label>
+                <p>{{ passenger.cell_no }}</p> <br>
+
+                <label> Level: </label>
+                <p>{{ passenger.level }}</p><br>
+                <label>Semester:</label>
+                <p>{{passenger.semester_level}}</p>
+                <label>Stop Number:</label>
+                <p>{{passenger.stop_id}}</p>
+              </div>
+
+            </div>
+          </div>
+
+          <mat-action-row class="btn-toolbar text-center well">
+            
+            <button  type="button" class="btn btn-warning"> Edit</button> 
+            <button type="button" class="btn btn-danger"> Delete</button>
+          </mat-action-row>
+          
+        </mat-expansion-panel>
+      </mat-accordion>
+      
+    </div>
     <div class="table-responsive">
 
-      <table class="table table-striped">
+      <!-- <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -35,7 +82,7 @@
         <tbody>
           <tr *ngFor="let passenger of (passengers | filter : 'name' : searchText); let i=index">
             <!-- <tr *ngFor="let passenger of (users | filter: ['name','dept_id'] : searchText); let i=index"> -->
-            <th scope="row">{{i}}</th>
+            <!-- <th scope="row">{{i}}</th>
             <td>{{ passenger.username }}</td>
             <td>{{ passenger.name | uppercase }}</td>
             <td>{{ passenger.dept_code }}</td>
@@ -64,7 +111,7 @@
             <th scope="col">Actions</th>
           </tr>
         </thead>
-      </table>
+      </table>  -->
 
       <div class="form-inline float-right">
         <nav aria-label="Page navigation example">
