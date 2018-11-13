@@ -5,26 +5,29 @@
       <div class="row">
         <div class="col">
 
-            <mat-accordion>
-                <mat-expansion-panel *ngFor="let stop of stops; let i=index">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                         <p> {{stop.name}}</p>
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      
-                    </mat-panel-description>
-                    
-                  </mat-expansion-panel-header>
-              
-                  <label>#</label> <p> {{i}}</p>
-                    
-                    <label>Latitide:</label> <p>{{stop.lat}}</p>
-                    <label>Longitude:</label> <p>{{stop.lng}}</p>
-                </mat-expansion-panel>
-                
-              </mat-accordion>
-              
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let stop of stops; let i=index">
+              <mat-expansion-panel-header (click)="setStopDataInForm(stop)">
+                <mat-panel-title>
+                  <p> {{stop.name}}</p>
+                </mat-panel-title>
+                <mat-panel-description>
+
+                </mat-panel-description>
+
+              </mat-expansion-panel-header>
+
+              <label>#</label>
+              <p> {{i}}</p>
+
+              <label>Latitide:</label>
+              <p>{{stop.lat}}</p>
+              <label>Longitude:</label>
+              <p>{{stop.lng}}</p>
+            </mat-expansion-panel>
+
+          </mat-accordion>
+
           <!-- <div class="table-responsive">
             <table class="table table-hover table-bordered">
               <thead>
@@ -37,8 +40,8 @@
               </thead>
               <tbody >
                 <tr> -->
-                  <!-- <th scope="row"></th> -->
-                  <!-- <td>{{i}}</td>
+          <!-- <th scope="row"></th> -->
+          <!-- <td>{{i}}</td>
                   <td>{{stop.name}}</td>
                   <td>{{stop.lat}}</td>
                   <td>{{stop.lng}}</td>
@@ -62,20 +65,24 @@
           </agm-map>
         </div>
         <div class="col">
-          <form>
+          <form [formGroup]="stopForm" (ngSubmit)="editStop(stopForm)">
             <div class="form-group">
               <label>Index:</label>
-              <input type="number" class="form-control" id="index">
+              <input type="text" formControlName="stopId" class="form-control" id="index">
               <label>Stop Name:</label>
-              <input type="text" class="form-control" id="name">
+              <input type="text" formControlName="stopName" class="form-control" id="name">
               <label>Latitide:</label>
-              <input type="text" value={{latitude}} class="form-control" id="lat">
+              <input type="text" formControlName="stopLat" value={{latitude}} class="form-control" id="lat">
               <label>Longitude:</label>
-              <input type="text" value={{longitude}} class="form-control" id="lng">
+              <input type="text" formControlName="stopLng" value={{longitude}} class="form-control" id="lng">
             </div>
-            <button type="submit" (click)="addStop()" class="btn btn-primary">Add Stop</button>
-            <button type="submit" class="align-right" (click)="editStop()" class="btn btn-primary">Edit Stop</button>
-            <button type="submit" class="align-right" (click)="editStop()" class="btn btn-success">Save</button>
+            <div class="text-center">
+              <button type="submit" (click)="addStop()" class="btn btn-primary float-left"><img src="../../assets/imgs/trashed.svg">Add
+                Stop</button>
+              <button type="submit" (click)="editStop()" class="btn btn-primary "><img src="../../assets/imgs/trashed.svg">Edit
+                Stop</button>
+              <button type="submit" (click)="editStop()" class="btn btn-danger float-right"><img src="../../assets/imgs/outline-restore_from_trash-24px.svg">Delete</button>
+            </div>
           </form>
         </div>
       </div>

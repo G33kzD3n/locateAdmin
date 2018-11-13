@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PassengersService } from '../passengers/services/passengers.service';
-import { Route, ActivatedRoute } from '@angular/router';
+import { Route, ActivatedRoute, Router } from '@angular/router';
 import { RoutesService } from '../../buses-dashboard/routes/services/routes.service';
 import { FormControl, FormGroup } from '@angular/forms';
 @Component({
@@ -12,7 +12,7 @@ export class RoutesComponent implements OnInit {
   bus_no: Number;
   stops: string;
   latLngs: number;
-
+  stopForm:FormGroup;
   latitude: number;
   longitude: number;
   lat: Number = 34.084745;
@@ -25,11 +25,20 @@ export class RoutesComponent implements OnInit {
 
   }
 
-  constructor(protected routesSer: RoutesService, protected ar: ActivatedRoute) { }
+  constructor(protected routesSer: RoutesService, protected ar: ActivatedRoute,protected router:Router) { }
 
   ngOnInit() {
+    if (localStorage.getItem('loggedIn') !== 'true') {
+      this.router.navigate(['login']);
+    }
     this.bus_no = this.ar.snapshot.queryParams.busno;
     this.getRoutes();
+    this.stopForm =new FormGroup({
+      'stopId':new FormControl(''),
+      'stopName':new FormControl(''),
+      'stopLat': new FormControl(''),
+      'stopLng':new FormControl(''),
+    });
   }
   getRoutes() {
     this.routesSer.getRoutes(this.bus_no)
@@ -43,5 +52,12 @@ export class RoutesComponent implements OnInit {
         }
       );
   }
-
+  setStopDataInForm(stop: any){
+    // this.stopForm.controls['index'].setValue();
+    this.stopForm.controls['stopName'].setValue(stop.name);
+    this.stopForm.controls['stopLat'].setValue(stop.lat);
+    this.stopForm.controls['stopLng'].setValue(stop.lng);
+  }
+  editStop()
+ {} 
 }

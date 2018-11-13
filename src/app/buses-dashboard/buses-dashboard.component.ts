@@ -59,44 +59,17 @@ export class BusesDashboardComponent implements OnInit {
         }
       );
   }
-  // itemClicked(busno) {
-  //   this.bus_no = busno;
-  //   console.log(this.bus_no);
-  // }
+
   gotoBusinfo(bus_no: number) {
     this.router.navigate(['businfo'], { queryParams: { busno: bus_no } });
   }
-  // addBus(busForm) {
-  //   let payload = {
-  //     bus_no: this.busForm.controls['busno'].value,
-  //     gps_device_id: this.busForm.controls['gpsid'].value
-  //   };
-  //   let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }) };
-  //   this.busSer.addBus(payload, options)
-  //     .subscribe(
-  //       res => {
-  //         this.app.openSnackBar('New Bus Added', '');
-  //         // setTimeout(() => {
-  //         //   window.location.reload();
-  //         // }, 1000);
-  //         this.router.navigate(['buses']);
-  //         this.ngOnInit();
-  //       },
-  //       err => {
-  //         if (err.status == 0) {
-  //           alert("Check your Internet connection");
-  //         }
-  //       }
-  //     );
-  // }
-
+ 
   assignedRoute(busno) {
     console.log(busno);
     this.busSer.getBus(busno)
       .subscribe(
         res => {
           if (!res.bus.stops.names) {
-            console.log('no stops aasigned yet');
             this.app.openSnackBar("No Stops assigned yet", '');
             this.stops = [];
             console.log(this.stops);
@@ -124,6 +97,7 @@ export class BusesDashboardComponent implements OnInit {
     //recive the data from editcoordComponent on succes or error when closing the matdialog
     dialogRef.beforeClose().subscribe(result => {
       console.log('***' + JSON.stringify(result));
+      this.ngOnInit();
     });
   }
 

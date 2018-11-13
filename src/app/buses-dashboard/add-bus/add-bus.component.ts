@@ -41,10 +41,10 @@ export class AddBusComponent implements OnInit {
     this.addSer.addBus(payload, options)
       .subscribe(
         res => {
+          this.app.openSnackBar('New Bus Added', '');
           setTimeout(() => {
             this.dialogRef.close(res);
           }, 900);
-          this.app.openSnackBar('New Bus Added', '');
           this.ngOnInit();
         },
         err => {
