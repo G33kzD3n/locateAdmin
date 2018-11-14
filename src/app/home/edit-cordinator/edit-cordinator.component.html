@@ -21,8 +21,7 @@
             <div class="col-sm-9">
                 <input type="text" formControlName="Username" class="form-control" placeholder="Enter Username" name="username">
             </div>
-            <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['Username'].hasError('required')  && editcordForm.controls['Username'].touched">*Driver
-                name is required.
+            <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['Username'].hasError('required')  && editcordForm.controls['Username'].touched">*Username is required.
             </div>
             <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['Username'].hasError('pattern') && editcordForm.controls['Username'].touched">*Enter
                 valid username/ Username can only be a number
@@ -38,7 +37,7 @@
                 <input type="text" formControlName="level" class="form-control" placeholder="Enter level" name="level">
             </div>
             <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['level'].hasError('required')  && editcordForm.controls['level'].touched">
-                phone no is required.
+                Level Is Required.
             </div>
             <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['level'].hasError('pattern') && editcordForm.controls['level'].touched">*Enter
                 valid level/ level can only be a number either 0,1 or 2.
@@ -53,9 +52,9 @@
             <div class="col-sm-9">
                 <input type="text" formControlName="phNo" class="form-control" placeholder="Enter phone no" name="phNo">
             </div>
-            <!-- <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['phNo'].hasError('required')  && editcordForm.controls['phNo'].touched">
-                        phone no is required.
-                    </div> -->
+            <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['phNo'].hasError('required')  && editcordForm.controls['phNo'].touched">
+                        Phone is required.
+                    </div>
             <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['phNo'].hasError('pattern') && editcordForm.controls['phNo'].touched">*Enter
                 valid phone no/ phone no can only be a number
             </div>
@@ -79,8 +78,7 @@
                 <input type="text" formControlName="Deptname" class="form-control" placeholder="Enter Department name"
                     name="deptname">
             </div>
-            <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['Deptname'].hasError('required')  && editcordForm.controls['Deptname'].touched">*Name
-                is required.
+            <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['Deptname'].hasError('required')  && editcordForm.controls['Deptname'].touched">*Department is required.
             </div>
 
 
@@ -93,7 +91,7 @@
                 </select>
             </div>
             <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['busno'].hasError('required')  && editcordForm.controls['busno'].touched">
-                phone no is required.</div>
+                Required.</div>
             <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['busno'].hasError('pattern') && editcordForm.controls['busno'].touched">*Enter
                 valid bus no/ busno can only be a number
             </div>
@@ -107,7 +105,7 @@
                 <input type="text" formControlName="regOn" class="form-control" placeholder="Enter regOn" name="regOn">
             </div>
             <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['regOn'].hasError('required')  && editcordForm.controls['regOn'].touched">
-                phone no is required.</div>
+                Required.</div>
             <div class="errorBox pl-6 pr-6" *ngIf="editcordForm.controls['regOn'].hasError('pattern') && editcordForm.controls['regOn'].touched">*Enter
                 dob in the yyyy mm dd format
             </div>
